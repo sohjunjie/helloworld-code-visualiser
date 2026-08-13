@@ -4,10 +4,10 @@
 
 **Blocked by:** 03 — JS/TS AST Parsing Engine & Module Dependency Graph Generator
 
-**Status:** ready-for-agent
+**Status:** completed
 
-- [ ] Cytoscape.js canvas initializes and renders file nodes connected by import/export directional edges.
-- [ ] Layout engine switcher allows toggling between Dagre hierarchical view, COSE force-directed view, and Concentric ring view.
-- [ ] Node selection highlights incoming (importers) and outgoing (dependencies) edges while dimming unrelated nodes.
-- [ ] Circular dependency loops are highlighted with warning edge styling and badge counts.
-- [ ] Search input and file extension filters dynamically isolate matching graph nodes.
+- [x] Cytoscape.js canvas initializes and renders file nodes connected by import/export directional edges.
+- [x] Layout engine switcher allows toggling between Dagre hierarchical view, COSE force-directed view, and Concentric ring view.
+- [x] Node selection highlights incoming (importers) and outgoing (dependencies) edges while dimming unrelated nodes.
+- [x] Circular dependency loops are highlighted with warning edge styling and badge counts.
+- [x] Search input and file extension filters dynamically isolate matching graph nodes.

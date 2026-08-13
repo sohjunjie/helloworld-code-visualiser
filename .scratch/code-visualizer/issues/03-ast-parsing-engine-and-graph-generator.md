@@ -4,10 +4,10 @@
 
 **Blocked by:** 02 — ZIP File Upload & Web Worker Decompression Pipeline
 
-**Status:** ready-for-agent
+**Status:** completed
 
-- [ ] Web Worker integrates `@babel/parser` configured with TypeScript, JSX, decorators, and dynamic import syntax plugins.
-- [ ] Dependency extractor resolves relative import paths (`./`, `../`, `@/` path aliases) to matching project file IDs.
-- [ ] Circular dependency detection algorithm identifies import cycles (e.g. File A -> File B -> File A) and flags them in the analysis result model.
-- [ ] Fallback light regex parser processes non-JS/TS text files to count lines and capture file metadata.
-- [ ] Complete `AnalysisResult` payload (nodes, edges, file hierarchy, stats summary) is posted back to the main Angular application thread.
+- [x] Web Worker integrates `@babel/parser` configured with TypeScript, JSX, decorators, and dynamic import syntax plugins.
+- [x] Dependency extractor resolves relative import paths (`./`, `../`, `@/` path aliases) to matching project file IDs.
+- [x] Circular dependency detection algorithm identifies import cycles (e.g. File A -> File B -> File A) and flags them in the analysis result model.
+- [x] Fallback light regex parser processes non-JS/TS text files to count lines and capture file metadata.
+- [x] Complete `AnalysisResult` payload (nodes, edges, file hierarchy, stats summary) is posted back to the main Angular application thread.

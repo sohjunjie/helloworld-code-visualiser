@@ -4,10 +4,10 @@
 
 **Blocked by:** 04 — Interactive Directory Treemap & Hierarchy Visualizer (D3.js), 05 — Interactive Dependency & Architecture Network Graph (Cytoscape.js)
 
-**Status:** ready-for-agent
+**Status:** completed
 
-- [ ] Slide-over sidebar container slides in when a file or directory node is selected across any active view.
-- [ ] Source code viewer component renders file contents with line numbering and syntax formatting.
-- [ ] AST Inspector section displays total lines, import count, export count, and detected language type.
-- [ ] Incoming (imported by) and Outgoing (depends on) file lists allow clicking any linked file to focus it in the canvas and sidebar.
-- [ ] Close button and keyboard shortcut (Esc) hide the sidebar smoothly.
+- [x] Slide-over sidebar container slides in when a file or directory node is selected across any active view.
+- [x] Source code viewer component renders file contents with line numbering and syntax formatting.
+- [x] AST Inspector section displays total lines, import count, export count, and detected language type.
+- [x] Incoming (imported by) and Outgoing (depends on) file lists allow clicking any linked file to focus it in the canvas and sidebar.
+- [x] Close button and keyboard shortcut (Esc) hide the sidebar smoothly.
