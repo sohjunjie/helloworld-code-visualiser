@@ -8,57 +8,58 @@ import { CodeFileNode } from '../../models/code-visualizer.models';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="h-full flex flex-col p-4 space-y-4 overflow-y-auto">
+    <div class="h-full flex flex-col p-4 space-y-4 overflow-y-auto animate-fade-in">
       @if (store.analysisResult(); as result) {
         <!-- Overview Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60">
+          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60 shadow-lg hover:border-sky-500/30 transition duration-200">
             <div class="text-xs font-semibold text-slate-400">Total Project Files</div>
-            <div class="text-2xl font-bold text-sky-400 mt-1">{{ result.stats.totalFiles }}</div>
-            <div class="text-[10px] text-slate-500 mt-1">Across {{ result.stats.totalDirectories }} directories</div>
+            <div class="text-2xl font-extrabold text-sky-400 mt-1">{{ result.stats.totalFiles }}</div>
+            <div class="text-[10px] text-slate-400 mt-1">Across {{ result.stats.totalDirectories }} directories</div>
           </div>
 
-          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60">
+          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60 shadow-lg hover:border-red-500/30 transition duration-200">
             <div class="text-xs font-semibold text-slate-400">Circular Dependencies</div>
-            <div class="text-2xl font-bold text-red-400 mt-1">{{ result.stats.circularDependencies.length }}</div>
-            <div class="text-[10px] text-slate-500 mt-1">Import cycle loops detected</div>
+            <div class="text-2xl font-extrabold text-red-400 mt-1">{{ result.stats.circularDependencies.length }}</div>
+            <div class="text-[10px] text-slate-400 mt-1">Import cycle loops detected</div>
           </div>
 
-          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60">
+          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60 shadow-lg hover:border-indigo-500/30 transition duration-200">
             <div class="text-xs font-semibold text-slate-400">Total Codebase Size</div>
-            <div class="text-2xl font-bold text-indigo-400 mt-1">{{ formatBytes(result.stats.totalSize) }}</div>
-            <div class="text-[10px] text-slate-500 mt-1">Uncompressed text footprint</div>
+            <div class="text-2xl font-extrabold text-indigo-400 mt-1">{{ formatBytes(result.stats.totalSize) }}</div>
+            <div class="text-[10px] text-slate-400 mt-1">Uncompressed text footprint</div>
           </div>
 
-          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60">
+          <div class="glass-panel p-4 rounded-2xl border border-slate-700/60 shadow-lg hover:border-emerald-500/30 transition duration-200">
             <div class="text-xs font-semibold text-slate-400">Total Dependency Links</div>
-            <div class="text-2xl font-bold text-emerald-400 mt-1">{{ result.edges.length }}</div>
-            <div class="text-[10px] text-slate-500 mt-1">Import/export connections</div>
+            <div class="text-2xl font-extrabold text-emerald-400 mt-1">{{ result.edges.length }}</div>
+            <div class="text-[10px] text-slate-400 mt-1">Import/export connections</div>
           </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <!-- Circular Dependency Cycles Section -->
-          <div class="glass-card p-5 rounded-3xl border border-slate-800 space-y-3">
+          <div class="glass-card p-5 rounded-3xl border border-slate-800 shadow-xl space-y-3">
             <div class="flex items-center space-x-2 text-red-400 font-bold text-sm">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <span>Circular Import Cycles ({{ result.stats.circularDependencies.length }})</span>
             </div>
 
             @if (result.stats.circularDependencies.length === 0) {
-              <div class="p-4 bg-slate-900/50 rounded-2xl text-xs text-emerald-400 border border-emerald-500/20">
-                ✓ No circular dependencies detected in this codebase! Clean modular architecture.
+              <div class="p-4 bg-slate-900/50 rounded-2xl text-xs text-emerald-400 border border-emerald-500/20 flex items-center space-x-2">
+                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>No circular dependencies detected in this codebase! Clean modular architecture.</span>
               </div>
             } @else {
               <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
                 @for (cycle of result.stats.circularDependencies; track $index) {
-                  <div class="p-3 bg-red-950/20 border border-red-500/30 rounded-xl text-xs space-y-1">
-                    <div class="font-semibold text-red-300">Cycle #{{ $index + 1 }}</div>
+                  <div class="p-3 bg-red-950/20 border border-red-500/30 rounded-xl text-xs space-y-1 hover:border-red-500/50 transition">
+                    <div class="font-bold text-red-300">Cycle #{{ $index + 1 }}</div>
                     <div class="text-slate-300 font-mono text-[11px] flex flex-wrap gap-1">
                       @for (file of cycle; track file; let isLast = $last) {
-                        <span class="text-sky-300 hover:underline cursor-pointer" (click)="openFile(file)">{{ file }}</span>
+                        <span class="text-sky-300 hover:underline cursor-pointer active:scale-95 transition" (click)="openFile(file)">{{ file }}</span>
                         @if (!isLast) { <span class="text-red-400">➔</span> }
                       }
                     </div>
@@ -69,9 +70,9 @@ import { CodeFileNode } from '../../models/code-visualizer.models';
           </div>
 
           <!-- Top Imported Hub Files -->
-          <div class="glass-card p-5 rounded-3xl border border-slate-800 space-y-3">
+          <div class="glass-card p-5 rounded-3xl border border-slate-800 shadow-xl space-y-3">
             <div class="flex items-center space-x-2 text-sky-400 font-bold text-sm">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               <span>Most Imported Core Modules</span>
@@ -81,10 +82,10 @@ import { CodeFileNode } from '../../models/code-visualizer.models';
               @for (item of result.stats.topImportedFiles; track item.path) {
                 <div
                   (click)="openFile(item.path)"
-                  class="p-3 bg-slate-900/60 border border-slate-700/60 hover:border-sky-500/40 rounded-xl text-xs flex items-center justify-between cursor-pointer transition"
+                  class="p-3 bg-slate-900/70 border border-slate-700/60 hover:border-sky-500/50 hover:bg-slate-800/90 rounded-xl text-xs flex items-center justify-between cursor-pointer active:scale-[0.98] transition-all duration-150 shadow"
                 >
                   <span class="font-mono text-slate-200 truncate max-w-xs">{{ item.path }}</span>
-                  <span class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-bold text-[10px]">
+                  <span class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-bold text-[10px] border border-sky-500/30">
                     {{ item.count }} imports
                   </span>
                 </div>

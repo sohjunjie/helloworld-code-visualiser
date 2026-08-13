@@ -10,7 +10,7 @@ import { CodeFileNode } from '../../models/code-visualizer.models';
 try {
   cytoscape.use(dagre);
 } catch {
-  // Prevent duplicate registration errors
+  // Prevent duplicate registration
 }
 
 @Component({
@@ -18,9 +18,9 @@ try {
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="h-full flex flex-col p-4 space-y-4">
+    <div class="h-full flex flex-col p-4 space-y-4 animate-fade-in">
       <!-- Toolbar -->
-      <div class="glass-panel p-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 border border-slate-700/60">
+      <div class="glass-panel p-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 border border-slate-700/60 shadow-xl">
         <!-- Search & Filter Controls -->
         <div class="flex items-center space-x-3">
           <div class="relative">
@@ -29,33 +29,33 @@ try {
               placeholder="Search files..."
               [ngModel]="store.searchQuery()"
               (ngModelChange)="onSearchChange($event)"
-              class="w-48 px-3 py-1.5 pl-8 text-xs bg-slate-900/80 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-sky-500"
+              class="w-52 px-3 py-1.5 pl-8 text-xs bg-slate-900/90 border border-slate-700/80 rounded-xl text-slate-200 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition"
             />
-            <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
 
-          <!-- Layout Switcher -->
-          <div class="flex items-center space-x-1 bg-slate-900/80 p-1 rounded-lg border border-slate-700/80">
+          <!-- Layout Switcher Buttons -->
+          <div class="flex items-center space-x-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800">
             <button
               (click)="setLayout('dagre')"
-              [class]="store.selectedLayout() === 'dagre' ? 'bg-sky-500/20 text-sky-400 font-semibold' : 'text-slate-400 hover:text-slate-200'"
-              class="px-2.5 py-1 text-xs rounded transition"
+              [class]="store.selectedLayout() === 'dagre' ? 'bg-sky-500/20 text-sky-300 font-semibold border-sky-500/30' : 'text-slate-400 hover:text-slate-200 border-transparent hover:bg-slate-800/60'"
+              class="px-3 py-1 text-xs rounded-lg transition-all border active:scale-95 cursor-pointer"
             >
               Hierarchical
             </button>
             <button
               (click)="setLayout('cose')"
-              [class]="store.selectedLayout() === 'cose' ? 'bg-sky-500/20 text-sky-400 font-semibold' : 'text-slate-400 hover:text-slate-200'"
-              class="px-2.5 py-1 text-xs rounded transition"
+              [class]="store.selectedLayout() === 'cose' ? 'bg-sky-500/20 text-sky-300 font-semibold border-sky-500/30' : 'text-slate-400 hover:text-slate-200 border-transparent hover:bg-slate-800/60'"
+              class="px-3 py-1 text-xs rounded-lg transition-all border active:scale-95 cursor-pointer"
             >
               Force (COSE)
             </button>
             <button
               (click)="setLayout('concentric')"
-              [class]="store.selectedLayout() === 'concentric' ? 'bg-sky-500/20 text-sky-400 font-semibold' : 'text-slate-400 hover:text-slate-200'"
-              class="px-2.5 py-1 text-xs rounded transition"
+              [class]="store.selectedLayout() === 'concentric' ? 'bg-sky-500/20 text-sky-300 font-semibold border-sky-500/30' : 'text-slate-400 hover:text-slate-200 border-transparent hover:bg-slate-800/60'"
+              class="px-3 py-1 text-xs rounded-lg transition-all border active:scale-95 cursor-pointer"
             >
               Concentric
             </button>
@@ -65,9 +65,9 @@ try {
         <!-- Export Diagram Snapshot Button -->
         <button
           (click)="exportDiagram()"
-          class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 transition flex items-center space-x-1.5"
+          class="btn-interactive btn-secondary px-3.5 py-1.5 text-xs font-semibold rounded-xl flex items-center space-x-1.5"
         >
-          <svg class="w-3.5 h-3.5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <span>Export Canvas PNG</span>
@@ -75,15 +75,18 @@ try {
       </div>
 
       <!-- Graph Canvas Container -->
-      <div class="flex-1 glass-card rounded-3xl overflow-hidden relative border border-slate-800" #cyContainer>
+      <div class="flex-1 glass-card rounded-3xl overflow-hidden relative border border-slate-800 shadow-2xl" #cyContainer>
         <div class="w-full h-full" #cyElement></div>
 
-        <!-- Floating Legend & Info Overlay -->
-        <div class="absolute bottom-4 left-4 glass-panel p-3 rounded-xl border border-slate-700/80 text-xs space-y-1 z-20">
-          <div class="font-bold text-slate-200">Dependency Graph Legend</div>
-          <div class="flex items-center space-x-2 text-slate-400">
-            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span><span>Module File Node</span>
-            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span>Circular Dependency</span>
+        <!-- Floating Legend Overlay -->
+        <div class="absolute bottom-4 left-4 glass-panel p-3 rounded-2xl border border-slate-700/80 text-xs space-y-1.5 z-20 shadow-xl">
+          <div class="font-bold text-slate-200 flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span>Dependency Graph Legend</span>
+          </div>
+          <div class="flex items-center space-x-3 text-slate-400 text-[11px]">
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span><span>File Node</span></span>
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span><span>Circular Cycle</span></span>
           </div>
         </div>
       </div>
