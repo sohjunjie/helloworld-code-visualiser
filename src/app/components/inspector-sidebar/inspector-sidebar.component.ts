@@ -48,7 +48,7 @@ import { VisualizerStoreService } from '../../services/visualizer-store.service'
           <div class="lg:col-span-2 glass-card rounded-3xl p-4 border border-slate-800 shadow-xl flex flex-col space-y-2">
             <div class="flex items-center justify-between text-xs font-bold text-slate-300 pb-2 border-b border-slate-800">
               <span class="flex items-center space-x-1.5 text-sky-400">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                <svg class="w-4 h-4 text-sky-400 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
                 <span>Source Code Preview</span>
               </span>
               <span class="font-mono text-slate-400 text-[11px]">{{ node.name }}</span>

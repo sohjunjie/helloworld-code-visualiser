@@ -17,6 +17,15 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Prevent SVG icons from expanding unexpectedly */
+  svg:not(.w-full) {
+    max-width: 100%;
+    max-height: 100%;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
 /* Custom Scrollbars */
