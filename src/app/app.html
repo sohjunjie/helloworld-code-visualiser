@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-sky-500 selection:text-white">
+  <!-- Top Navigation Bar -->
+  <app-header />
+
+  <!-- Main Content Body -->
+  <main class="flex-1 flex flex-col relative overflow-hidden">
+    @if (!store.analysisResult()) {
+      <!-- Landing Drag and Drop Area -->
+      <div class="flex-1 flex items-center justify-center">
+        <app-upload-dropzone />
+      </div>
+    } @else {
+      <!-- Active Visualization View Container -->
+      <div class="flex-1 relative h-[calc(100vh-4rem)]">
+        @switch (store.activeTab()) {
+          @case ('treemap') {
+            <app-treemap-view class="w-full h-full block" />
+          }
+          @case ('graph') {
+            <app-dependency-graph-view class="w-full h-full block" />
+          }
+          @case ('architecture') {
+            <app-architecture-view class="w-full h-full block" />
+          }
+          @case ('inspector') {
+            <app-inspector-sidebar class="w-full h-full block" />
+          }
+        }
+      </div>
+    }
+  </main>
+
+  <!-- Progress Status Loading Overlay -->
+  <app-progress-modal />
+</div>
