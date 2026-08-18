@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject, AfterViewInit, effect } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, AfterViewInit, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as d3 from 'd3';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
@@ -17,17 +17,17 @@ export class TreemapViewComponent implements AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('svgElement') svgRef!: ElementRef<SVGElement>;
 
-  hoveredNode: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
-  tooltipX = 0;
-  tooltipY = 0;
+  hoveredNode = signal<d3.HierarchyRectangularNode<CodeFileNode> | null>(null);
+  tooltipX = signal<number>(0);
+  tooltipY = signal<number>(0);
 
   /** The node currently zoomed into (null = root) */
   private zoomRoot: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
   /** Full hierarchy root, cached for zoom navigation */
   private fullRoot: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
 
-  /** Breadcrumb trail for zoomed navigation */
-  breadcrumbs: d3.HierarchyRectangularNode<CodeFileNode>[] = [];
+  /** Breadcrumb trail signal for zoomed navigation */
+  breadcrumbs = signal<d3.HierarchyRectangularNode<CodeFileNode>[]>([]);
 
   /** Depth colors for folder nesting */
   private readonly folderColors = [
@@ -41,7 +41,7 @@ export class TreemapViewComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       const res = this.store.analysisResult();
-      if (res && this.svgRef) {
+      if (res) {
         this.zoomRoot = null;
         this.renderTreemap();
       }
@@ -60,11 +60,25 @@ export class TreemapViewComponent implements AfterViewInit {
 
   private renderTreemap() {
     const result = this.store.analysisResult();
-    if (!result || !this.svgRef || !this.containerRef) return;
+    if (!result) return;
+
+    // Always compute full root hierarchy and breadcrumbs using logarithmic scale for file size distribution
+    // This prevents large files (e.g. 50KB) from squishing small utility/class files (e.g. 200B) into unreadable micro-rectangles.
+    const root = d3
+      .hierarchy(result.rootNode)
+      .sum((d) => (d.type === 'file' ? Math.log2(Math.max(d.size, 10) + 1) * 300 : 0))
+      .sort((a, b) => (b.value || 0) - (a.value || 0));
+
+    this.fullRoot = root as d3.HierarchyRectangularNode<CodeFileNode>;
+    const renderRoot = this.zoomRoot || this.fullRoot;
+
+    this.updateBreadcrumbs(renderRoot);
+
+    if (!this.svgRef || !this.containerRef) return;
 
     const container = this.containerRef.nativeElement;
-    const width = container.clientWidth - 32;
-    const height = container.clientHeight - 32;
+    const width = container.clientWidth - 16;
+    const height = container.clientHeight - 16;
 
     if (width <= 0 || height <= 0) return;
 
@@ -75,35 +89,17 @@ export class TreemapViewComponent implements AfterViewInit {
     // Add a defs section for clip paths
     const defs = svg.append('defs');
 
-    const root = d3
-      .hierarchy(result.rootNode)
-      .sum((d) => (d.type === 'file' ? Math.max(d.size, 100) : 0))
-      .sort((a, b) => (b.value || 0) - (a.value || 0));
-
     const treemapLayout = d3
       .treemap<CodeFileNode>()
       .size([width, height])
-      .paddingTop(20)
-      .paddingRight(3)
-      .paddingBottom(3)
-      .paddingLeft(3)
-      .paddingInner(2)
+      .paddingTop((d) => (d.depth === 0 ? 18 : 16))
+      .paddingRight(2)
+      .paddingBottom(2)
+      .paddingLeft(2)
+      .paddingInner(1)
       .round(true);
 
     treemapLayout(root as any);
-
-    this.fullRoot = root as d3.HierarchyRectangularNode<CodeFileNode>;
-
-    // Determine the render root (for zooming)
-    const renderRoot = this.zoomRoot || this.fullRoot;
-
-    // Build breadcrumbs
-    this.breadcrumbs = [];
-    let current: d3.HierarchyRectangularNode<CodeFileNode> | null = renderRoot;
-    while (current) {
-      this.breadcrumbs.unshift(current);
-      current = current.parent as d3.HierarchyRectangularNode<CodeFileNode> | null;
-    }
 
     // When zoomed, we need to re-layout so the zoomed subtree fills the viewport
     let displayRoot = renderRoot;
@@ -111,22 +107,25 @@ export class TreemapViewComponent implements AfterViewInit {
       // Re-create a hierarchy from the zoomed node's data
       const subRoot = d3
         .hierarchy(this.zoomRoot.data)
-        .sum((d) => (d.type === 'file' ? Math.max(d.size, 100) : 0))
+        .sum((d) => (d.type === 'file' ? Math.log2(Math.max(d.size, 10) + 1) * 300 : 0))
         .sort((a, b) => (b.value || 0) - (a.value || 0));
 
       const subLayout = d3
         .treemap<CodeFileNode>()
         .size([width, height])
-        .paddingTop(20)
-        .paddingRight(3)
-        .paddingBottom(3)
-        .paddingLeft(3)
-        .paddingInner(2)
+        .paddingTop((d) => (d.depth === 0 ? 18 : 16))
+        .paddingRight(2)
+        .paddingBottom(2)
+        .paddingLeft(2)
+        .paddingInner(1)
         .round(true);
 
       subLayout(subRoot as any);
       displayRoot = subRoot as d3.HierarchyRectangularNode<CodeFileNode>;
     }
+
+    // Build breadcrumbs for currently displayed root using full tree lineage
+    this.updateBreadcrumbs(displayRoot);
 
     // Get all descendants (both folders and files)
     const allNodes = displayRoot.descendants() as d3.HierarchyRectangularNode<CodeFileNode>[];
@@ -155,13 +154,18 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
-        this.hoveredNode = d as any;
+        this.hoveredNode.set(d as any);
         const rect = container.getBoundingClientRect();
-        this.tooltipX = Math.min(event.clientX - rect.left + 15, width - 200);
-        this.tooltipY = Math.min(event.clientY - rect.top + 15, height - 80);
+        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
+        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+      })
+      .on('mousemove', (event) => {
+        const rect = container.getBoundingClientRect();
+        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
+        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
       })
       .on('mouseleave', () => {
-        this.hoveredNode = null;
+        this.hoveredNode.set(null);
       })
       .on('click', (event, d) => {
         event.stopPropagation();
@@ -231,14 +235,19 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
-        this.hoveredNode = d as any;
+        this.hoveredNode.set(d as any);
         const rect = container.getBoundingClientRect();
-        this.tooltipX = Math.min(event.clientX - rect.left + 15, width - 200);
-        this.tooltipY = Math.min(event.clientY - rect.top + 15, height - 80);
+        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
+        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
         d3.select(event.currentTarget as SVGElement).attr('opacity', 1).attr('stroke', '#38bdf8').attr('stroke-width', 1.5);
       })
+      .on('mousemove', (event) => {
+        const rect = container.getBoundingClientRect();
+        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
+        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+      })
       .on('mouseleave', (event) => {
-        this.hoveredNode = null;
+        this.hoveredNode.set(null);
         d3.select(event.currentTarget as SVGElement).attr('opacity', 0.85).attr('stroke', '#0f172a').attr('stroke-width', 1);
       })
       .on('click', (event, d) => {
@@ -263,6 +272,26 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('font-weight', '600')
       .attr('fill', '#f8fafc')
       .style('pointer-events', 'none');
+  }
+
+  /** Build breadcrumbs array from target node up to root */
+  private updateBreadcrumbs(node: d3.HierarchyRectangularNode<CodeFileNode> | null) {
+    if (!node) {
+      this.breadcrumbs.set([]);
+      return;
+    }
+
+    // If node is from subRoot re-layout, locate its corresponding node in fullRoot to get full parent chain
+    const fullNode = this.fullRoot ? this.findNodeInFullTree(node.data.id) : node;
+    let current: d3.HierarchyRectangularNode<CodeFileNode> | null = fullNode || node;
+    const list: d3.HierarchyRectangularNode<CodeFileNode>[] = [];
+
+    while (current) {
+      list.unshift(current);
+      current = current.parent as d3.HierarchyRectangularNode<CodeFileNode> | null;
+    }
+
+    this.breadcrumbs.set(list);
   }
 
   /** Find a node by ID in the full tree */
