@@ -1,16 +1,16 @@
 # Graph Report - helloworld-code-visualiser  (2026-08-19)
 
 ## Corpus Check
-- 28 files · ~9,429 words
+- 29 files · ~9,410 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 261 nodes · 345 edges · 23 communities (18 shown, 5 thin omitted)
+- 260 nodes · 348 edges · 21 communities (18 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0fe0a651`
+- Built from commit: `3839e5dc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,10 +23,8 @@
 - compilerOptions
 - analysis.worker.ts
 - UploadDropzoneComponent
-- ArchitectureViewComponent
 - App Root Template
 - helloworld-code-visualiser
-- InspectorSidebarComponent
 - tsconfig.app.json
 - tsconfig.spec.json
 - DependencyGraphViewComponent
@@ -36,12 +34,12 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `VisualizerStoreService` - 23 edges
-2. `TreemapViewComponent` - 15 edges
+2. `TreemapViewComponent` - 14 edges
 3. `buildAndParseGraph()` - 12 edges
-4. `CodeFileNode` - 11 edges
-5. `ExportDemoService` - 11 edges
-6. `compilerOptions` - 11 edges
-7. `DependencyGraphViewComponent` - 10 edges
+4. `ExportDemoService` - 11 edges
+5. `compilerOptions` - 11 edges
+6. `DependencyGraphViewComponent` - 10 edges
+7. `CodeFileNode` - 10 edges
 8. `helloworld-code-visualiser` - 7 edges
 9. `UploadDropzoneComponent` - 7 edges
 10. `development` - 6 edges
@@ -55,11 +53,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (23 total, 5 thin omitted)
+## Communities (21 total, 3 thin omitted)
 
 ### Community 0 - "VisualizerStoreService"
-Cohesion: 0.09
-Nodes (12): App, Component, HeaderComponent, Component, ProgressModalComponent, Component, AnalysisResult, DemoProject (+4 more)
+Cohesion: 0.07
+Nodes (18): App, Component, ArchitectureViewComponent, Component, HeaderComponent, Component, InspectorSidebarComponent, Component (+10 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.06
@@ -106,28 +104,28 @@ Cohesion: 0.28
 Nodes (3): DependencyGraphViewComponent, Component, ViewChild
 
 ### Community 15 - "TreemapViewComponent"
-Cohesion: 0.26
+Cohesion: 0.31
 Nodes (4): TreemapViewComponent, Component, ViewChild, CodeFileNode
 
 ## Knowledge Gaps
 - **93 isolated node(s):** `$schema`, `version`, `packageManager`, `newProjectRoot`, `projectType` (+88 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
-- **Why does `VisualizerStoreService` connect `VisualizerStoreService` to `TreemapViewComponent`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **What connects `$schema`, `version`, `packageManager` to the rest of the system?**
   _93 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `VisualizerStoreService` be split into smaller, more focused modules?**
-  _Cohesion score 0.09487179487179487 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07450980392156863 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
+- **Should `development` be split into smaller, more focused modules?**
+  _Cohesion score 0.08307692307692308 - nodes in this community are weakly interconnected._

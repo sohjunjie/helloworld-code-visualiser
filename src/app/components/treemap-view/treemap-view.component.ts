@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import * as d3 from 'd3';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
 import { CodeFileNode } from '../../models/code-visualizer.models';
+import { formatBytes } from '../../utils/formatters';
 
 @Component({
   selector: 'app-treemap-view',
@@ -348,11 +349,5 @@ export class TreemapViewComponent implements AfterViewInit {
     }
   }
 
-  formatBytes(bytes: number): string {
-    if (bytes === 0) return '0 B';
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-  }
+  formatBytes = formatBytes;
 }

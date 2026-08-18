@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { formatBytes } from '../../utils/formatters';
 
 @Component({
   selector: 'app-inspector-sidebar',
@@ -11,6 +12,7 @@ import { VisualizerStoreService } from '../../services/visualizer-store.service'
 })
 export class InspectorSidebarComponent {
   readonly store = inject(VisualizerStoreService);
+  readonly formatBytes = formatBytes;
 
   getImporters(targetPath: string): string[] {
     const result = this.store.analysisResult();
@@ -23,13 +25,5 @@ export class InspectorSidebarComponent {
     if (res && res.files[path]) {
       this.store.selectNode(res.files[path]);
     }
-  }
-
-  formatBytes(bytes: number): string {
-    if (bytes === 0) return '0 B';
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
   }
 }
