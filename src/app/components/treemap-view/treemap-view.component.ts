@@ -155,14 +155,10 @@ export class TreemapViewComponent implements AfterViewInit {
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
         this.hoveredNode.set(d as any);
-        const rect = container.getBoundingClientRect();
-        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
-        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+        this.updateTooltipPosition(event, container);
       })
       .on('mousemove', (event) => {
-        const rect = container.getBoundingClientRect();
-        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
-        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+        this.updateTooltipPosition(event, container);
       })
       .on('mouseleave', () => {
         this.hoveredNode.set(null);
@@ -236,15 +232,11 @@ export class TreemapViewComponent implements AfterViewInit {
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
         this.hoveredNode.set(d as any);
-        const rect = container.getBoundingClientRect();
-        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
-        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+        this.updateTooltipPosition(event, container);
         d3.select(event.currentTarget as SVGElement).attr('opacity', 1).attr('stroke', '#38bdf8').attr('stroke-width', 1.5);
       })
       .on('mousemove', (event) => {
-        const rect = container.getBoundingClientRect();
-        this.tooltipX.set(Math.min(Math.max(10, event.clientX - rect.left + 12), width - 260));
-        this.tooltipY.set(Math.min(Math.max(10, event.clientY - rect.top + 12), height - 90));
+        this.updateTooltipPosition(event, container);
       })
       .on('mouseleave', (event) => {
         this.hoveredNode.set(null);
@@ -272,6 +264,26 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('font-weight', '600')
       .attr('fill', '#f8fafc')
       .style('pointer-events', 'none');
+  }
+
+  private updateTooltipPosition(event: MouseEvent, _container: HTMLElement) {
+    const tooltipWidth = 260;
+    const tooltipHeight = 110;
+    const padding = 12;
+
+    let x = event.clientX + padding;
+    let y = event.clientY + padding;
+
+    // Flip tooltip to left/top if it would overflow window/viewport edges
+    if (x + tooltipWidth > window.innerWidth) {
+      x = Math.max(padding, event.clientX - tooltipWidth - padding);
+    }
+    if (y + tooltipHeight > window.innerHeight) {
+      y = Math.max(padding, event.clientY - tooltipHeight - padding);
+    }
+
+    this.tooltipX.set(x);
+    this.tooltipY.set(y);
   }
 
   /** Build breadcrumbs array from target node up to root */
