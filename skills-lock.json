@@ -49,12 +49,6 @@
       "skillPath": "skills/engineering/to-tickets/SKILL.md",
       "computedHash": "e817ecc8ffbb51dd5edd7cc141fe209f31c298dfd66b886e0c6c9aba2dd70266"
     },
-    "triage": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "skillPath": "skills/engineering/triage/SKILL.md",
-      "computedHash": "f844266a4d3b742b42045a162acb8eda26b8e9359a3b7a3526665c453148473a"
-    },
     "writing-for-agents": {
       "source": "mattpocock/skills",
       "sourceType": "github",

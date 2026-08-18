@@ -1,0 +1,65 @@
+# Agents execution protocol
+
+This protocol defines standard operational requirements, execution steps, and workspace verification procedures for all codebase modifications, feature implementations, refactoring tasks, bug fixes, and knowledge-graph synchronization.
+
+---
+
+## 1. Graphify Protocol & Context Discovery
+
+Before modifying code or analyzing project architecture, agents **MUST** leverage Graphify outputs to understand the project structure, dependencies, and code maps (if available).
+
+> **Note on Graceful Fallback / Conditional Skip:** If the `graphify_out/` directory or artifacts (`GRAPH_REPORT.md`) do not exist or have not been created yet in the workspace, agents **MAY SKIP** Graphify-specific checks and updates, proceeding with standard codebase inspection tools (`view_file`, `grep_search`, `list_dir`).
+
+### Graphify Reference Files
+- **Graph Report:** `graphify_out/GRAPH_REPORT.md` (Read this first for a summary of modules, classes, and functions).
+- **Graph Visualisation Map:** `graphify_out/graph.html` (Reference to trace complex structural edges or dependency flows).
+- **Graph Raw Data:** `graphify_out/graph.json` (Use for programmatically parsing structural relationships).
+
+### Graphify Operational Rules
+1. **Mandatory Context Checks**:
+   - **Onboard & Start New Task:** Read `graphify_out/GRAPH_REPORT.md` to find the exact files, functions, and entry points relevant to the request. Do not read the entire codebase manually. (Skip if `graphify_out/` is missing).
+   - **Assess Impact:** Check dependencies listed in the Graphify report to determine which modules may be affected when modifying specific classes or functions.
+2. **Maintenance & Incremental Updates**:
+   - Whenever files are created, modified, or deleted, the local knowledge graph becomes stale.
+   - **Action Required:** Immediately after modifying or writing code files, run `graphify update .` to synchronize the graph (skip if Graphify is not initialized in the project).
+   - **Verification:** Confirm `graphify_out/GRAPH_REPORT.md` has updated before completing the task.
+3. **Exclusions & Routing**:
+   - Ignore files/directories listed in `.graphifyignore`. Do not attempt to index raw agent skills or runtime tool directories.
+
+---
+
+## 2. Universal Execution Protocol
+
+All files modifications must strictly adhere to the following sequence:
+
+### Phase 1: Context & Risk Assessment (Graphify-First)
+- **Graphify Discovery**: Read `graphify_out/GRAPH_REPORT.md` to map out dependencies and relevant modules before making edits (if `graphify_out` exists).
+- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md) to check for documented operational failure modes, environment quirks, or known execution drift patterns relevant to the current task.
+
+### Phase 2: Execution & Verification
+- **Direct Workspace File Operations**: Perform code changes, file creations, and structural updates directly in the workspace.
+- **Empirical State Verification**: Immediately inspect directory contents (`list_dir`) and modified file structures (`view_file`) after writing changes to guarantee file existence, correct paths, and accurate byte sizes.
+
+### Phase 3: Graphify Synchronization & Build Verification
+- **Synchronize Knowledge Graph**: Run `graphify update .` whenever code files have been edited, added, or deleted (skip if `graphify_out` is not initialized).
+- **Run Verification Suite**: Execute project build scripts, type checks, or test suites (e.g., via `cmd /c "<build-command>"` on Windows) to confirm zero compilation errors.
+- **Enforce Zero-Regression Guarantee**: Ensure existing API contracts, exports, and module dependencies remain unbroken.
+
+---
+
+## 3. Self-Improvement & Continuous Learning
+
+To avoid known failure modes and enforce continuous quality loops, agents must follow the dedicated self-improvement guidelines in [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md).
+
+---
+
+## 4. Pre-Completion Checklist
+
+Before marking any task as complete, verify:
+
+- [ ] **Graphify Discovery**: `graphify_out/GRAPH_REPORT.md` was referenced for context discovery and dependency impact analysis (n/a if `graphify_out` not initialized).
+- [ ] **State Discovery**: All created or modified files exist on disk with valid non-zero content.
+- [ ] **Clean Syntax & Imports**: No broken imports, syntax errors, or unhandled file path resolution issues exist.
+- [ ] **Graphify Sync**: `graphify update .` was executed following file changes, and `graphify_out/GRAPH_REPORT.md` is up to date (n/a if `graphify_out` not initialized).
+- [ ] **Build Verification**: Project build/test suite executes cleanly (Exit Code 0).
+- [ ] **Self-Improvement Review**: Any environment or execution errors encountered during the task were identified, resolved, and documented per [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md).
