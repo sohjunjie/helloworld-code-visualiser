@@ -62,20 +62,41 @@ export class VisualizerStoreService {
     reader.readAsArrayBuffer(file);
   }
 
-  analyzeDemoProject(demo: DemoProject) {
+  async analyzeDemoProject(demo: DemoProject) {
     if (!this.worker) this.initWorker();
     if (!this.worker) return;
 
     this.progressStatus.set({
       stage: 'unzipping',
       percentage: 10,
-      message: `Loading demo codebase: ${demo.name}...`,
+      message: `Fetching demo archive ${demo.name}...`,
     });
 
-    this.worker.postMessage({
-      action: 'ANALYZE_DEMO',
-      payload: { files: demo.files, projectName: demo.name },
-    });
+    try {
+      const response = await fetch(`/demo-projects/${demo.filename}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+      }
+      const arrayBuffer = await response.arrayBuffer();
+
+      this.progressStatus.set({
+        stage: 'unzipping',
+        percentage: 25,
+        message: `Extracting demo codebase: ${demo.name}...`,
+      });
+
+      this.worker.postMessage({
+        action: 'ANALYZE_ZIP',
+        payload: { arrayBuffer, fileName: demo.filename },
+      });
+    } catch (err: any) {
+      this.progressStatus.set({
+        stage: 'error',
+        percentage: 0,
+        message: 'Failed to download demo project zip',
+        error: err?.message || 'Unknown network error',
+      });
+    }
   }
 
   selectNode(node: CodeFileNode | null) {

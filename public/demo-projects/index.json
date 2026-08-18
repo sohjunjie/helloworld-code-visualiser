@@ -1,0 +1,23 @@
+[
+  {
+    "id": "express-rest-api-server",
+    "name": "Express REST API Server",
+    "description": "Node.js Express backend with controllers, services, database models, and routes.",
+    "filename": "express-rest-api-server.zip",
+    "fileCount": 8
+  },
+  {
+    "id": "react-analytics-app",
+    "name": "React Analytics App",
+    "description": "React TypeScript frontend with components, custom hooks, context, and UI elements.",
+    "filename": "react-analytics-app.zip",
+    "fileCount": 8
+  },
+  {
+    "id": "typescript-core-library",
+    "name": "TypeScript Core Library",
+    "description": "Algorithmic utility library with graph solvers, pathfinders, and data structures.",
+    "filename": "typescript-core-library.zip",
+    "fileCount": 5
+  }
+]

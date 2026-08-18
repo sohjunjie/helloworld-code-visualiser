@@ -28,6 +28,19 @@ export interface GraphEdge {
   label?: string;
 }
 
+export interface SoftwarePatternInfo {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  confidence: number;
+  level: 'High' | 'Medium' | 'Low';
+  matchingFiles: string[];
+  keyIndicators: string[];
+  icon: string;
+  colorClass: string;
+}
+
 export interface AnalysisStats {
   totalFiles: number;
   totalDirectories: number;
@@ -35,6 +48,7 @@ export interface AnalysisStats {
   circularDependencies: string[][];
   languageBreakdown: Record<string, number>;
   topImportedFiles: { path: string; count: number }[];
+  detectedPatterns: SoftwarePatternInfo[];
 }
 
 export interface AnalysisResult {
@@ -56,6 +70,6 @@ export interface DemoProject {
   id: string;
   name: string;
   description: string;
+  filename: string;
   fileCount: number;
-  files: Record<string, { content: string; size?: number }>;
 }

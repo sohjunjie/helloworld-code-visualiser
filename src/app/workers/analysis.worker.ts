@@ -183,6 +183,8 @@ async function buildAndParseGraph(rawFiles: Record<string, string>, projectName:
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
+  const detectedPatterns = detectSoftwarePatterns(fileNodes, totalFiles);
+
   const result: AnalysisResult = {
     projectName,
     rootNode,
@@ -195,6 +197,7 @@ async function buildAndParseGraph(rawFiles: Record<string, string>, projectName:
       circularDependencies: cycles,
       languageBreakdown,
       topImportedFiles,
+      detectedPatterns,
     },
   };
 
@@ -460,4 +463,164 @@ function reportProgress(stage: UploadProgress['stage'], percentage: number, mess
       message,
     } as UploadProgress,
   });
+}
+
+function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFiles: number): import('../models/code-visualizer.models').SoftwarePatternInfo[] {
+  const patterns: import('../models/code-visualizer.models').SoftwarePatternInfo[] = [];
+  const paths = Object.keys(fileNodes);
+
+  // 1. Component-Based Architecture
+  const componentFiles = paths.filter(p => 
+    p.includes('/components/') || p.includes('/views/') || p.includes('/widgets/') || 
+    p.endsWith('.component.ts') || p.endsWith('.component.html') || p.endsWith('.component.css') ||
+    p.endsWith('.jsx') || p.endsWith('.tsx') || p.endsWith('.vue') || p.endsWith('.svelte')
+  );
+  if (componentFiles.length > 0) {
+    const ratio = Math.min(100, Math.round((componentFiles.length / Math.max(1, totalFiles)) * 100) + 40);
+    patterns.push({
+      id: 'component-based',
+      name: 'Component-Based Architecture',
+      category: 'UI & Frontend Structure',
+      description: 'Decomposes user interfaces into modular, encapsulated components that manage their own state and rendering logic.',
+      confidence: Math.min(98, Math.max(65, ratio)),
+      level: ratio > 75 ? 'High' : ratio > 45 ? 'Medium' : 'Low',
+      matchingFiles: componentFiles.slice(0, 8),
+      keyIndicators: [
+        `${componentFiles.length} Component files detected`,
+        'Encapsulated view templates & scoped component styles',
+        'Hierarchical UI component tree layout'
+      ],
+      icon: 'cube',
+      colorClass: 'sky'
+    });
+  }
+
+  // 2. Layered (N-Tier) Architecture
+  const serviceFiles = paths.filter(p => p.includes('/services/') || p.endsWith('.service.ts') || p.includes('/logic/'));
+  const modelFiles = paths.filter(p => p.includes('/models/') || p.endsWith('.model.ts') || p.includes('/entities/') || p.includes('/schema/'));
+  const controllerFiles = paths.filter(p => p.includes('/controllers/') || p.includes('/routes/') || p.includes('/api/'));
+  
+  const layerCount = (serviceFiles.length > 0 ? 1 : 0) + (modelFiles.length > 0 ? 1 : 0) + (componentFiles.length > 0 || controllerFiles.length > 0 ? 1 : 0);
+  if (layerCount >= 2) {
+    const matching = Array.from(new Set([...serviceFiles, ...modelFiles, ...controllerFiles]));
+    const confidence = layerCount >= 3 ? 92 : 75;
+    patterns.push({
+      id: 'layered-ntier',
+      name: 'Layered (N-Tier) Architecture',
+      category: 'System Structure',
+      description: 'Organizes code into horizontal tiers with isolated responsibilities (Presentation, Business Service Logic, Data Model/Persistence).',
+      confidence,
+      level: confidence > 85 ? 'High' : 'Medium',
+      matchingFiles: matching.slice(0, 8),
+      keyIndicators: [
+        serviceFiles.length > 0 ? `Service Layer (${serviceFiles.length} files)` : '',
+        modelFiles.length > 0 ? `Data/Model Layer (${modelFiles.length} files)` : '',
+        componentFiles.length > 0 ? `Presentation Layer (${componentFiles.length} files)` : '',
+        controllerFiles.length > 0 ? `Controller/API Layer (${controllerFiles.length} files)` : ''
+      ].filter(Boolean),
+      icon: 'layers',
+      colorClass: 'indigo'
+    });
+  }
+
+  // 3. Event-Driven & Reactive Architecture
+  const reactiveFiles = paths.filter(p => {
+    const content = fileNodes[p]?.content || '';
+    return content.includes('EventEmitter') || content.includes('postMessage') || 
+           content.includes('addEventListener') || content.includes('Subject') || 
+           content.includes('BehaviorSubject') || content.includes('signal(') ||
+           content.includes('Worker') || p.includes('worker');
+  });
+
+  if (reactiveFiles.length > 0) {
+    const confidence = Math.min(95, 60 + reactiveFiles.length * 8);
+    patterns.push({
+      id: 'event-driven',
+      name: 'Event-Driven & Reactive Architecture',
+      category: 'Data & Async Flow',
+      description: 'Uses asynchronous event channels, reactive state signals/observables, and message passing (e.g. Web Workers / Events) to decouple producers and consumers.',
+      confidence,
+      level: confidence > 80 ? 'High' : 'Medium',
+      matchingFiles: reactiveFiles.slice(0, 8),
+      keyIndicators: [
+        'Reactive State Signals & Event Observers',
+        'Asynchronous Web Worker message dispatching (`postMessage`)',
+        `Found in ${reactiveFiles.length} key modules`
+      ],
+      icon: 'bolt',
+      colorClass: 'amber'
+    });
+  }
+
+  // 4. Model-View-Controller (MVC) Pattern
+  if (modelFiles.length > 0 && (componentFiles.length > 0 || controllerFiles.length > 0)) {
+    const mvcMatching = Array.from(new Set([...modelFiles, ...componentFiles, ...controllerFiles]));
+    const confidence = (modelFiles.length > 0 && componentFiles.length > 0 && controllerFiles.length > 0) ? 90 : 72;
+    patterns.push({
+      id: 'mvc',
+      name: 'Model-View-Controller (MVC)',
+      category: 'Architectural Pattern',
+      description: 'Separates internal representations of information (Model) from user interaction (View) and business workflow dispatch (Controller/Service).',
+      confidence,
+      level: confidence > 85 ? 'High' : 'Medium',
+      matchingFiles: mvcMatching.slice(0, 8),
+      keyIndicators: [
+        `Models (${modelFiles.length} file definitions)`,
+        `Views (${componentFiles.length} template/UI components)`,
+        controllerFiles.length > 0 ? `Controllers (${controllerFiles.length} router/handlers)` : 'Service-driven Controller dispatches'
+      ],
+      icon: 'layout',
+      colorClass: 'emerald'
+    });
+  }
+
+  // 5. Async Pipeline & Web Worker Task Pattern
+  const pipelineFiles = paths.filter(p => {
+    const content = fileNodes[p]?.content || '';
+    return p.includes('worker') || content.includes('progress') || content.includes('stage') || content.includes('parse');
+  });
+  if (pipelineFiles.length >= 2) {
+    patterns.push({
+      id: 'pipeline-worker',
+      name: 'Pipeline & Off-Thread Worker Pattern',
+      category: 'Execution & Concurrency',
+      description: 'Offloads computationally heavy AST analysis and ZIP extraction to multi-threaded Web Workers using staged pipeline processing.',
+      confidence: 88,
+      level: 'High',
+      matchingFiles: pipelineFiles.slice(0, 8),
+      keyIndicators: [
+        'Non-blocking background thread worker execution',
+        'Staged data processing pipeline (Extract → AST Parse → Graph Resolution)',
+        'Progress tracking & asynchronous status emission'
+      ],
+      icon: 'cpu',
+      colorClass: 'purple'
+    });
+  }
+
+  // 6. Centralized Singleton Store Pattern
+  const storeFiles = paths.filter(p => {
+    const content = fileNodes[p]?.content || '';
+    return content.includes("providedIn: 'root'") || content.includes('VisualizerStoreService') || content.includes('createStore') || content.includes('Store');
+  });
+  if (storeFiles.length > 0) {
+    patterns.push({
+      id: 'singleton-store',
+      name: 'Centralized Singleton State Store',
+      category: 'State Management',
+      description: 'Provides a single source of truth for global application state, active tabs, layout preferences, and analysis results across components.',
+      confidence: 94,
+      level: 'High',
+      matchingFiles: storeFiles.slice(0, 8),
+      keyIndicators: [
+        'Single source of truth global reactive store',
+        'Dependency injected singleton services',
+        'Atomic signal state updates'
+      ],
+      icon: 'database',
+      colorClass: 'rose'
+    });
+  }
+
+  return patterns;
 }
