@@ -73,7 +73,7 @@ export class VisualizerStoreService {
     });
 
     try {
-      const response = await fetch(`/demo-projects/${demo.filename}`);
+      const response = await fetch(`demo-projects/${demo.filename}`);
       if (!response.ok) {
         throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
       }

@@ -15,7 +15,7 @@ export class ExportDemoService {
   async loadDemoProjects() {
     this.isLoadingDemos.set(true);
     try {
-      const res = await fetch('/demo-projects/index.json');
+      const res = await fetch('demo-projects/index.json');
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
       const projects: DemoProject[] = await res.json();
       this.demoProjects.set(projects);
