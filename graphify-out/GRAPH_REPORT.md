@@ -1,16 +1,16 @@
 # Graph Report - helloworld-code-visualiser  (2026-08-19)
 
 ## Corpus Check
-- 29 files · ~9,410 words
+- 28 files · ~9,450 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 260 nodes · 348 edges · 21 communities (18 shown, 3 thin omitted)
+- 262 nodes · 349 edges · 22 communities (18 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3839e5dc`
+- Built from commit: `87ec1b4a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,6 +23,7 @@
 - compilerOptions
 - analysis.worker.ts
 - UploadDropzoneComponent
+- InspectorSidebarComponent
 - App Root Template
 - helloworld-code-visualiser
 - tsconfig.app.json
@@ -35,11 +36,11 @@
 ## God Nodes (most connected - your core abstractions)
 1. `VisualizerStoreService` - 23 edges
 2. `TreemapViewComponent` - 14 edges
-3. `buildAndParseGraph()` - 12 edges
-4. `ExportDemoService` - 11 edges
-5. `compilerOptions` - 11 edges
-6. `DependencyGraphViewComponent` - 10 edges
-7. `CodeFileNode` - 10 edges
+3. `DependencyGraphViewComponent` - 12 edges
+4. `buildAndParseGraph()` - 12 edges
+5. `ExportDemoService` - 11 edges
+6. `compilerOptions` - 11 edges
+7. `CodeFileNode` - 9 edges
 8. `helloworld-code-visualiser` - 7 edges
 9. `UploadDropzoneComponent` - 7 edges
 10. `development` - 6 edges
@@ -53,11 +54,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (21 total, 3 thin omitted)
+## Communities (22 total, 4 thin omitted)
 
 ### Community 0 - "VisualizerStoreService"
-Cohesion: 0.07
-Nodes (18): App, Component, ArchitectureViewComponent, Component, HeaderComponent, Component, InspectorSidebarComponent, Component (+10 more)
+Cohesion: 0.08
+Nodes (16): App, Component, ArchitectureViewComponent, Component, HeaderComponent, Component, ProgressModalComponent, Component (+8 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.06
@@ -100,7 +101,7 @@ Cohesion: 0.22
 Nodes (8): src/**/*.d.ts, vitest/globals, compilerOptions, types, extends, include, src/**/*.spec.ts, ./tsconfig.json
 
 ### Community 14 - "DependencyGraphViewComponent"
-Cohesion: 0.28
+Cohesion: 0.24
 Nodes (3): DependencyGraphViewComponent, Component, ViewChild
 
 ### Community 15 - "TreemapViewComponent"
@@ -110,19 +111,19 @@ Nodes (4): TreemapViewComponent, Component, ViewChild, CodeFileNode
 ## Knowledge Gaps
 - **93 isolated node(s):** `$schema`, `version`, `packageManager`, `newProjectRoot`, `projectType` (+88 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **What connects `$schema`, `version`, `packageManager` to the rest of the system?**
   _93 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `VisualizerStoreService` be split into smaller, more focused modules?**
-  _Cohesion score 0.07450980392156863 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08325624421831637 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**

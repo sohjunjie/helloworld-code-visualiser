@@ -19,5 +19,12 @@
     "description": "Algorithmic utility library with graph solvers, pathfinders, and data structures.",
     "filename": "typescript-core-library.zip",
     "fileCount": 5
+  },
+  {
+    "id": "spring-logging-utils",
+    "name": "Spring Logging Utils",
+    "description": "Logging utility library for Java application.",
+    "filename": "spring-logging-utils.zip",
+    "fileCount": 37
   }
 ]

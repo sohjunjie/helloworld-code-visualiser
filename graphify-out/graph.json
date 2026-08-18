@@ -43,19 +43,6 @@
       "norm_label": "headercomponent"
     },
     {
-      "label": "InspectorSidebarComponent",
-      "file_type": "code",
-      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L13",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": "inspectorsidebarcomponent"
-    },
-    {
       "label": "ProgressModalComponent",
       "file_type": "code",
       "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
@@ -124,7 +111,7 @@
       "label": "DependencyGraphViewComponent",
       "file_type": "code",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L23",
+      "source_location": "L22",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -238,6 +225,19 @@
       "norm_label": "uploaddropzonecomponent"
     },
     {
+      "label": "InspectorSidebarComponent",
+      "file_type": "code",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
+      "source_location": "L13",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent",
+      "community": 8,
+      "community_name": "InspectorSidebarComponent",
+      "norm_label": "inspectorsidebarcomponent"
+    },
+    {
       "label": ".openFile()",
       "file_type": "code",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
@@ -260,30 +260,6 @@
       "community": 0,
       "community_name": "VisualizerStoreService",
       "norm_label": ".exportreport()"
-    },
-    {
-      "label": ".getImporters()",
-      "file_type": "code",
-      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L17",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_getimporters",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".getimporters()"
-    },
-    {
-      "label": ".openFile()",
-      "file_type": "code",
-      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L23",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_openfile",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".openfile()"
     },
     {
       "label": ".constructor()",
@@ -517,7 +493,7 @@
       "label": ".exportDiagram()",
       "file_type": "code",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L54",
+      "source_location": "L66",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_exportdiagram",
@@ -538,10 +514,22 @@
       "norm_label": ".ngafterviewinit()"
     },
     {
+      "label": ".ngOnDestroy()",
+      "file_type": "code",
+      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
+      "source_location": "L47",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_ngondestroy",
+      "community": 14,
+      "community_name": "DependencyGraphViewComponent",
+      "norm_label": ".ngondestroy()"
+    },
+    {
       "label": ".onSearchChange()",
       "file_type": "code",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L46",
+      "source_location": "L58",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_onsearchchange",
@@ -553,7 +541,7 @@
       "label": ".renderGraph()",
       "file_type": "code",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L63",
+      "source_location": "L95",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_rendergraph",
@@ -565,13 +553,25 @@
       "label": ".setLayout()",
       "file_type": "code",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L50",
+      "source_location": "L62",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_setlayout",
       "community": 14,
       "community_name": "DependencyGraphViewComponent",
       "norm_label": ".setlayout()"
+    },
+    {
+      "label": ".setupResizeObserver()",
+      "file_type": "code",
+      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
+      "source_location": "L83",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_setupresizeobserver",
+      "community": 14,
+      "community_name": "DependencyGraphViewComponent",
+      "norm_label": ".setupresizeobserver()"
     },
     {
       "label": ".constructor()",
@@ -934,6 +934,30 @@
       "norm_label": ".onfileselected()"
     },
     {
+      "label": ".getImporters()",
+      "file_type": "code",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
+      "source_location": "L17",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_getimporters",
+      "community": 8,
+      "community_name": "InspectorSidebarComponent",
+      "norm_label": ".getimporters()"
+    },
+    {
+      "label": ".openFile()",
+      "file_type": "code",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
+      "source_location": "L23",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_openfile",
+      "community": 8,
+      "community_name": "InspectorSidebarComponent",
+      "norm_label": ".openfile()"
+    },
+    {
       "label": "app.ts",
       "file_type": "code",
       "source_file": "src/app/app.ts",
@@ -1031,17 +1055,6 @@
       "community": 0,
       "community_name": "VisualizerStoreService",
       "norm_label": "inspector-sidebar.component.ts"
-    },
-    {
-      "label": "Component",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_ts_component",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": "component"
     },
     {
       "label": "progress-modal.component.ts",
@@ -2914,6 +2927,17 @@
       "norm_label": "component"
     },
     {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_ts_component",
+      "community": 8,
+      "community_name": "InspectorSidebarComponent",
+      "norm_label": "component"
+    },
+    {
       "label": "pnpm Workspace Allow Builds Configuration",
       "file_type": "document",
       "source_file": "pnpm-workspace.yaml",
@@ -2997,6 +3021,18 @@
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_ngafterviewinit",
       "target": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_rendergraph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_ngafterviewinit",
+      "target": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_setupresizeobserver",
       "confidence_score": 1.0
     },
     {
@@ -3411,7 +3447,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L16",
+      "source_location": "L15",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast",
@@ -3423,7 +3459,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L27",
+      "source_location": "L26",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast",
@@ -4216,18 +4252,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_components_dependency_graph_view_dependency_graph_view_component",
-      "target": "src_app_models_code_visualizer_models_codefilenode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -4690,18 +4714,6 @@
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component",
       "target": "src_app_services_export_demo_service",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_components_dependency_graph_view_dependency_graph_view_component",
-      "target": "src_app_models_code_visualizer_models",
       "confidence_score": 1.0
     },
     {
@@ -5851,7 +5863,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component",
@@ -6555,7 +6567,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L46",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
+      "target": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_ngondestroy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
@@ -6566,7 +6589,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L50",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
@@ -6577,7 +6600,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L54",
+      "source_location": "L66",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
@@ -6588,7 +6611,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
-      "source_location": "L63",
+      "source_location": "L83",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
+      "target": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_setupresizeobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/dependency-graph-view/dependency-graph-view.component.ts",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent",
@@ -6971,5 +7005,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3839e5dc1aa9b7b5ce6cfc9540ee1cb625db4941"
+  "built_at_commit": "87ec1b4abfe66aaa7868278f68237fd7c504b28e"
 }

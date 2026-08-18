@@ -48,8 +48,7 @@ All files modifications must strictly adhere to the following sequence:
 ---
 
 ## 3. Self-Improvement & Continuous Learning
-
-To avoid known failure modes and enforce continuous quality loops, agents must follow the dedicated self-improvement guidelines in [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md).
+- **Conduct Self Improvement**: Follow the self-improvement protocol in `AGENTS-IMPROVEMENT-PROTOCOL.md`
 
 ---
 
