@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { SoftwarePatternInfo } from '../../models/code-visualizer.models';
 import { formatBytes, getBadgeClass } from '../../utils/formatters';
 
 @Component({
@@ -21,5 +22,13 @@ export class ArchitectureViewComponent {
       this.store.selectNode(res.files[path]);
       this.store.setActiveTab('inspector');
     }
+  }
+
+  viewPatternDetail(pattern: SoftwarePatternInfo) {
+    this.store.selectPattern(pattern);
+  }
+
+  closePatternDetail() {
+    this.store.selectPattern(null);
   }
 }

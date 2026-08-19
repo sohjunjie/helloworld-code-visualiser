@@ -477,6 +477,23 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
   );
   if (componentFiles.length > 0) {
     const ratio = Math.min(100, Math.round((componentFiles.length / Math.max(1, totalFiles)) * 100) + 40);
+
+    // Build logical groupings by subdirectory type
+    const compDirFiles = componentFiles.filter(p => p.includes('/components/'));
+    const viewDirFiles = componentFiles.filter(p => p.includes('/views/') || p.includes('/widgets/'));
+    const otherCompFiles = componentFiles.filter(p => !p.includes('/components/') && !p.includes('/views/') && !p.includes('/widgets/'));
+
+    const compGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (compDirFiles.length > 0) {
+      compGroupings.push({ name: 'Components', description: 'Encapsulated UI components with templates and scoped styles', files: compDirFiles, colorClass: 'sky' });
+    }
+    if (viewDirFiles.length > 0) {
+      compGroupings.push({ name: 'Views & Widgets', description: 'Page-level views and reusable widget elements', files: viewDirFiles, colorClass: 'indigo' });
+    }
+    if (otherCompFiles.length > 0) {
+      compGroupings.push({ name: 'Other Component Files', description: 'Component files outside standard directories (JSX, TSX, Vue, Svelte)', files: otherCompFiles, colorClass: 'purple' });
+    }
+
     patterns.push({
       id: 'component-based',
       name: 'Component-Based Architecture',
@@ -491,7 +508,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         'Hierarchical UI component tree layout'
       ],
       icon: 'cube',
-      colorClass: 'sky'
+      colorClass: 'sky',
+      logicalGroupings: compGroupings,
     });
   }
 
@@ -504,6 +522,21 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
   if (layerCount >= 2) {
     const matching = Array.from(new Set([...serviceFiles, ...modelFiles, ...controllerFiles]));
     const confidence = layerCount >= 3 ? 92 : 75;
+
+    const layerGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (controllerFiles.length > 0) {
+      layerGroupings.push({ name: 'Controller / API Layer', description: 'Handles HTTP routes, request dispatch, and API endpoint definitions', files: controllerFiles, colorClass: 'amber' });
+    }
+    if (componentFiles.length > 0) {
+      layerGroupings.push({ name: 'Presentation Layer', description: 'UI templates, views, and visual rendering components', files: componentFiles, colorClass: 'sky' });
+    }
+    if (serviceFiles.length > 0) {
+      layerGroupings.push({ name: 'Service / Business Logic Layer', description: 'Core business logic, data processing, and service orchestration', files: serviceFiles, colorClass: 'indigo' });
+    }
+    if (modelFiles.length > 0) {
+      layerGroupings.push({ name: 'Data / Model Layer', description: 'Data models, entities, schemas, and persistence definitions', files: modelFiles, colorClass: 'emerald' });
+    }
+
     patterns.push({
       id: 'layered-ntier',
       name: 'Layered (N-Tier) Architecture',
@@ -519,7 +552,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         controllerFiles.length > 0 ? `Controller/API Layer (${controllerFiles.length} files)` : ''
       ].filter(Boolean),
       icon: 'layers',
-      colorClass: 'indigo'
+      colorClass: 'indigo',
+      logicalGroupings: layerGroupings,
     });
   }
 
@@ -534,6 +568,22 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
 
   if (reactiveFiles.length > 0) {
     const confidence = Math.min(95, 60 + reactiveFiles.length * 8);
+
+    // Group by reactive mechanism type
+    const signalFiles = reactiveFiles.filter(p => { const c = fileNodes[p]?.content || ''; return c.includes('signal(') || c.includes('Subject') || c.includes('BehaviorSubject'); });
+    const workerFiles = reactiveFiles.filter(p => p.includes('worker') || (fileNodes[p]?.content || '').includes('postMessage') || (fileNodes[p]?.content || '').includes('Worker'));
+    const eventFiles = reactiveFiles.filter(p => { const c = fileNodes[p]?.content || ''; return c.includes('EventEmitter') || c.includes('addEventListener'); });
+    const reactiveGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (signalFiles.length > 0) {
+      reactiveGroupings.push({ name: 'Signals & Observables', description: 'Reactive state management via signals, Subjects, and observables', files: signalFiles, colorClass: 'amber' });
+    }
+    if (workerFiles.length > 0) {
+      reactiveGroupings.push({ name: 'Web Workers & Message Passing', description: 'Background thread workers using postMessage for async communication', files: workerFiles, colorClass: 'purple' });
+    }
+    if (eventFiles.length > 0) {
+      reactiveGroupings.push({ name: 'Event Emitters & Listeners', description: 'DOM or custom event-based communication channels', files: eventFiles, colorClass: 'sky' });
+    }
+
     patterns.push({
       id: 'event-driven',
       name: 'Event-Driven & Reactive Architecture',
@@ -548,7 +598,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         `Found in ${reactiveFiles.length} key modules`
       ],
       icon: 'bolt',
-      colorClass: 'amber'
+      colorClass: 'amber',
+      logicalGroupings: reactiveGroupings,
     });
   }
 
@@ -556,6 +607,18 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
   if (modelFiles.length > 0 && (componentFiles.length > 0 || controllerFiles.length > 0)) {
     const mvcMatching = Array.from(new Set([...modelFiles, ...componentFiles, ...controllerFiles]));
     const confidence = (modelFiles.length > 0 && componentFiles.length > 0 && controllerFiles.length > 0) ? 90 : 72;
+
+    const mvcGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (modelFiles.length > 0) {
+      mvcGroupings.push({ name: 'Model', description: 'Data models, entities, and schema definitions', files: modelFiles, colorClass: 'emerald' });
+    }
+    if (componentFiles.length > 0) {
+      mvcGroupings.push({ name: 'View', description: 'UI templates, components, and visual rendering', files: componentFiles, colorClass: 'sky' });
+    }
+    if (controllerFiles.length > 0) {
+      mvcGroupings.push({ name: 'Controller', description: 'Route handlers, API controllers, and request dispatchers', files: controllerFiles, colorClass: 'amber' });
+    }
+
     patterns.push({
       id: 'mvc',
       name: 'Model-View-Controller (MVC)',
@@ -570,7 +633,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         controllerFiles.length > 0 ? `Controllers (${controllerFiles.length} router/handlers)` : 'Service-driven Controller dispatches'
       ],
       icon: 'layout',
-      colorClass: 'emerald'
+      colorClass: 'emerald',
+      logicalGroupings: mvcGroupings,
     });
   }
 
@@ -580,6 +644,17 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
     return p.includes('worker') || content.includes('progress') || content.includes('stage') || content.includes('parse');
   });
   if (pipelineFiles.length >= 2) {
+    const workerPipeFiles = pipelineFiles.filter(p => p.includes('worker'));
+    const orchestrationFiles = pipelineFiles.filter(p => !p.includes('worker'));
+
+    const pipelineGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (workerPipeFiles.length > 0) {
+      pipelineGroupings.push({ name: 'Worker Threads', description: 'Background worker scripts handling off-thread computation', files: workerPipeFiles, colorClass: 'purple' });
+    }
+    if (orchestrationFiles.length > 0) {
+      pipelineGroupings.push({ name: 'Pipeline Orchestration', description: 'Files coordinating staged data processing, progress tracking, and parsing', files: orchestrationFiles, colorClass: 'indigo' });
+    }
+
     patterns.push({
       id: 'pipeline-worker',
       name: 'Pipeline & Off-Thread Worker Pattern',
@@ -594,7 +669,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         'Progress tracking & asynchronous status emission'
       ],
       icon: 'cpu',
-      colorClass: 'purple'
+      colorClass: 'purple',
+      logicalGroupings: pipelineGroupings,
     });
   }
 
@@ -604,6 +680,17 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
     return content.includes("providedIn: 'root'") || content.includes('VisualizerStoreService') || content.includes('createStore') || content.includes('Store');
   });
   if (storeFiles.length > 0) {
+    const storeDefFiles = storeFiles.filter(p => p.includes('/services/') || p.includes('store'));
+    const storeConsumers = storeFiles.filter(p => !p.includes('/services/') && !p.includes('store'));
+
+    const storeGroupings: import('../models/code-visualizer.models').PatternGrouping[] = [];
+    if (storeDefFiles.length > 0) {
+      storeGroupings.push({ name: 'Store Definitions', description: 'Singleton service definitions providing centralized reactive state', files: storeDefFiles, colorClass: 'rose' });
+    }
+    if (storeConsumers.length > 0) {
+      storeGroupings.push({ name: 'Store Consumers', description: 'Components and services that inject and consume shared store state', files: storeConsumers, colorClass: 'sky' });
+    }
+
     patterns.push({
       id: 'singleton-store',
       name: 'Centralized Singleton State Store',
@@ -618,7 +705,8 @@ function detectSoftwarePatterns(fileNodes: Record<string, CodeFileNode>, totalFi
         'Atomic signal state updates'
       ],
       icon: 'database',
-      colorClass: 'rose'
+      colorClass: 'rose',
+      logicalGroupings: storeGroupings,
     });
   }
 

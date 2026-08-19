@@ -34,7 +34,7 @@ All files modifications must strictly adhere to the following sequence:
 
 ### Phase 1: Context & Risk Assessment (Graphify-First)
 - **Graphify Discovery**: Read `graphify_out/GRAPH_REPORT.md` to map out dependencies and relevant modules before making edits (if `graphify_out` exists).
-- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md) to check for documented operational failure modes, environment quirks, or known execution drift patterns relevant to the current task.
+- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md) to check for documented operational failure modes, environment quirks, or known execution drift patterns relevant to the current task.
 
 ### Phase 2: Execution & Verification
 - **Direct Workspace File Operations**: Perform code changes, file creations, and structural updates directly in the workspace.
@@ -45,14 +45,12 @@ All files modifications must strictly adhere to the following sequence:
 - **Run Verification Suite**: Execute project build scripts, type checks, or test suites (e.g., via `cmd /c "<build-command>"` on Windows) to confirm zero compilation errors.
 - **Enforce Zero-Regression Guarantee**: Ensure existing API contracts, exports, and module dependencies remain unbroken.
 
----
-
-## 3. Self-Improvement & Continuous Learning
-- **Conduct Self Improvement**: Follow the self-improvement protocol in `AGENTS-IMPROVEMENT-PROTOCOL.md`
+### Phase 4: Self-Improvement & Continuous Learning
+- **Conduct Self Improvement**: Follow the self-improvement protocol in `AGENTS-IMPROVEMENTS-PROTOCOL.md`
 
 ---
 
-## 4. Pre-Completion Checklist
+## 3. Pre-Completion Checklist
 
 Before marking any task as complete, verify:
 
@@ -61,4 +59,4 @@ Before marking any task as complete, verify:
 - [ ] **Clean Syntax & Imports**: No broken imports, syntax errors, or unhandled file path resolution issues exist.
 - [ ] **Graphify Sync**: `graphify update .` was executed following file changes, and `graphify_out/GRAPH_REPORT.md` is up to date (n/a if `graphify_out` not initialized).
 - [ ] **Build Verification**: Project build/test suite executes cleanly (Exit Code 0).
-- [ ] **Self-Improvement Review**: Any environment or execution errors encountered during the task were identified, resolved, and documented per [`AGENTS-IMPROVEMENT-PROTOCOL.md`](./AGENTS-IMPROVEMENT-PROTOCOL.md).
+- [ ] **Self-Improvement Review**: Any environment or execution errors encountered during the task were identified, resolved, and documented per [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md).

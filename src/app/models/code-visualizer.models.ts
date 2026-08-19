@@ -28,6 +28,13 @@ export interface GraphEdge {
   label?: string;
 }
 
+export interface PatternGrouping {
+  name: string;
+  description: string;
+  files: string[];
+  colorClass: string;
+}
+
 export interface SoftwarePatternInfo {
   id: string;
   name: string;
@@ -39,6 +46,7 @@ export interface SoftwarePatternInfo {
   keyIndicators: string[];
   icon: string;
   colorClass: string;
+  logicalGroupings: PatternGrouping[];
 }
 
 export interface AnalysisStats {

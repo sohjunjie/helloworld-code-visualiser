@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { AnalysisResult, CodeFileNode, UploadProgress, DemoProject } from '../models/code-visualizer.models';
+import { AnalysisResult, CodeFileNode, UploadProgress, DemoProject, SoftwarePatternInfo } from '../models/code-visualizer.models';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,7 @@ export class VisualizerStoreService {
   readonly searchQuery = signal<string>('');
   readonly extensionFilter = signal<string>('all');
   readonly isDarkMode = signal<boolean>(true);
+  readonly selectedPattern = signal<SoftwarePatternInfo | null>(null);
 
   private worker: Worker | null = null;
 
@@ -123,9 +124,14 @@ export class VisualizerStoreService {
     this.isDarkMode.update((v) => !v);
   }
 
+  selectPattern(pattern: SoftwarePatternInfo | null) {
+    this.selectedPattern.set(pattern);
+  }
+
   clearResult() {
     this.analysisResult.set(null);
     this.selectedNode.set(null);
+    this.selectedPattern.set(null);
     this.progressStatus.set(null);
   }
 }
