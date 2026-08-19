@@ -1,40 +1,26 @@
-<div class="h-full flex flex-col p-4 space-y-4">
-  <!-- Controls Toolbar -->
-  <div class="glass-panel p-3 rounded-2xl flex items-center justify-between border border-slate-200 dark:border-slate-700/60 shadow-xs dark:shadow-xl transition-colors">
-    <div class="flex items-center space-x-4">
-      <div>
-        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Folder Hierarchy Treemap</h3>
-        <p class="text-xs text-slate-600 dark:text-slate-400">File size distribution and relative path nesting</p>
-      </div>
-    </div>
-
-    <!-- Extension Color Legend -->
-    <div class="flex items-center space-x-3 text-xs" role="region" aria-label="File extension color legend">
-      <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-blue-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">TS/TSX</span></div>
-      <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-amber-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JS/JSX</span></div>
-      <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-purple-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">CSS/HTML</span></div>
-      <div class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JSON/MD</span></div>
-    </div>
-  </div>
-
-  <!-- Breadcrumb Navigation -->
-  <nav aria-label="Treemap folder hierarchy" class="glass-panel px-4 py-2.5 rounded-xl flex items-center space-x-2 text-xs border border-slate-200 dark:border-slate-800/80 bg-slate-100/80 dark:bg-slate-900/70 shadow-xs dark:shadow-lg transition-colors">
-    <div class="flex items-center gap-1.5 shrink-0 text-slate-600 dark:text-slate-400 font-semibold pr-2 border-r border-slate-300 dark:border-slate-800 select-none">
-      <svg class="w-4 h-4 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 001 1v4a1 1 0 001 1m-6 0h6"></path>
-      </svg>
-      <span>Path:</span>
-    </div>
-
+<div class="h-full flex flex-col p-2.5 sm:p-3 space-y-2 animate-fade-in min-h-0">
+  <!-- Unified Compact Controls Toolbar & Breadcrumb Navigation -->
+  <nav
+    aria-label="Treemap folder navigation and legend"
+    class="glass-panel px-3 py-1.5 rounded-xl flex items-center justify-between gap-3 border border-slate-200 dark:border-slate-800/80 bg-slate-100/80 dark:bg-slate-900/70 shadow-xs dark:shadow-md transition-colors shrink-0"
+  >
+    <!-- Left Section: Breadcrumb Trail -->
     <div class="flex items-center space-x-1.5 min-w-0 overflow-x-auto py-0.5 scrollbar-thin">
+      <div class="flex items-center gap-1 shrink-0 text-slate-600 dark:text-slate-400 font-semibold pr-2 border-r border-slate-300 dark:border-slate-800 select-none text-xs">
+        <svg class="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 001 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+        <span class="hidden sm:inline text-[11px]">Path:</span>
+      </div>
+
       @for (crumb of breadcrumbs(); track crumb.data.id; let i = $index; let last = $last) {
         @if (i > 0) {
-          <span class="text-slate-400 dark:text-slate-600 select-none px-0.5" aria-hidden="true">/</span>
+          <span class="text-slate-400 dark:text-slate-600 select-none px-0.5 text-xs" aria-hidden="true">/</span>
         }
         @if (!last) {
           <button
             type="button"
-            class="px-2.5 py-1 rounded-lg bg-slate-200/80 hover:bg-slate-300/90 text-sky-700 hover:text-sky-900 dark:bg-slate-800/70 dark:hover:bg-slate-700/90 dark:text-sky-400 dark:hover:text-sky-200 transition-all duration-150 cursor-pointer font-medium border border-slate-300 dark:border-slate-700/60 flex items-center gap-1.5 shrink-0 text-xs shadow-2xs focus-visible:ring-2 focus-visible:ring-sky-500"
+            class="px-2 py-0.5 rounded-lg bg-slate-200/80 hover:bg-slate-300/90 text-sky-700 hover:text-sky-900 dark:bg-slate-800/70 dark:hover:bg-slate-700/90 dark:text-sky-400 dark:hover:text-sky-200 transition-all duration-150 cursor-pointer font-medium border border-slate-300 dark:border-slate-700/60 flex items-center gap-1 shrink-0 text-xs shadow-2xs focus-visible:ring-2 focus-visible:ring-sky-500"
             (click)="zoomTo(crumb)"
             [attr.aria-label]="'Navigate to folder ' + (crumb.data.path || crumb.data.name)"
             [title]="'Navigate to ' + (crumb.data.path || crumb.data.name)"
@@ -42,20 +28,28 @@
             <span>{{ i === 0 ? '📦 ' + crumb.data.name : '📁 ' + crumb.data.name }}</span>
           </button>
         } @else {
-          <div class="px-2.5 py-1 rounded-lg bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 font-semibold border border-sky-300 dark:border-sky-500/40 flex items-center gap-1.5 shrink-0 text-xs shadow-2xs">
+          <div class="px-2 py-0.5 rounded-lg bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 font-semibold border border-sky-300 dark:border-sky-500/40 flex items-center gap-1 shrink-0 text-xs shadow-2xs">
             <span>{{ i === 0 ? '📦 ' + crumb.data.name : '📁 ' + crumb.data.name }}</span>
             @if (breadcrumbs().length > 1) {
-              <span class="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-sky-200 dark:bg-sky-400/20 text-sky-800 dark:text-sky-200 font-medium border border-sky-300 dark:border-sky-400/30">Active View</span>
+              <span class="ml-1 text-[9px] px-1 py-0.2 rounded-full bg-sky-200 dark:bg-sky-400/20 text-sky-800 dark:text-sky-200 font-medium border border-sky-300 dark:border-sky-400/30">Active View</span>
             }
           </div>
         }
       }
     </div>
+
+    <!-- Right Section: Compact Extension Color Legend -->
+    <div class="flex items-center space-x-2 sm:space-x-3 text-[11px] shrink-0" role="region" aria-label="File extension color legend">
+      <div class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-xs bg-blue-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">TS/TSX</span></div>
+      <div class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-xs bg-amber-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JS/JSX</span></div>
+      <div class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-xs bg-purple-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">CSS/HTML</span></div>
+      <div class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-xs bg-emerald-500 inline-block"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JSON/MD</span></div>
+    </div>
   </nav>
 
   <!-- Treemap Canvas Container -->
   <div
-    class="flex-1 glass-card rounded-3xl p-3 sm:p-4 overflow-hidden relative border border-slate-200 dark:border-slate-800 shadow-xs dark:shadow-xl min-h-0 transition-colors"
+    class="flex-1 glass-card rounded-2xl p-1.5 sm:p-2 overflow-hidden relative border border-slate-200 dark:border-slate-800 shadow-xs dark:shadow-xl min-h-0 transition-colors"
     #container
     role="region"
     aria-label="Interactive treemap diagram"

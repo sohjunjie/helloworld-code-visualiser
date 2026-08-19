@@ -1,1 +1,10 @@
 /* header.component.css — Component-scoped styles for HeaderComponent */
+
+nav[role='tablist'] {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+nav[role='tablist']::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
