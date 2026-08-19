@@ -1,4 +1,17 @@
-# HelloworldCodeVisualiser
+# Helloworld Code Visualiser
+
+An interactive codebase visualizer for exploring project architecture, dependency graphs, treemaps, and complexity metrics.
+
+## 🚀 Live Demo
+
+Try the interactive demo deployed on GitHub Pages:
+**👉 [https://sohjunjie.github.io/helloworld-code-visualiser/](https://sohjunjie.github.io/helloworld-code-visualiser/)**
+
+
+![CodeVisualizer Demo](DEMO.gif)
+
+
+---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
 
@@ -11,20 +24,6 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
 
 ## Building
 
@@ -54,6 +53,3 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
