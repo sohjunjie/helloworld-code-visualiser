@@ -34,7 +34,7 @@ All files modifications must strictly adhere to the following sequence:
 
 ### Phase 1: Context & Risk Assessment (Graphify-First)
 - **Graphify Discovery**: Read `graphify_out/GRAPH_REPORT.md` to map out dependencies and relevant modules before making edits (if `graphify_out` exists).
-- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md) to check for documented operational failure modes, environment quirks, or known execution drift patterns relevant to the current task.
+- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md) to check for documented operational failure modes, environment quirks, and best practices relevant to the current task.
 
 ### Phase 2: Execution & Verification
 - **Direct Workspace File Operations**: Perform code changes, file creations, and structural updates directly in the workspace.
