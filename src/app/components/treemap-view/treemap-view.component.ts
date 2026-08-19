@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, inject, AfterViewInit, effect, signal
 import { CommonModule } from '@angular/common';
 import * as d3 from 'd3';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { ThemeService } from '../../services/theme.service';
 import { CodeFileNode } from '../../models/code-visualizer.models';
 import { formatBytes } from '../../utils/formatters';
 
@@ -14,6 +15,7 @@ import { formatBytes } from '../../utils/formatters';
 })
 export class TreemapViewComponent implements AfterViewInit {
   readonly store = inject(VisualizerStoreService);
+  readonly themeService = inject(ThemeService);
 
   @ViewChild('container') containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('svgElement') svgRef!: ElementRef<SVGElement>;
@@ -30,28 +32,10 @@ export class TreemapViewComponent implements AfterViewInit {
   /** Breadcrumb trail signal for zoomed navigation */
   breadcrumbs = signal<d3.HierarchyRectangularNode<CodeFileNode>[]>([]);
 
-  /** Depth colors for folder nesting (dark mode) */
-  private readonly darkFolderColors = [
-    'rgba(30, 41, 59, 0.9)',   // slate-800
-    'rgba(51, 65, 85, 0.7)',   // slate-700
-    'rgba(71, 85, 105, 0.5)',  // slate-600
-    'rgba(100, 116, 139, 0.35)', // slate-500
-    'rgba(148, 163, 184, 0.2)', // slate-400
-  ];
-
-  /** Depth colors for folder nesting (light mode) */
-  private readonly lightFolderColors = [
-    'rgba(241, 245, 249, 0.95)', // slate-100
-    'rgba(226, 232, 240, 0.85)', // slate-200
-    'rgba(203, 213, 225, 0.7)',  // slate-300
-    'rgba(148, 163, 184, 0.45)', // slate-400
-    'rgba(203, 213, 225, 0.35)',
-  ];
-
   constructor() {
     effect(() => {
       const res = this.store.analysisResult();
-      const isDark = this.store.isDarkMode();
+      const isDark = this.themeService.isDarkMode();
       if (res) {
         this.renderTreemap();
       }
@@ -153,11 +137,7 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('class', 'folder')
       .attr('transform', (d) => `translate(${d.x0},${d.y0})`);
 
-    const isDark = this.store.isDarkMode();
-    const folderStroke = isDark ? 'rgba(148, 163, 184, 0.15)' : 'rgba(148, 163, 184, 0.35)';
-    const folderLabelFill = isDark ? 'rgba(148, 163, 184, 0.9)' : 'rgba(51, 65, 85, 0.95)';
-    const fileStroke = isDark ? '#0f172a' : '#cbd5e1';
-    const fileHoverStroke = isDark ? '#38bdf8' : '#0284c7';
+    const { folderStroke, folderLabelFill, fileStroke, fileHoverStroke } = this.themeService.getTreemapStyles();
 
     // Folder rectangle
     folderGroups
@@ -165,7 +145,7 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('width', (d) => Math.max(0, d.x1 - d.x0))
       .attr('height', (d) => Math.max(0, d.y1 - d.y0))
       .attr('rx', (d) => d.depth === 0 ? 0 : 6)
-      .attr('fill', (d) => this.getFolderColor(d.depth))
+      .attr('fill', (d) => this.themeService.getFolderColorAtDepth(d.depth))
       .attr('stroke', (d) => d.depth === 0 ? 'none' : folderStroke)
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
@@ -241,7 +221,7 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('width', (d) => Math.max(0, d.x1 - d.x0))
       .attr('height', (d) => Math.max(0, d.y1 - d.y0))
       .attr('rx', 4)
-      .attr('fill', (d) => this.getNodeColor(d.data.extension))
+      .attr('fill', (d) => this.themeService.getFileExtensionColor(d.data.extension))
       .attr('opacity', 0.85)
       .attr('stroke', fileStroke)
       .attr('stroke-width', 1)
@@ -327,42 +307,6 @@ export class TreemapViewComponent implements AfterViewInit {
     if (!this.fullRoot) return null;
     const all = this.fullRoot.descendants() as d3.HierarchyRectangularNode<CodeFileNode>[];
     return all.find(n => n.data.id === id) || null;
-  }
-
-  /** Get folder background color by depth */
-  private getFolderColor(depth: number): string {
-    const colors = this.store.isDarkMode() ? this.darkFolderColors : this.lightFolderColors;
-    return colors[Math.min(depth, colors.length - 1)];
-  }
-
-  private getNodeColor(ext: string): string {
-    switch (ext?.toLowerCase()) {
-      case 'ts':
-      case 'tsx':
-        return '#3b82f6';
-      case 'js':
-      case 'jsx':
-      case 'mjs':
-        return '#f59e0b';
-      case 'css':
-      case 'scss':
-      case 'html':
-        return '#a855f7';
-      case 'json':
-      case 'md':
-        return '#10b981';
-      case 'java':
-        return '#ef4444';
-      case 'py':
-        return '#3b82f6';
-      case 'xml':
-        return '#f97316';
-      case 'yaml':
-      case 'yml':
-        return '#06b6d4';
-      default:
-        return '#64748b';
-    }
   }
 
   formatBytes = formatBytes;

@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
 import { ExportDemoService } from '../../services/export-demo.service';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ThemeToggleComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

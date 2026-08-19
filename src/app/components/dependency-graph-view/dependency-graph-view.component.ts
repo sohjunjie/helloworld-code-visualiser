@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { ThemeService } from '../../services/theme.service';
 import { ExportDemoService } from '../../services/export-demo.service';
 
 try {
@@ -21,6 +22,7 @@ try {
 })
 export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
   readonly store = inject(VisualizerStoreService);
+  readonly themeService = inject(ThemeService);
   readonly demoService = inject(ExportDemoService);
 
   @ViewChild('cyElement') cyRef!: ElementRef<HTMLDivElement>;
@@ -33,7 +35,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       const res = this.store.analysisResult();
       const layout = this.store.selectedLayout();
       const query = this.store.searchQuery();
-      const isDark = this.store.isDarkMode();
+      const isDark = this.themeService.isDarkMode();
       if (res && this.cyRef) {
         this.renderGraph();
       }
@@ -66,9 +68,9 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
 
   exportDiagram() {
     if (this.cyInstance) {
-      const isDark = this.store.isDarkMode();
+      const { exportBg } = this.themeService.getGraphThemeConfig();
       try {
-        const pngUri = this.cyInstance.png({ full: true, bg: isDark ? '#020617' : '#ffffff', scale: 2 });
+        const pngUri = this.cyInstance.png({ full: true, bg: exportBg, scale: 2 });
         const a = document.createElement('a');
         a.href = pngUri;
         a.download = 'dependency-graph.png';
@@ -143,11 +145,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       }
 
       const layoutName = this.store.selectedLayout();
-      const isDark = this.store.isDarkMode();
-      const nodeColor = isDark ? '#f8fafc' : '#0f172a';
-      const nodeBg = isDark ? '#38bdf8' : '#0284c7';
-      const nodeBorder = isDark ? '#0284c7' : '#0369a1';
-      const edgeColor = isDark ? '#475569' : '#94a3b8';
+      const { nodeBg, nodeBorder, nodeLabelColor, edgeLineColor, edgeArrowColor } = this.themeService.getGraphThemeConfig();
 
       this.cyInstance = cytoscape({
         container: this.cyRef.nativeElement,
@@ -158,7 +156,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             style: {
               'background-color': nodeBg,
               label: 'data(label)',
-              color: nodeColor,
+              color: nodeLabelColor,
               'font-size': '11px',
               'text-valign': 'bottom',
               'text-margin-y': 5,
@@ -185,8 +183,8 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             selector: 'edge',
             style: {
               width: 1.5,
-              'line-color': edgeColor,
-              'target-arrow-color': edgeColor,
+              'line-color': edgeLineColor,
+              'target-arrow-color': edgeArrowColor,
               'target-arrow-shape': 'triangle',
               'curve-style': 'bezier',
               opacity: 0.6,

@@ -1,10 +1,13 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { AnalysisResult, CodeFileNode, UploadProgress, DemoProject, SoftwarePatternInfo } from '../models/code-visualizer.models';
+import { ThemeService } from './theme.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VisualizerStoreService {
+  readonly themeService: ThemeService;
+
   readonly analysisResult = signal<AnalysisResult | null>(null);
   readonly progressStatus = signal<UploadProgress | null>(null);
   readonly selectedNode = signal<CodeFileNode | null>(null);
@@ -12,40 +15,25 @@ export class VisualizerStoreService {
   readonly selectedLayout = signal<'dagre' | 'cose' | 'concentric'>('dagre');
   readonly searchQuery = signal<string>('');
   readonly extensionFilter = signal<string>('all');
-  readonly isDarkMode = signal<boolean>(true);
+  readonly isDarkMode: ThemeService['isDarkMode'];
   readonly selectedPattern = signal<SoftwarePatternInfo | null>(null);
 
   private worker: Worker | null = null;
 
-  constructor() {
-    this.initTheme();
+  constructor(themeService?: ThemeService) {
+    if (themeService) {
+      this.themeService = themeService;
+    } else {
+      let injected: ThemeService | null = null;
+      try {
+        injected = inject(ThemeService, { optional: true });
+      } catch {
+        injected = null;
+      }
+      this.themeService = injected ?? new ThemeService();
+    }
+    this.isDarkMode = this.themeService.isDarkMode;
     this.initWorker();
-  }
-
-  private initTheme() {
-    let darkMode = true;
-    if (typeof localStorage !== 'undefined') {
-      const savedTheme = localStorage.getItem('hwcv_theme');
-      if (savedTheme === 'dark') {
-        darkMode = true;
-      } else if (savedTheme === 'light') {
-        darkMode = false;
-      } else if (typeof window !== 'undefined' && window.matchMedia) {
-        darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      }
-    }
-    this.isDarkMode.set(darkMode);
-    this.applyThemeToDOM(darkMode);
-  }
-
-  private applyThemeToDOM(isDark: boolean) {
-    if (typeof document !== 'undefined' && document.documentElement) {
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
   }
 
   private initWorker() {
@@ -148,16 +136,11 @@ export class VisualizerStoreService {
   }
 
   toggleDarkMode() {
-    const nextValue = !this.isDarkMode();
-    this.setDarkMode(nextValue);
+    this.themeService.toggleDarkMode();
   }
 
   setDarkMode(isDark: boolean) {
-    this.isDarkMode.set(isDark);
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('hwcv_theme', isDark ? 'dark' : 'light');
-    }
-    this.applyThemeToDOM(isDark);
+    this.themeService.setDarkMode(isDark);
   }
 
   selectPattern(pattern: SoftwarePatternInfo | null) {
