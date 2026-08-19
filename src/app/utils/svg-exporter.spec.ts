@@ -12,9 +12,13 @@ describe('svg-exporter (TDD - Public Seam Verification)', () => {
     edgeArrowColor: '#94a3b8',
     cycleNodeBg: '#f87171',
     cycleNodeBorder: '#dc2626',
+    cycleNodeText: '#ffe4e6',
     focusedNodeBg: '#a855f7',
     focusedNodeBorder: '#c084fc',
+    focusedNodeText: '#faf5ff',
+    focusedNeighborBg: 'rgba(56, 189, 248, 0.18)',
     focusedNeighborBorder: '#38bdf8',
+    focusedNeighborText: '#f0f9ff',
     focusedEdgeColor: '#a855f7',
   };
 
@@ -85,7 +89,7 @@ describe('svg-exporter (TDD - Public Seam Verification)', () => {
     expect(svg).toContain('fill="#0f172a"');
     expect(svg).toContain('app.component.ts');
     expect(svg).toContain('header.component.ts');
-    expect(svg).toContain('<circle');
+    expect(svg).toContain('<rect');
     expect(svg).toContain('<path');
     expect(svg).toContain('#f87171'); // Cycle node highlight color
     expect(svg.endsWith('</svg>')).toBe(true);

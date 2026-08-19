@@ -9,10 +9,23 @@ export interface GraphThemeConfig {
   exportBg: string;
   cycleNodeBg: string;
   cycleNodeBorder: string;
+  cycleNodeText: string;
   focusedNodeBg: string;
   focusedNodeBorder: string;
+  focusedNodeText: string;
+  focusedNeighborBg: string;
   focusedNeighborBorder: string;
+  focusedNeighborText: string;
   focusedEdgeColor: string;
+  focusedEdgeArrowColor?: string;
+  textOutlineColor?: string;
+}
+
+export interface NodeColorConfig {
+  bg: string;
+  border: string;
+  text: string;
+  accent?: string;
 }
 
 @Injectable({
@@ -126,46 +139,117 @@ export class ThemeService {
   getGraphThemeConfig(): GraphThemeConfig {
     const isDark = this.isDarkMode();
     return {
-      nodeBg: isDark ? '#38bdf8' : '#0284c7',
-      nodeBorder: isDark ? '#0284c7' : '#0369a1',
+      nodeBg: isDark ? 'rgba(14, 165, 233, 0.14)' : '#f0f9ff',
+      nodeBorder: isDark ? '#38bdf8' : '#0284c7',
       nodeLabelColor: isDark ? '#f8fafc' : '#0f172a',
-      edgeLineColor: isDark ? '#475569' : '#94a3b8',
-      edgeArrowColor: isDark ? '#475569' : '#94a3b8',
+      edgeLineColor: isDark ? 'rgba(148, 163, 184, 0.35)' : '#cbd5e1',
+      edgeArrowColor: isDark ? 'rgba(148, 163, 184, 0.70)' : '#94a3b8',
       exportBg: isDark ? '#020617' : '#ffffff',
-      cycleNodeBg: '#f87171',
-      cycleNodeBorder: '#dc2626',
-      focusedNodeBg: '#a855f7',
-      focusedNodeBorder: isDark ? '#c084fc' : '#9333ea',
+      cycleNodeBg: isDark ? 'rgba(244, 63, 94, 0.22)' : '#fff1f2',
+      cycleNodeBorder: isDark ? '#f43f5e' : '#e11d48',
+      cycleNodeText: isDark ? '#ffe4e6' : '#9f1239',
+      focusedNodeBg: isDark ? 'rgba(168, 85, 247, 0.25)' : '#f5f3ff',
+      focusedNodeBorder: isDark ? '#c084fc' : '#7c3aed',
+      focusedNodeText: isDark ? '#faf5ff' : '#4c1d95',
+      focusedNeighborBg: isDark ? 'rgba(56, 189, 248, 0.18)' : '#e0f2fe',
       focusedNeighborBorder: isDark ? '#38bdf8' : '#0284c7',
-      focusedEdgeColor: '#a855f7',
+      focusedNeighborText: isDark ? '#f0f9ff' : '#0369a1',
+      focusedEdgeColor: isDark ? '#c084fc' : '#8b5cf6',
+      focusedEdgeArrowColor: isDark ? '#e879f9' : '#7c3aed',
+      textOutlineColor: 'transparent',
     };
+  }
+
+  /**
+   * Returns paired background, border, and text colors for graph nodes based on file extension and cycle state.
+   */
+  getNodeColorConfig(extension?: string, isCycle = false): NodeColorConfig {
+    const isDark = this.isDarkMode();
+    if (isCycle) {
+      return {
+        bg: isDark ? 'rgba(244, 63, 94, 0.22)' : '#fff1f2',
+        border: isDark ? '#f43f5e' : '#e11d48',
+        text: isDark ? '#ffe4e6' : '#9f1239',
+        accent: isDark ? '#f43f5e' : '#e11d48',
+      };
+    }
+
+    const ext = (extension || '').toLowerCase().replace(/^\./, '');
+    switch (ext) {
+      case 'ts':
+      case 'tsx':
+        return {
+          bg: isDark ? 'rgba(14, 165, 233, 0.14)' : '#f0f9ff',
+          border: isDark ? '#38bdf8' : '#0284c7',
+          text: isDark ? '#f0f9ff' : '#0369a1',
+          accent: isDark ? '#38bdf8' : '#0284c7',
+        };
+      case 'js':
+      case 'jsx':
+      case 'mjs':
+      case 'cjs':
+        return {
+          bg: isDark ? 'rgba(245, 158, 11, 0.14)' : '#fffbeb',
+          border: isDark ? '#fbbf24' : '#d97706',
+          text: isDark ? '#fefce8' : '#92400e',
+          accent: isDark ? '#fbbf24' : '#d97706',
+        };
+      case 'css':
+      case 'scss':
+      case 'sass':
+      case 'less':
+      case 'pcss':
+        return {
+          bg: isDark ? 'rgba(192, 132, 252, 0.14)' : '#faf5ff',
+          border: isDark ? '#c084fc' : '#9333ea',
+          text: isDark ? '#faf5ff' : '#6b21a8',
+          accent: isDark ? '#c084fc' : '#9333ea',
+        };
+      case 'html':
+      case 'svg':
+      case 'vue':
+      case 'svelte':
+        return {
+          bg: isDark ? 'rgba(251, 146, 60, 0.14)' : '#fff7ed',
+          border: isDark ? '#fb923c' : '#ea580c',
+          text: isDark ? '#fff7ed' : '#9a3412',
+          accent: isDark ? '#fb923c' : '#ea580c',
+        };
+      case 'json':
+      case 'yaml':
+      case 'yml':
+      case 'toml':
+      case 'xml':
+        return {
+          bg: isDark ? 'rgba(52, 211, 153, 0.14)' : '#ecfdf5',
+          border: isDark ? '#34d399' : '#059669',
+          text: isDark ? '#f0fdf4' : '#065f46',
+          accent: isDark ? '#34d399' : '#059669',
+        };
+      case 'md':
+      case 'mdx':
+      case 'txt':
+      case 'doc':
+        return {
+          bg: isDark ? 'rgba(45, 212, 191, 0.14)' : '#f0fdfa',
+          border: isDark ? '#2dd4bf' : '#0d9488',
+          text: isDark ? '#f0fdfa' : '#115e59',
+          accent: isDark ? '#2dd4bf' : '#0d9488',
+        };
+      default:
+        return {
+          bg: isDark ? 'rgba(148, 163, 184, 0.14)' : '#f8fafc',
+          border: isDark ? '#94a3b8' : '#64748b',
+          text: isDark ? '#f8fafc' : '#1e293b',
+          accent: isDark ? '#94a3b8' : '#64748b',
+        };
+    }
   }
 
   /**
    * Returns file extension color mapping.
    */
   getFileExtensionColor(ext: string): string {
-    switch (ext?.toLowerCase()) {
-      case 'ts':
-      case 'tsx':
-        return '#3b82f6'; // Blue
-      case 'js':
-      case 'jsx':
-      case 'mjs':
-      case 'cjs':
-        return '#f59e0b'; // Amber
-      case 'css':
-      case 'scss':
-      case 'less':
-      case 'html':
-        return '#a855f7'; // Purple
-      case 'json':
-      case 'md':
-      case 'yaml':
-      case 'yml':
-        return '#10b981'; // Emerald
-      default:
-        return '#64748b'; // Slate
-    }
+    return this.getNodeColorConfig(ext).accent || this.getNodeColorConfig(ext).border;
   }
 }

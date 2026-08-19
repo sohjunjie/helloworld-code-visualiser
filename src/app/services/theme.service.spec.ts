@@ -70,11 +70,28 @@ describe('ThemeService', () => {
     expect(lightGraph.nodeLabelColor).toBe('#0f172a');
   });
 
-  it('should return extension colors accurately', () => {
-    expect(service.getFileExtensionColor('ts')).toBe('#3b82f6');
-    expect(service.getFileExtensionColor('js')).toBe('#f59e0b');
-    expect(service.getFileExtensionColor('css')).toBe('#a855f7');
-    expect(service.getFileExtensionColor('json')).toBe('#10b981');
-    expect(service.getFileExtensionColor('unknown')).toBe('#64748b');
+  it('should return extension and node colors accurately', () => {
+    service.setDarkMode(true);
+    expect(service.getFileExtensionColor('ts')).toBe('#38bdf8');
+    expect(service.getFileExtensionColor('js')).toBe('#fbbf24');
+    expect(service.getFileExtensionColor('css')).toBe('#c084fc');
+    expect(service.getFileExtensionColor('json')).toBe('#34d399');
+    expect(service.getFileExtensionColor('unknown')).toBe('#94a3b8');
+
+    const nodeCfg = service.getNodeColorConfig('ts');
+    expect(nodeCfg.bg).toBe('rgba(14, 165, 233, 0.14)');
+    expect(nodeCfg.border).toBe('#38bdf8');
+    expect(nodeCfg.text).toBe('#f0f9ff');
+
+    const cycleCfg = service.getNodeColorConfig('ts', true);
+    expect(cycleCfg.bg).toBe('rgba(244, 63, 94, 0.22)');
+    expect(cycleCfg.border).toBe('#f43f5e');
+    expect(cycleCfg.text).toBe('#ffe4e6');
+
+    service.setDarkMode(false);
+    const lightNodeCfg = service.getNodeColorConfig('ts');
+    expect(lightNodeCfg.bg).toBe('#f0f9ff');
+    expect(lightNodeCfg.border).toBe('#0284c7');
+    expect(lightNodeCfg.text).toBe('#0369a1');
   });
 });

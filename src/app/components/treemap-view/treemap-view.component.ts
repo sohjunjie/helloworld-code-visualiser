@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject, AfterViewInit, effect, signal } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, AfterViewInit, OnDestroy, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as d3 from 'd3';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
@@ -13,7 +13,7 @@ import { formatBytes } from '../../utils/formatters';
   templateUrl: './treemap-view.component.html',
   styleUrl: './treemap-view.component.css',
 })
-export class TreemapViewComponent implements AfterViewInit {
+export class TreemapViewComponent implements AfterViewInit, OnDestroy {
   readonly store = inject(VisualizerStoreService);
   readonly themeService = inject(ThemeService);
 
@@ -28,6 +28,7 @@ export class TreemapViewComponent implements AfterViewInit {
   private zoomRoot: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
   /** Full hierarchy root, cached for zoom navigation */
   private fullRoot: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
+  private resizeObserver: ResizeObserver | null = null;
 
   /** Breadcrumb trail signal for zoomed navigation */
   breadcrumbs = signal<d3.HierarchyRectangularNode<CodeFileNode>[]>([]);
@@ -48,6 +49,23 @@ export class TreemapViewComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.renderTreemap();
+    this.setupResizeObserver();
+  }
+
+  ngOnDestroy() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
+  }
+
+  private setupResizeObserver() {
+    if (this.containerRef?.nativeElement && typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.renderTreemap();
+      });
+      this.resizeObserver.observe(this.containerRef.nativeElement);
+    }
   }
 
   /** Navigate to a specific node in the breadcrumb */
@@ -75,14 +93,19 @@ export class TreemapViewComponent implements AfterViewInit {
     if (!this.svgRef || !this.containerRef) return;
 
     const container = this.containerRef.nativeElement;
-    const width = container.clientWidth - 16;
-    const height = container.clientHeight - 16;
+    const svgEl = this.svgRef.nativeElement;
+    const svgRect = svgEl.getBoundingClientRect();
+    const width = Math.floor(svgRect.width || svgEl.clientWidth || container.clientWidth);
+    const height = Math.floor(svgRect.height || svgEl.clientHeight || container.clientHeight);
 
     if (width <= 0 || height <= 0) return;
 
-    const svg = d3.select(this.svgRef.nativeElement);
+    const svg = d3.select(svgEl);
     svg.selectAll('*').remove();
-    svg.attr('viewBox', `0 0 ${width} ${height}`);
+    svg.attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'none')
+      .attr('width', '100%')
+      .attr('height', '100%');
 
     // Add a defs section for clip paths
     const defs = svg.append('defs');
@@ -90,11 +113,11 @@ export class TreemapViewComponent implements AfterViewInit {
     const treemapLayout = d3
       .treemap<CodeFileNode>()
       .size([width, height])
-      .paddingTop((d) => (d.depth === 0 ? 18 : 16))
+      .paddingTop((d) => (d.depth === 0 ? 22 : 20))
       .paddingRight(2)
       .paddingBottom(2)
       .paddingLeft(2)
-      .paddingInner(1)
+      .paddingInner(3)
       .round(true);
 
     treemapLayout(root as any);
@@ -111,11 +134,11 @@ export class TreemapViewComponent implements AfterViewInit {
       const subLayout = d3
         .treemap<CodeFileNode>()
         .size([width, height])
-        .paddingTop((d) => (d.depth === 0 ? 18 : 16))
+        .paddingTop((d) => (d.depth === 0 ? 22 : 20))
         .paddingRight(2)
         .paddingBottom(2)
         .paddingLeft(2)
-        .paddingInner(1)
+        .paddingInner(3)
         .round(true);
 
       subLayout(subRoot as any);
@@ -148,9 +171,9 @@ export class TreemapViewComponent implements AfterViewInit {
       .append('rect')
       .attr('width', (d) => Math.max(0, d.x1 - d.x0))
       .attr('height', (d) => Math.max(0, d.y1 - d.y0))
-      .attr('rx', (d) => d.depth === 0 ? 0 : 6)
+      .attr('rx', (d) => d.depth === 0 ? 10 : 6)
       .attr('fill', (d) => this.themeService.getFolderColorAtDepth(d.depth))
-      .attr('stroke', (d) => d.depth === 0 ? 'none' : folderStroke)
+      .attr('stroke', folderStroke)
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {

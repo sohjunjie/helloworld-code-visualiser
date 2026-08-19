@@ -3,21 +3,17 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createEnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { UploadDropzoneComponent } from './upload-dropzone.component';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
-import { ExportDemoService } from '../../services/export-demo.service';
 
 describe('UploadDropzoneComponent (TDD - Public Seam & Behavior Verification)', () => {
   let store: VisualizerStoreService;
-  let demoService: ExportDemoService;
   let component: UploadDropzoneComponent;
 
   beforeEach(() => {
     store = new VisualizerStoreService();
-    demoService = new ExportDemoService();
 
     const injector = createEnvironmentInjector(
       [
         { provide: VisualizerStoreService, useValue: store },
-        { provide: ExportDemoService, useValue: demoService },
       ],
       null as any
     );
@@ -30,7 +26,6 @@ describe('UploadDropzoneComponent (TDD - Public Seam & Behavior Verification)', 
   it('should instantiate component and bind dependencies', () => {
     expect(component).toBeDefined();
     expect(component.store).toBe(store);
-    expect(component.demoService).toBe(demoService);
     expect(component.isDragging).toBe(false);
   });
 

@@ -58,39 +58,5 @@
     </div>
   </div>
 
-  <!-- Quick Demo Projects Section -->
-  <div class="mt-10">
-    <h3 class="text-[11px] uppercase font-bold text-slate-600 dark:text-slate-400 tracking-wider text-center mb-4">
-      Or Select a Sample Codebase to Test Instantly
-    </h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4" role="group" aria-label="Sample codebases">
-      @for (demo of demoService.getDemoProjects(); track demo.id) {
-        <div
-          role="button"
-          tabindex="0"
-          [attr.aria-label]="'Analyze sample project: ' + demo.name + ', ' + demo.fileCount + ' files'"
-          (click)="store.analyzeDemoProject(demo)"
-          (keydown.enter)="store.analyzeDemoProject(demo)"
-          (keydown.space)="store.analyzeDemoProject(demo); $event.preventDefault()"
-          class="glass-panel p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 hover:border-sky-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/90 hover:-translate-y-1 active:scale-[0.98] cursor-pointer transition-all duration-200 shadow-md dark:shadow-lg hover:shadow-sky-500/10 group focus-visible:ring-2 focus-visible:ring-sky-500"
-        >
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-[11px] font-semibold text-sky-700 dark:text-sky-400 bg-sky-100 dark:bg-sky-500/10 px-2 py-0.5 rounded-md border border-sky-300 dark:border-sky-500/20 font-mono">
-              {{ demo.fileCount }} files
-            </span>
-            <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-sky-600 dark:group-hover:text-sky-400 group-hover:translate-x-1 transition-transform flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-          <h4 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
-            {{ demo.name }}
-          </h4>
-          <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
-            {{ demo.description }}
-          </p>
-        </div>
-      }
-    </div>
-  </div>
 </div>

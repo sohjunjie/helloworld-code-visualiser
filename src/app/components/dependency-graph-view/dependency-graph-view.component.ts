@@ -282,14 +282,19 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
         }
       }
 
-      // Add Nodes
+      // Add Nodes with extension and cycle-aware styling
       for (const [path, node] of Object.entries(result.files)) {
+        const isCycle = cycleNodes.has(path);
+        const nodeColors = this.themeService.getNodeColorConfig(node.extension, isCycle);
         elements.push({
           data: {
             id: path,
             label: node.name,
             extension: node.extension,
-            isCycle: cycleNodes.has(path),
+            isCycle,
+            color: nodeColors.bg,
+            borderColor: nodeColors.border,
+            textColor: nodeColors.text,
           },
         });
       }
@@ -319,18 +324,26 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
           {
             selector: 'node',
             style: {
-              'background-color': themeConfig.nodeBg,
+              shape: 'round-rectangle',
+              'corner-radius': '8px',
+              'background-color': 'data(color)',
+              'background-opacity': 0.95,
               label: 'data(label)',
-              color: themeConfig.nodeLabelColor,
-              'font-size': '11px',
-              'text-valign': 'bottom',
-              'text-margin-y': 5,
-              width: 24,
-              height: 24,
-              'border-width': 2,
-              'border-color': themeConfig.nodeBorder,
-              'transition-property': 'background-color, border-color, width, height, opacity',
-              'transition-duration': 250,
+              color: 'data(textColor)',
+              'text-valign': 'center',
+              'text-halign': 'center',
+              'text-margin-y': 0,
+              'font-size': '11.5px',
+              'font-weight': 600,
+              'font-family': 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              width: 'label',
+              height: 32,
+              padding: '12px',
+              'border-width': 1.5,
+              'border-color': 'data(borderColor)',
+              'border-opacity': 0.95,
+              'transition-property': 'background-color, border-color, border-width, width, height, opacity',
+              'transition-duration': 200,
             },
           },
           {
@@ -338,6 +351,8 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             style: {
               'background-color': themeConfig.cycleNodeBg,
               'border-color': themeConfig.cycleNodeBorder,
+              color: themeConfig.cycleNodeText,
+              'border-width': 2.5,
             },
           },
           {
@@ -351,17 +366,22 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             style: {
               'background-color': themeConfig.focusedNodeBg,
               'border-color': themeConfig.focusedNodeBorder,
-              'border-width': 3,
-              width: 32,
-              height: 32,
+              color: themeConfig.focusedNodeText,
+              'border-width': 2.5,
+              'border-opacity': 1.0,
+              height: 36,
+              padding: '16px',
               'z-index': 99,
             },
           },
           {
             selector: 'node.focused-neighbor',
             style: {
+              'background-color': themeConfig.focusedNeighborBg,
               'border-color': themeConfig.focusedNeighborBorder,
-              'border-width': 2.5,
+              color: themeConfig.focusedNeighborText,
+              'border-width': 2,
+              'border-opacity': 1.0,
               'z-index': 50,
             },
           },
@@ -378,16 +398,17 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
               'line-color': themeConfig.edgeLineColor,
               'target-arrow-color': themeConfig.edgeArrowColor,
               'target-arrow-shape': 'triangle',
+              'arrow-scale': 0.9,
               'curve-style': 'bezier',
-              opacity: 0.6,
+              opacity: 0.7,
               'transition-property': 'line-color, target-arrow-color, width, opacity',
-              'transition-duration': 250,
+              'transition-duration': 200,
             },
           },
           {
             selector: 'edge.dimmed',
             style: {
-              opacity: 0.08,
+              opacity: 0.06,
             },
           },
           {
@@ -395,8 +416,9 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             style: {
               width: 2.5,
               'line-color': themeConfig.focusedEdgeColor,
-              'target-arrow-color': themeConfig.focusedEdgeColor,
-              opacity: 0.95,
+              'target-arrow-color': themeConfig.focusedEdgeArrowColor || themeConfig.focusedEdgeColor,
+              opacity: 1.0,
+              'arrow-scale': 1.0,
               'z-index': 40,
             },
           },
@@ -411,16 +433,20 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             style: {
               'background-color': themeConfig.focusedNodeBg,
               'border-color': themeConfig.focusedNodeBorder,
-              width: 30,
-              height: 30,
+              color: themeConfig.focusedNodeText,
+              'border-width': 2.5,
             },
           },
         ],
         layout: {
           name: layoutName === 'dagre' ? 'dagre' : layoutName,
           animate: true,
-          animationDuration: 400,
+          animationDuration: 350,
           nodeDimensionsIncludeLabels: true,
+          rankDir: 'TB',
+          nodeSep: 40,
+          rankSep: 60,
+          padding: 35,
         } as any,
       });
 

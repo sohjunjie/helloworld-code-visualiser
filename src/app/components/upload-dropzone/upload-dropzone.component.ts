@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
-import { ExportDemoService } from '../../services/export-demo.service';
 
 @Component({
   selector: 'app-upload-dropzone',
@@ -12,7 +11,6 @@ import { ExportDemoService } from '../../services/export-demo.service';
 })
 export class UploadDropzoneComponent {
   readonly store = inject(VisualizerStoreService);
-  readonly demoService = inject(ExportDemoService);
 
   isDragging = false;
 
