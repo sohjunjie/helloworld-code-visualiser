@@ -7,6 +7,12 @@ export interface GraphThemeConfig {
   edgeLineColor: string;
   edgeArrowColor: string;
   exportBg: string;
+  cycleNodeBg: string;
+  cycleNodeBorder: string;
+  focusedNodeBg: string;
+  focusedNodeBorder: string;
+  focusedNeighborBorder: string;
+  focusedEdgeColor: string;
 }
 
 @Injectable({
@@ -126,6 +132,12 @@ export class ThemeService {
       edgeLineColor: isDark ? '#475569' : '#94a3b8',
       edgeArrowColor: isDark ? '#475569' : '#94a3b8',
       exportBg: isDark ? '#020617' : '#ffffff',
+      cycleNodeBg: '#f87171',
+      cycleNodeBorder: '#dc2626',
+      focusedNodeBg: '#a855f7',
+      focusedNodeBorder: isDark ? '#c084fc' : '#9333ea',
+      focusedNeighborBorder: isDark ? '#38bdf8' : '#0284c7',
+      focusedEdgeColor: '#a855f7',
     };
   }
 

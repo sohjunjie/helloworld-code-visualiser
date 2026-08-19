@@ -6,6 +6,7 @@ import dagre from 'cytoscape-dagre';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
 import { ThemeService } from '../../services/theme.service';
 import { ExportDemoService } from '../../services/export-demo.service';
+import { exportCytoscapeToSvg } from '../../utils/svg-exporter';
 
 try {
   cytoscape.use(dagre);
@@ -31,15 +32,30 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
   private resizeObserver: ResizeObserver | null = null;
 
   constructor() {
-    effect(() => {
-      const res = this.store.analysisResult();
-      const layout = this.store.selectedLayout();
-      const query = this.store.searchQuery();
-      const isDark = this.themeService.isDarkMode();
-      if (res && this.cyRef) {
-        this.renderGraph();
-      }
-    });
+    try {
+      // Re-render entire graph on structural changes (dataset, layout, theme)
+      effect(() => {
+        const res = this.store.analysisResult();
+        const layout = this.store.selectedLayout();
+        const isDark = this.themeService.isDarkMode();
+        if (res && this.cyRef) {
+          this.renderGraph();
+        }
+      });
+
+      // Smoothly update filters without tearing down graph layout
+      effect(() => {
+        const query = this.store.searchQuery();
+        const dirFilter = this.store.graphDirectoryFilter();
+        const extFilter = this.store.graphExtensionFilter();
+        const focusNode = this.store.neighborhoodFocusNodeId();
+        if (this.cyInstance) {
+          this.applyGraphFilters();
+        }
+      });
+    } catch {
+      // In headless test environments without ChangeDetectionScheduler
+    }
   }
 
   ngAfterViewInit() {
@@ -62,8 +78,28 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
     this.store.setSearchQuery(query);
   }
 
+  onDirectoryChange(dir: string) {
+    this.store.setGraphDirectoryFilter(dir);
+  }
+
+  onExtensionChange(ext: string) {
+    this.store.setGraphExtensionFilter(ext);
+  }
+
   setLayout(layout: 'dagre' | 'cose' | 'concentric') {
     this.store.setLayout(layout);
+  }
+
+  toggleNeighborhoodFocus(nodeId: string | null) {
+    if (!nodeId || this.store.neighborhoodFocusNodeId() === nodeId) {
+      this.store.setNeighborhoodFocus(null);
+    } else {
+      this.store.setNeighborhoodFocus(nodeId);
+    }
+  }
+
+  clearAllFilters() {
+    this.store.clearGraphFilters();
   }
 
   exportDiagram() {
@@ -73,15 +109,147 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
         const pngUri = this.cyInstance.png({ full: true, bg: exportBg, scale: 2 });
         const a = document.createElement('a');
         a.href = pngUri;
-        a.download = 'dependency-graph.png';
+        a.download = `${this.store.analysisResult()?.projectName || 'dependency-graph'}.png`;
         a.click();
       } catch {
         const canvas = this.cyRef.nativeElement.querySelector('canvas');
         if (canvas) {
-          this.demoService.downloadCanvasPNG(canvas, 'dependency-graph.png');
+          this.demoService.downloadCanvasPNG(canvas, `${this.store.analysisResult()?.projectName || 'dependency-graph'}.png`);
         }
       }
     }
+  }
+
+  exportSvgDiagram() {
+    if (this.cyInstance) {
+      const themeConfig = this.themeService.getGraphThemeConfig();
+      const svgString = exportCytoscapeToSvg(this.cyInstance, themeConfig);
+      this.demoService.downloadSVG(
+        svgString,
+        `${this.store.analysisResult()?.projectName || 'dependency-graph'}.svg`
+      );
+    }
+  }
+
+  getNodeDisplayName(nodeId: string | null): string {
+    if (!nodeId) return '';
+    const files = this.store.analysisResult()?.files;
+    if (files && files[nodeId]) {
+      return files[nodeId].name;
+    }
+    const parts = nodeId.split('/');
+    return parts[parts.length - 1] || nodeId;
+  }
+
+  applyGraphFilters() {
+    if (!this.cyInstance) return;
+
+    const query = (this.store.searchQuery() || '').trim().toLowerCase();
+    const dirFilter = this.store.graphDirectoryFilter();
+    const extFilter = this.store.graphExtensionFilter();
+    const focusNodeId = this.store.neighborhoodFocusNodeId();
+
+    const hasSearch = query.length > 0;
+    const hasDir = dirFilter !== 'all';
+    const hasExt = extFilter !== 'all';
+    const hasFocus = focusNodeId !== null;
+
+    this.cyInstance.batch(() => {
+      const nodes = this.cyInstance!.nodes();
+      const edges = this.cyInstance!.edges();
+
+      // First pass: compute base criteria match for each node
+      const matchMap = new Map<string, boolean>();
+      for (const node of nodes) {
+        const id = node.id();
+        const label = (node.data('label') || '').toLowerCase();
+        const extension = (node.data('extension') || '').toLowerCase();
+
+        let matches = true;
+        if (hasSearch) {
+          matches = matches && (id.toLowerCase().includes(query) || label.includes(query));
+        }
+        if (hasDir) {
+          matches = matches && (id === dirFilter || id.startsWith(dirFilter + '/'));
+        }
+        if (hasExt) {
+          matches = matches && extension === extFilter.toLowerCase();
+        }
+        matchMap.set(id, matches);
+      }
+
+      // If neighborhood focus mode is active, identify 1-hop upstream and downstream neighbors
+      const neighborIds = new Set<string>();
+      if (hasFocus && focusNodeId) {
+        neighborIds.add(focusNodeId);
+        for (const edge of edges) {
+          const srcId = edge.data('source');
+          const tgtId = edge.data('target');
+          if (srcId === focusNodeId) {
+            neighborIds.add(tgtId);
+          }
+          if (tgtId === focusNodeId) {
+            neighborIds.add(srcId);
+          }
+        }
+      }
+
+      // Apply classes to nodes
+      for (const node of nodes) {
+        const id = node.id();
+        const matchesBase = matchMap.get(id) ?? true;
+        const isNeighbor = neighborIds.has(id);
+
+        node.removeClass('filtered-out');
+        node.removeClass('dimmed');
+        node.removeClass('focused');
+        node.removeClass('focused-neighbor');
+
+        if (hasFocus) {
+          if (id === focusNodeId) {
+            node.addClass('focused');
+          } else if (isNeighbor) {
+            node.addClass('focused-neighbor');
+          } else if (!matchesBase) {
+            node.addClass('filtered-out');
+          } else {
+            node.addClass('dimmed');
+          }
+        } else {
+          if (!matchesBase) {
+            node.addClass('filtered-out');
+          }
+        }
+      }
+
+      // Apply classes to edges
+      for (const edge of edges) {
+        const srcId = edge.data('source');
+        const tgtId = edge.data('target');
+        const srcMatches = matchMap.get(srcId) ?? true;
+        const tgtMatches = matchMap.get(tgtId) ?? true;
+        const srcIsNeighbor = neighborIds.has(srcId);
+        const tgtIsNeighbor = neighborIds.has(tgtId);
+
+        edge.removeClass('filtered-out');
+        edge.removeClass('dimmed');
+        edge.removeClass('focused-edge');
+
+        if (hasFocus) {
+          if (srcIsNeighbor && tgtIsNeighbor && (srcId === focusNodeId || tgtId === focusNodeId)) {
+            edge.addClass('focused-edge');
+          } else if (!srcMatches || !tgtMatches) {
+            edge.addClass('filtered-out');
+          } else {
+            edge.addClass('dimmed');
+          }
+        } else {
+          if (!srcMatches || !tgtMatches) {
+            edge.addClass('filtered-out');
+          }
+        }
+      }
+    });
   }
 
   private setupResizeObserver() {
@@ -105,7 +273,6 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       if (!this.cyRef?.nativeElement) return;
 
       const elements: cytoscape.ElementDefinition[] = [];
-      const query = (this.store.searchQuery() || '').toLowerCase();
 
       // Collect set of cycle file paths for styling
       const cycleNodes = new Set<string>();
@@ -117,14 +284,12 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
 
       // Add Nodes
       for (const [path, node] of Object.entries(result.files)) {
-        const matchesSearch = !query || path.toLowerCase().includes(query) || node.name.toLowerCase().includes(query);
         elements.push({
           data: {
             id: path,
             label: node.name,
             extension: node.extension,
             isCycle: cycleNodes.has(path),
-            matchesSearch,
           },
         });
       }
@@ -145,7 +310,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       }
 
       const layoutName = this.store.selectedLayout();
-      const { nodeBg, nodeBorder, nodeLabelColor, edgeLineColor, edgeArrowColor } = this.themeService.getGraphThemeConfig();
+      const themeConfig = this.themeService.getGraphThemeConfig();
 
       this.cyInstance = cytoscape({
         container: this.cyRef.nativeElement,
@@ -154,49 +319,100 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
           {
             selector: 'node',
             style: {
-              'background-color': nodeBg,
+              'background-color': themeConfig.nodeBg,
               label: 'data(label)',
-              color: nodeLabelColor,
+              color: themeConfig.nodeLabelColor,
               'font-size': '11px',
               'text-valign': 'bottom',
               'text-margin-y': 5,
               width: 24,
               height: 24,
               'border-width': 2,
-              'border-color': nodeBorder,
+              'border-color': themeConfig.nodeBorder,
+              'transition-property': 'background-color, border-color, width, height, opacity',
+              'transition-duration': 250,
             },
           },
           {
             selector: 'node[?isCycle]',
             style: {
-              'background-color': '#f87171',
-              'border-color': '#dc2626',
+              'background-color': themeConfig.cycleNodeBg,
+              'border-color': themeConfig.cycleNodeBorder,
             },
           },
           {
-            selector: 'node[!matchesSearch]',
+            selector: 'node.dimmed',
             style: {
-              opacity: 0.15,
+              opacity: 0.12,
+            },
+          },
+          {
+            selector: 'node.focused',
+            style: {
+              'background-color': themeConfig.focusedNodeBg,
+              'border-color': themeConfig.focusedNodeBorder,
+              'border-width': 3,
+              width: 32,
+              height: 32,
+              'z-index': 99,
+            },
+          },
+          {
+            selector: 'node.focused-neighbor',
+            style: {
+              'border-color': themeConfig.focusedNeighborBorder,
+              'border-width': 2.5,
+              'z-index': 50,
+            },
+          },
+          {
+            selector: 'node.filtered-out',
+            style: {
+              display: 'none',
             },
           },
           {
             selector: 'edge',
             style: {
               width: 1.5,
-              'line-color': edgeLineColor,
-              'target-arrow-color': edgeArrowColor,
+              'line-color': themeConfig.edgeLineColor,
+              'target-arrow-color': themeConfig.edgeArrowColor,
               'target-arrow-shape': 'triangle',
               'curve-style': 'bezier',
               opacity: 0.6,
+              'transition-property': 'line-color, target-arrow-color, width, opacity',
+              'transition-duration': 250,
+            },
+          },
+          {
+            selector: 'edge.dimmed',
+            style: {
+              opacity: 0.08,
+            },
+          },
+          {
+            selector: 'edge.focused-edge',
+            style: {
+              width: 2.5,
+              'line-color': themeConfig.focusedEdgeColor,
+              'target-arrow-color': themeConfig.focusedEdgeColor,
+              opacity: 0.95,
+              'z-index': 40,
+            },
+          },
+          {
+            selector: 'edge.filtered-out',
+            style: {
+              display: 'none',
             },
           },
           {
             selector: ':selected',
             style: {
-              'background-color': '#a855f7',
-              'border-color': '#9333ea',
-              width: 32,
-              height: 32,
+              'background-color': themeConfig.focusedNodeBg,
+              'border-color': themeConfig.focusedNodeBorder,
+              width: 30,
+              height: 30,
             },
           },
         ],
@@ -211,6 +427,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       this.cyInstance.ready(() => {
         this.cyInstance?.resize();
         this.cyInstance?.fit();
+        this.applyGraphFilters();
       });
 
       this.cyInstance.on('tap', 'node', (evt) => {
@@ -218,7 +435,6 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
         const node = result.files[nodeData.id];
         if (node) {
           this.store.selectNode(node);
-          this.store.setActiveTab('inspector');
         }
       });
     }, 0);

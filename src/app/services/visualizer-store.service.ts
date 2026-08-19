@@ -1,4 +1,4 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { AnalysisResult, CodeFileNode, UploadProgress, DemoProject, SoftwarePatternInfo } from '../models/code-visualizer.models';
 import { ThemeService } from './theme.service';
 
@@ -15,8 +15,60 @@ export class VisualizerStoreService {
   readonly selectedLayout = signal<'dagre' | 'cose' | 'concentric'>('dagre');
   readonly searchQuery = signal<string>('');
   readonly extensionFilter = signal<string>('all');
+  readonly graphDirectoryFilter = signal<string>('all');
+  readonly graphExtensionFilter = signal<string>('all');
+  readonly neighborhoodFocusNodeId = signal<string | null>(null);
   readonly isDarkMode: ThemeService['isDarkMode'];
   readonly selectedPattern = signal<SoftwarePatternInfo | null>(null);
+
+  readonly availableDirectories = computed<string[]>(() => {
+    const result = this.analysisResult();
+    if (!result || !result.files) return [];
+    const dirSet = new Set<string>();
+    for (const filePath of Object.keys(result.files)) {
+      const parts = filePath.split('/');
+      if (parts.length > 1) {
+        // Collect all parent directory paths
+        let currentPath = '';
+        for (let i = 0; i < parts.length - 1; i++) {
+          currentPath = currentPath ? `${currentPath}/${parts[i]}` : parts[i];
+          dirSet.add(currentPath);
+        }
+      }
+    }
+    return Array.from(dirSet).sort();
+  });
+
+  readonly availableExtensions = computed<{ extension: string; count: number }[]>(() => {
+    const result = this.analysisResult();
+    if (!result || !result.files) return [];
+    const extCounts: Record<string, number> = {};
+    for (const node of Object.values(result.files)) {
+      const ext = node.extension || 'other';
+      extCounts[ext] = (extCounts[ext] || 0) + 1;
+    }
+    return Object.entries(extCounts)
+      .map(([extension, count]) => ({ extension, count }))
+      .sort((a, b) => b.count - a.count || a.extension.localeCompare(b.extension));
+  });
+
+  readonly hasActiveFilters = computed<boolean>(() => {
+    return (
+      this.searchQuery().trim().length > 0 ||
+      this.graphDirectoryFilter() !== 'all' ||
+      this.graphExtensionFilter() !== 'all' ||
+      this.neighborhoodFocusNodeId() !== null
+    );
+  });
+
+  readonly activeFilterCount = computed<number>(() => {
+    let count = 0;
+    if (this.searchQuery().trim().length > 0) count++;
+    if (this.graphDirectoryFilter() !== 'all') count++;
+    if (this.graphExtensionFilter() !== 'all') count++;
+    if (this.neighborhoodFocusNodeId() !== null) count++;
+    return count;
+  });
 
   private worker: Worker | null = null;
 
@@ -135,6 +187,25 @@ export class VisualizerStoreService {
     this.extensionFilter.set(ext);
   }
 
+  setGraphDirectoryFilter(dir: string) {
+    this.graphDirectoryFilter.set(dir);
+  }
+
+  setGraphExtensionFilter(ext: string) {
+    this.graphExtensionFilter.set(ext);
+  }
+
+  setNeighborhoodFocus(nodeId: string | null) {
+    this.neighborhoodFocusNodeId.set(nodeId);
+  }
+
+  clearGraphFilters() {
+    this.searchQuery.set('');
+    this.graphDirectoryFilter.set('all');
+    this.graphExtensionFilter.set('all');
+    this.neighborhoodFocusNodeId.set(null);
+  }
+
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
   }
@@ -152,5 +223,6 @@ export class VisualizerStoreService {
     this.selectedNode.set(null);
     this.selectedPattern.set(null);
     this.progressStatus.set(null);
+    this.clearGraphFilters();
   }
 }

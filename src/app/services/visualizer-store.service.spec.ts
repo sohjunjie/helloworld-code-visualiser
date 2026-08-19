@@ -17,9 +17,21 @@ describe('VisualizerStoreService & ExportDemoService', () => {
     };
     (globalThis as any).localStorage = storageMock;
 
-    if (!globalThis.document) {
+    if (!globalThis.document || !(globalThis.document as any).createElement) {
       const classListSet = new Set<string>();
+      const mockAnchor = {
+        setAttribute: vi.fn(),
+        click: vi.fn(),
+        remove: vi.fn(),
+        href: '',
+        download: '',
+      };
       (globalThis as any).document = {
+        createElement: vi.fn().mockReturnValue(mockAnchor),
+        body: {
+          appendChild: vi.fn(),
+          removeChild: vi.fn(),
+        },
         documentElement: {
           classList: {
             add: (cls: string) => classListSet.add(cls),
@@ -123,5 +135,76 @@ describe('VisualizerStoreService & ExportDemoService', () => {
     const darkStore = new VisualizerStoreService();
     expect(darkStore.isDarkMode()).toBe(true);
     expect(document.documentElement.classList.contains('dark')).toBe(true);
+  });
+
+  it('should manage graph filtering signals and compute active filter counts', () => {
+    expect(store.graphDirectoryFilter()).toBe('all');
+    expect(store.graphExtensionFilter()).toBe('all');
+    expect(store.neighborhoodFocusNodeId()).toBeNull();
+    expect(store.hasActiveFilters()).toBe(false);
+    expect(store.activeFilterCount()).toBe(0);
+
+    store.setSearchQuery('test');
+    expect(store.hasActiveFilters()).toBe(true);
+    expect(store.activeFilterCount()).toBe(1);
+
+    store.setGraphDirectoryFilter('src/app/services');
+    expect(store.graphDirectoryFilter()).toBe('src/app/services');
+    expect(store.activeFilterCount()).toBe(2);
+
+    store.setGraphExtensionFilter('ts');
+    expect(store.graphExtensionFilter()).toBe('ts');
+    expect(store.activeFilterCount()).toBe(3);
+
+    store.setNeighborhoodFocus('src/app/app.component.ts');
+    expect(store.neighborhoodFocusNodeId()).toBe('src/app/app.component.ts');
+    expect(store.activeFilterCount()).toBe(4);
+
+    store.clearGraphFilters();
+    expect(store.searchQuery()).toBe('');
+    expect(store.graphDirectoryFilter()).toBe('all');
+    expect(store.graphExtensionFilter()).toBe('all');
+    expect(store.neighborhoodFocusNodeId()).toBeNull();
+    expect(store.hasActiveFilters()).toBe(false);
+    expect(store.activeFilterCount()).toBe(0);
+  });
+
+  it('should compute available directories and extensions when analysis result is present', () => {
+    store.analysisResult.set({
+      projectName: 'Test App',
+      rootNode: { id: 'root', path: '/', name: 'root', type: 'directory', size: 0, extension: '', imports: [], exports: [] },
+      files: {
+        'src/services/store.service.ts': { id: '1', path: 'src/services/store.service.ts', name: 'store.service.ts', type: 'file', size: 100, extension: 'ts', imports: [], exports: [] },
+        'src/services/auth.service.ts': { id: '2', path: 'src/services/auth.service.ts', name: 'auth.service.ts', type: 'file', size: 200, extension: 'ts', imports: [], exports: [] },
+        'src/styles/main.css': { id: '3', path: 'src/styles/main.css', name: 'main.css', type: 'file', size: 300, extension: 'css', imports: [], exports: [] },
+        'package.json': { id: '4', path: 'package.json', name: 'package.json', type: 'file', size: 400, extension: 'json', imports: [], exports: [] },
+      },
+      edges: [],
+      stats: { totalFiles: 4, totalDirectories: 2, totalSize: 1000, circularDependencies: [], languageBreakdown: {}, topImportedFiles: [], detectedPatterns: [] },
+    });
+
+    const dirs = store.availableDirectories();
+    expect(dirs).toContain('src/services');
+    expect(dirs).toContain('src/styles');
+
+    const exts = store.availableExtensions();
+    expect(exts).toEqual(
+      expect.arrayContaining([
+        { extension: 'ts', count: 2 },
+        { extension: 'css', count: 1 },
+        { extension: 'json', count: 1 },
+      ])
+    );
+  });
+
+  it('should support downloadSVG in demo service', () => {
+    const createElementSpy = vi.spyOn(document, 'createElement');
+    globalThis.URL.createObjectURL = vi.fn().mockReturnValue('blob:mock-svg-url');
+    globalThis.URL.revokeObjectURL = vi.fn();
+
+    demoService.downloadSVG('<svg></svg>', 'test-graph.svg');
+
+    expect(createElementSpy).toHaveBeenCalledWith('a');
+    expect(globalThis.URL.createObjectURL).toHaveBeenCalled();
   });
 });

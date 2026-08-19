@@ -1,8 +1,9 @@
 import '@angular/compiler';
 import { describe, it, expect, beforeEach } from 'vitest';
-import { TestBed } from '@angular/core/testing';
+import { createEnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { TreemapViewComponent } from './treemap-view.component';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { ThemeService } from '../../services/theme.service';
 import { formatBytes } from '../../utils/formatters';
 import * as d3 from 'd3';
 import { CodeFileNode } from '../../models/code-visualizer.models';
@@ -12,13 +13,19 @@ describe('TreemapViewComponent (TDD - Public Seam Verification)', () => {
   let component: TreemapViewComponent;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TreemapViewComponent],
-      providers: [VisualizerStoreService],
-    });
+    store = new VisualizerStoreService();
+    const themeService = new ThemeService();
+    const injector = createEnvironmentInjector(
+      [
+        { provide: VisualizerStoreService, useValue: store },
+        { provide: ThemeService, useValue: themeService },
+      ],
+      null as any
+    );
 
-    store = TestBed.inject(VisualizerStoreService);
-    component = TestBed.createComponent(TreemapViewComponent).componentInstance;
+    runInInjectionContext(injector, () => {
+      component = new TreemapViewComponent();
+    });
   });
 
 

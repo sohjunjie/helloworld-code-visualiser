@@ -15,10 +15,7 @@ describe('ThemeService', () => {
       clear: () => { mockStorage = {}; },
     });
 
-    TestBed.configureTestingModule({
-      providers: [ThemeService],
-    });
-    service = TestBed.inject(ThemeService);
+    service = new ThemeService();
   });
 
   afterEach(() => {

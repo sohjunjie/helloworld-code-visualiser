@@ -7,7 +7,15 @@ import { ThemeService } from './services/theme.service';
 
 describe('App Component', () => {
   it('should instantiate App component class', () => {
-    const injector = createEnvironmentInjector([ThemeService, VisualizerStoreService], null as any);
+    const themeService = new ThemeService();
+    const store = new VisualizerStoreService(themeService);
+    const injector = createEnvironmentInjector(
+      [
+        { provide: ThemeService, useValue: themeService },
+        { provide: VisualizerStoreService, useValue: store },
+      ],
+      null as any
+    );
     runInInjectionContext(injector, () => {
       const app = new App();
       expect(app).toBeDefined();

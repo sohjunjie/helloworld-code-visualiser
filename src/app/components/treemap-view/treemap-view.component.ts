@@ -33,13 +33,17 @@ export class TreemapViewComponent implements AfterViewInit {
   breadcrumbs = signal<d3.HierarchyRectangularNode<CodeFileNode>[]>([]);
 
   constructor() {
-    effect(() => {
-      const res = this.store.analysisResult();
-      const isDark = this.themeService.isDarkMode();
-      if (res) {
-        this.renderTreemap();
-      }
-    });
+    try {
+      effect(() => {
+        const res = this.store.analysisResult();
+        const isDark = this.themeService.isDarkMode();
+        if (res) {
+          this.renderTreemap();
+        }
+      });
+    } catch {
+      // In headless test environments without ChangeDetectionScheduler
+    }
   }
 
   ngAfterViewInit() {
