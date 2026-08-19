@@ -32,12 +32,12 @@ Before modifying code or analyzing project architecture, agents **MUST** leverag
 
 All files modifications must strictly adhere to the following sequence:
 
-### Phase 1: Context & Risk Assessment (Graphify-First)
-- **Graphify Discovery**: Read `graphify_out/GRAPH_REPORT.md` to map out dependencies and relevant modules before making edits (if `graphify_out` exists).
-- **Review Self-Improvement Learnings**: Consult [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md) to check for documented operational failure modes, environment quirks, and best practices relevant to the current task.
+### Phase 1: Mandatory Best Practices Consultation & Context Discovery (Graphify-First)
+- **Consult Coding Best Practices & Past Learnings**: **MANDATORY**: Before formulating a plan, designing architecture, or modifying code for ANY task, open and read [`AGENTS-LEARNINGS.md`](./AGENTS-LEARNINGS.md) and [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md). Review all documented architectural patterns (e.g. cross-cutting utility decoupling, theme/formatting encapsulation), testing strategies (e.g. Angular DI dual-context instantiation compatibility), accessibility rules (e.g. WCAG AA dynamic contrast), and operational environment quirks (e.g. Windows CLI quoting/invocations). Actively apply these best practices to the current task to prevent recurring defects.
+- **Graphify Discovery**: Read `graphify_out/GRAPH_REPORT.md` to map out dependencies, affected modules, and symbols before making edits (if `graphify_out` exists).
 
 ### Phase 2: Execution & Verification
-- **Direct Workspace File Operations**: Perform code changes, file creations, and structural updates directly in the workspace.
+- **Direct Workspace File Operations**: Perform code changes, file creations, and structural updates directly in the workspace, applying the consulted best practices.
 - **Empirical State Verification**: Immediately inspect directory contents (`list_dir`) and modified file structures (`view_file`) after writing changes to guarantee file existence, correct paths, and accurate byte sizes.
 
 ### Phase 3: Graphify Synchronization & Build Verification
@@ -46,7 +46,7 @@ All files modifications must strictly adhere to the following sequence:
 - **Enforce Zero-Regression Guarantee**: Ensure existing API contracts, exports, and module dependencies remain unbroken.
 
 ### Phase 4: Self-Improvement & Continuous Learning
-- **Conduct Self Improvement**: Follow the self-improvement protocol in `AGENTS-IMPROVEMENTS-PROTOCOL.md`
+- **Conduct Self Improvement**: Follow the self-improvement protocol in [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md). Document any newly identified best practices, design patterns, or failure modes in [`AGENTS-LEARNINGS.md`](./AGENTS-LEARNINGS.md).
 
 ---
 
@@ -54,6 +54,7 @@ All files modifications must strictly adhere to the following sequence:
 
 Before marking any task as complete, verify:
 
+- [ ] **Pre-Task Best Practices Consultation**: [`AGENTS-LEARNINGS.md`](./AGENTS-LEARNINGS.md) and [`AGENTS-IMPROVEMENTS-PROTOCOL.md`](./AGENTS-IMPROVEMENTS-PROTOCOL.md) were read and all relevant coding best practices were applied to the implementation.
 - [ ] **Graphify Discovery**: `graphify_out/GRAPH_REPORT.md` was referenced for context discovery and dependency impact analysis (n/a if `graphify_out` not initialized).
 - [ ] **State Discovery**: All created or modified files exist on disk with valid non-zero content.
 - [ ] **Clean Syntax & Imports**: No broken imports, syntax errors, or unhandled file path resolution issues exist.
