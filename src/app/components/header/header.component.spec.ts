@@ -120,5 +120,33 @@ describe('HeaderComponent (TDD - Public Seam Verification)', () => {
     component.onTabKeydown({ key: 'End', preventDefault: vi.fn() } as any);
     expect(store.activeTab()).toBe('inspector');
   });
+
+  it('should close demo menu on escape key press', () => {
+    component.isDemoMenuOpen = true;
+    component.onEscapeKey();
+    expect(component.isDemoMenuOpen).toBe(false);
+  });
+
+  it('should close demo menu on document click outside if elementRef is present', () => {
+    const mockElement = {
+      contains: vi.fn().mockReturnValue(false),
+    };
+    (component as any).elementRef = { nativeElement: mockElement };
+
+    component.isDemoMenuOpen = true;
+    component.onDocumentClick({ target: {} as any } as any);
+    expect(component.isDemoMenuOpen).toBe(false);
+  });
+
+  it('should not close demo menu on document click inside element', () => {
+    const mockElement = {
+      contains: vi.fn().mockReturnValue(true),
+    };
+    (component as any).elementRef = { nativeElement: mockElement };
+
+    component.isDemoMenuOpen = true;
+    component.onDocumentClick({ target: {} as any } as any);
+    expect(component.isDemoMenuOpen).toBe(true);
+  });
 });
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
 import { ExportDemoService } from '../../services/export-demo.service';
@@ -14,6 +14,7 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 export class HeaderComponent {
   readonly store = inject(VisualizerStoreService);
   readonly demoService = inject(ExportDemoService);
+  private readonly elementRef = inject(ElementRef, { optional: true });
 
   isDemoMenuOpen = false;
 
@@ -23,6 +24,24 @@ export class HeaderComponent {
 
   closeDemoMenu() {
     this.isDemoMenuOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (
+      this.isDemoMenuOpen &&
+      this.elementRef?.nativeElement &&
+      !this.elementRef.nativeElement.contains(event.target as Node)
+    ) {
+      this.closeDemoMenu();
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.isDemoMenuOpen) {
+      this.closeDemoMenu();
+    }
   }
 
   selectDemo(demo: any) {

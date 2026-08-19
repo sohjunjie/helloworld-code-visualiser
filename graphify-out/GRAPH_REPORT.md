@@ -1,16 +1,16 @@
 # Graph Report - helloworld-code-visualiser  (2026-08-20)
 
 ## Corpus Check
-- 65 files · ~20,423 words
+- 65 files · ~20,580 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 349 nodes · 540 edges · 36 communities (18 shown, 18 thin omitted)
+- 352 nodes · 546 edges · 37 communities (19 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f20acf25`
+- Built from commit: `2e8d8f71`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -19,10 +19,10 @@
 - dependencies
 - devDependencies
 - ThemeService
-- helloworld-code-visualiser
+- development
 - compilerOptions
 - analysis.worker.ts
-- visualizer-store.service.ts
+- code-visualizer.models.ts
 - 01-worker-modularization-and-core-testing.md
 - App Root Template
 - ast-parser.ts
@@ -30,7 +30,7 @@
 - tsconfig.app.json
 - tsconfig.spec.json
 - DependencyGraphViewComponent
-- TreemapViewComponent
+- helloworld-code-visualiser
 - 03-svg-diagram-export-and-advanced-graph-filtering.md
 - 04-polyglot-multilanguage-import-extraction.md
 - app.config.ts
@@ -47,6 +47,7 @@
 - 14-client-side-plugin-and-parser-extension-architecture.md
 - 15-browser-local-ai-codebase-explanations.md
 - 16-3d-immersive-architecture-visualizer.md
+- HeaderComponent
 
 ## God Nodes (most connected - your core abstractions)
 1. `VisualizerStoreService` - 33 edges
@@ -56,30 +57,30 @@
 5. `buildAndParseGraph()` - 14 edges
 6. `DependencyGraphViewComponent` - 13 edges
 7. `TreemapViewComponent` - 13 edges
-8. `compilerOptions` - 11 edges
-9. `HeaderComponent` - 9 edges
+8. `HeaderComponent` - 11 edges
+9. `compilerOptions` - 11 edges
 10. `UploadDropzoneComponent` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `TreemapViewComponent` --references--> `CodeFileNode`  [EXTRACTED]
-  src/app/components/treemap-view/treemap-view.component.ts → src/app/models/code-visualizer.models.ts
 - `VisualizerStoreService` --references--> `ThemeService`  [EXTRACTED]
   src/app/services/visualizer-store.service.ts → src/app/services/theme.service.ts
 - `buildAndParseGraph()` --calls--> `parseFileContents()`  [EXTRACTED]
   src/app/workers/analysis.worker.ts → src/app/workers/ast-parser.ts
-- `buildAndParseGraph()` --calls--> `detectSoftwarePatterns()`  [EXTRACTED]
-  src/app/workers/analysis.worker.ts → src/app/workers/pattern-detector.ts
+- `TreemapViewComponent` --references--> `CodeFileNode`  [EXTRACTED]
+  src/app/components/treemap-view/treemap-view.component.ts → src/app/models/code-visualizer.models.ts
 - `processZipFile()` --calls--> `extractZipEntries()`  [EXTRACTED]
   src/app/workers/analysis.worker.ts → src/app/workers/zip-extractor.ts
+- `buildAndParseGraph()` --calls--> `findCircularDependencies()`  [EXTRACTED]
+  src/app/workers/analysis.worker.ts → src/app/workers/cycle-detector.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (36 total, 18 thin omitted)
+## Communities (37 total, 18 thin omitted)
 
 ### Community 0 - "VisualizerStoreService"
-Cohesion: 0.07
-Nodes (13): App, Component, HeaderComponent, Component, ProgressModalComponent, Component, Component, UploadDropzoneComponent (+5 more)
+Cohesion: 0.10
+Nodes (12): App, Component, ProgressModalComponent, Component, Component, UploadDropzoneComponent, AnalysisResult, DemoProject (+4 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.06
@@ -93,21 +94,21 @@ Nodes (31): @angular/build, @angular/compiler-cli, autoprefixer, jsdom, devDepen
 Cohesion: 0.13
 Nodes (5): ThemeToggleComponent, Component, GraphThemeConfig, ThemeService, Injectable
 
-### Community 4 - "helloworld-code-visualiser"
-Cohesion: 0.05
-Nodes (38): build, serve, test, builder, configurations, defaultConfiguration, options, packageManager (+30 more)
+### Community 4 - "development"
+Cohesion: 0.08
+Nodes (26): build, serve, test, builder, configurations, defaultConfiguration, options, development (+18 more)
 
 ### Community 5 - "compilerOptions"
 Cohesion: 0.11
 Nodes (18): angularCompilerOptions, enableI18nLegacyMessageIdFormat, strictInjectionParameters, strictInputAccessModifiers, compileOnSave, compilerOptions, experimentalDecorators, importHelpers (+10 more)
 
 ### Community 6 - "analysis.worker.ts"
-Cohesion: 0.16
-Nodes (22): AnalysisStats, GraphEdge, UploadProgress, buildAndParseGraph(), isWorkerContext(), processDemoFiles(), processZipFile(), reportProgress() (+14 more)
+Cohesion: 0.13
+Nodes (23): AnalysisStats, GraphEdge, UploadProgress, buildAndParseGraph(), isWorkerContext(), processDemoFiles(), processZipFile(), reportProgress() (+15 more)
 
-### Community 7 - "visualizer-store.service.ts"
-Cohesion: 0.17
-Nodes (12): ArchitectureViewComponent, Component, InspectorSidebarComponent, Component, AnalysisResult, CodeFileNode, FileNodeType, PatternGrouping (+4 more)
+### Community 7 - "code-visualizer.models.ts"
+Cohesion: 0.12
+Nodes (13): ArchitectureViewComponent, Component, InspectorSidebarComponent, Component, TreemapViewComponent, Component, ViewChild, CodeFileNode (+5 more)
 
 ### Community 9 - "App Root Template"
 Cohesion: 0.67
@@ -129,9 +130,13 @@ Nodes (8): src/**/*.d.ts, vitest/globals, compilerOptions, types, extends, inclu
 Cohesion: 0.24
 Nodes (3): DependencyGraphViewComponent, Component, ViewChild
 
-### Community 15 - "TreemapViewComponent"
-Cohesion: 0.36
-Nodes (3): TreemapViewComponent, Component, ViewChild
+### Community 15 - "helloworld-code-visualiser"
+Cohesion: 0.15
+Nodes (12): packageManager, prefix, projectType, root, schematics, sourceRoot, cli, newProjectRoot (+4 more)
+
+### Community 36 - "HeaderComponent"
+Cohesion: 0.27
+Nodes (3): HostListener, HeaderComponent, Component
 
 ## Knowledge Gaps
 - **112 isolated node(s):** `$schema`, `version`, `packageManager`, `newProjectRoot`, `projectType` (+107 more)
@@ -141,16 +146,16 @@ Nodes (3): TreemapViewComponent, Component, ViewChild
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `VisualizerStoreService` connect `VisualizerStoreService` to `ThemeService`, `visualizer-store.service.ts`?**
+- **Why does `VisualizerStoreService` connect `VisualizerStoreService` to `ThemeService`, `code-visualizer.models.ts`?**
   _High betweenness centrality (0.039) - this node is a cross-community bridge._
-- **Why does `ThemeService` connect `ThemeService` to `VisualizerStoreService`, `visualizer-store.service.ts`?**
+- **Why does `ThemeService` connect `ThemeService` to `VisualizerStoreService`, `code-visualizer.models.ts`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
-- **Why does `CodeFileNode` connect `visualizer-store.service.ts` to `VisualizerStoreService`, `analysis.worker.ts`, `TreemapViewComponent`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `CodeFileNode` connect `code-visualizer.models.ts` to `VisualizerStoreService`, `analysis.worker.ts`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
 - **What connects `$schema`, `version`, `packageManager` to the rest of the system?**
   _112 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `VisualizerStoreService` be split into smaller, more focused modules?**
-  _Cohesion score 0.06857142857142857 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09966777408637874 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**

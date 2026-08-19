@@ -17,19 +17,6 @@
       "norm_label": "app"
     },
     {
-      "label": "HeaderComponent",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L14",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": "headercomponent"
-    },
-    {
       "label": "ProgressModalComponent",
       "file_type": "code",
       "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
@@ -54,6 +41,19 @@
       "community": 0,
       "community_name": "VisualizerStoreService",
       "norm_label": "uploaddropzonecomponent"
+    },
+    {
+      "label": "AnalysisResult",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L62",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_analysisresult",
+      "community": 0,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "analysisresult"
     },
     {
       "label": "DemoProject",
@@ -121,19 +121,6 @@
       "norm_label": "dependencygraphviewcomponent"
     },
     {
-      "label": "TreemapViewComponent",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L16",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": "treemapviewcomponent"
-    },
-    {
       "label": "ThemeToggleComponent",
       "file_type": "code",
       "source_file": "src/app/components/theme-toggle/theme-toggle.component.ts",
@@ -171,6 +158,19 @@
       "community": 3,
       "community_name": "ThemeService",
       "norm_label": "themeservice"
+    },
+    {
+      "label": "HeaderComponent",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L14",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": "headercomponent"
     },
     {
       "label": "AnalysisStats",
@@ -221,7 +221,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "architectureviewcomponent"
     },
     {
@@ -234,21 +234,21 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "inspectorsidebarcomponent"
     },
     {
-      "label": "AnalysisResult",
+      "label": "TreemapViewComponent",
       "file_type": "code",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L62",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L16",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "id": "src_app_models_code_visualizer_models_analysisresult",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "analysisresult"
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "treemapviewcomponent"
     },
     {
       "label": "CodeFileNode",
@@ -260,7 +260,7 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_codefilenode",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "codefilenode"
     },
     {
@@ -273,7 +273,7 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_filenodetype",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "filenodetype"
     },
     {
@@ -286,7 +286,7 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_patterngrouping",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "patterngrouping"
     },
     {
@@ -299,68 +299,8 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_softwarepatterninfo",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "softwarepatterninfo"
-    },
-    {
-      "label": ".closeDemoMenu()",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L24",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent_closedemomenu",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".closedemomenu()"
-    },
-    {
-      "label": ".exportReport()",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L33",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent_exportreport",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".exportreport()"
-    },
-    {
-      "label": ".onTabKeydown()",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L40",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent_ontabkeydown",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".ontabkeydown()"
-    },
-    {
-      "label": ".selectDemo()",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L28",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent_selectdemo",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".selectdemo()"
-    },
-    {
-      "label": ".toggleDemoMenu()",
-      "file_type": "code",
-      "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L20",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_headercomponent_toggledemomenu",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".toggledemomenu()"
     },
     {
       "label": ".onDragLeave()",
@@ -531,30 +471,6 @@
       "norm_label": ".initworker()"
     },
     {
-      "label": ".selectNode()",
-      "file_type": "code",
-      "source_file": "src/app/services/visualizer-store.service.ts",
-      "source_location": "L118",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_selectnode",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".selectnode()"
-    },
-    {
-      "label": ".selectPattern()",
-      "file_type": "code",
-      "source_file": "src/app/services/visualizer-store.service.ts",
-      "source_location": "L146",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_selectpattern",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": ".selectpattern()"
-    },
-    {
       "label": ".setActiveTab()",
       "file_type": "code",
       "source_file": "src/app/services/visualizer-store.service.ts",
@@ -723,90 +639,6 @@
       "norm_label": ".setupresizeobserver()"
     },
     {
-      "label": ".constructor()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L35",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_constructor",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".constructor()"
-    },
-    {
-      "label": ".findNodeInFullTree()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L306",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".findnodeinfulltree()"
-    },
-    {
-      "label": ".ngAfterViewInit()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L45",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngafterviewinit",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".ngafterviewinit()"
-    },
-    {
-      "label": ".renderTreemap()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L55",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".rendertreemap()"
-    },
-    {
-      "label": ".updateBreadcrumbs()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L286",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatebreadcrumbs",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".updatebreadcrumbs()"
-    },
-    {
-      "label": ".updateTooltipPosition()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L265",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatetooltipposition",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".updatetooltipposition()"
-    },
-    {
-      "label": ".zoomTo()",
-      "file_type": "code",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L50",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_zoomto",
-      "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": ".zoomto()"
-    },
-    {
       "label": ".toggleTheme()",
       "file_type": "code",
       "source_file": "src/app/components/theme-toggle/theme-toggle.component.ts",
@@ -961,6 +793,90 @@
       "community": 3,
       "community_name": "ThemeService",
       "norm_label": ".toggledarkmode()"
+    },
+    {
+      "label": ".closeDemoMenu()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L25",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_closedemomenu",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".closedemomenu()"
+    },
+    {
+      "label": ".exportReport()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L52",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_exportreport",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".exportreport()"
+    },
+    {
+      "label": ".onDocumentClick()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_ondocumentclick",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".ondocumentclick()"
+    },
+    {
+      "label": ".onEscapeKey()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L41",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_onescapekey",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".onescapekey()"
+    },
+    {
+      "label": ".onTabKeydown()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L59",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_ontabkeydown",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".ontabkeydown()"
+    },
+    {
+      "label": ".selectDemo()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L47",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_selectdemo",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".selectdemo()"
+    },
+    {
+      "label": ".toggleDemoMenu()",
+      "file_type": "code",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L21",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_headercomponent_toggledemomenu",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": ".toggledemomenu()"
     },
     {
       "label": "buildAndParseGraph()",
@@ -1131,6 +1047,30 @@
       "norm_label": "resolveimportpath()"
     },
     {
+      "label": "detectSoftwarePatterns()",
+      "file_type": "code",
+      "source_file": "src/app/workers/pattern-detector.ts",
+      "source_location": "L7",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_pattern_detector_detectsoftwarepatterns",
+      "community": 6,
+      "community_name": "analysis.worker.ts",
+      "norm_label": "detectsoftwarepatterns()"
+    },
+    {
+      "label": "createMockFiles()",
+      "file_type": "code",
+      "source_file": "src/app/workers/pattern-detector.spec.ts",
+      "source_location": "L5",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_pattern_detector_spec_createmockfiles",
+      "community": 6,
+      "community_name": "analysis.worker.ts",
+      "norm_label": "createmockfiles()"
+    },
+    {
       "label": "extractZipEntries()",
       "file_type": "code",
       "source_file": "src/app/workers/zip-extractor.ts",
@@ -1211,7 +1151,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_closepatterndetail",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": ".closepatterndetail()"
     },
     {
@@ -1223,7 +1163,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_openfile",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": ".openfile()"
     },
     {
@@ -1235,7 +1175,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_viewpatterndetail",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": ".viewpatterndetail()"
     },
     {
@@ -1247,7 +1187,7 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_getimporters",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": ".getimporters()"
     },
     {
@@ -1259,8 +1199,116 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_openfile",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": ".openfile()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L35",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_constructor",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".findNodeInFullTree()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L306",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".findnodeinfulltree()"
+    },
+    {
+      "label": ".ngAfterViewInit()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L45",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngafterviewinit",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".ngafterviewinit()"
+    },
+    {
+      "label": ".renderTreemap()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L55",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".rendertreemap()"
+    },
+    {
+      "label": ".updateBreadcrumbs()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L286",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatebreadcrumbs",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".updatebreadcrumbs()"
+    },
+    {
+      "label": ".updateTooltipPosition()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L265",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatetooltipposition",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".updatetooltipposition()"
+    },
+    {
+      "label": ".zoomTo()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L50",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_zoomto",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".zoomto()"
+    },
+    {
+      "label": ".selectNode()",
+      "file_type": "code",
+      "source_file": "src/app/services/visualizer-store.service.ts",
+      "source_location": "L118",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_selectnode",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".selectnode()"
+    },
+    {
+      "label": ".selectPattern()",
+      "file_type": "code",
+      "source_file": "src/app/services/visualizer-store.service.ts",
+      "source_location": "L146",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_selectpattern",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": ".selectpattern()"
     },
     {
       "label": "formatBytes()",
@@ -1271,7 +1319,7 @@
       "_origin": "ast",
       "id": "src_app_utils_formatters_formatbytes",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "formatbytes()"
     },
     {
@@ -1283,32 +1331,8 @@
       "_origin": "ast",
       "id": "src_app_utils_formatters_getbadgeclass",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "getbadgeclass()"
-    },
-    {
-      "label": "detectSoftwarePatterns()",
-      "file_type": "code",
-      "source_file": "src/app/workers/pattern-detector.ts",
-      "source_location": "L7",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_workers_pattern_detector_detectsoftwarepatterns",
-      "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "detectsoftwarepatterns()"
-    },
-    {
-      "label": "createMockFiles()",
-      "file_type": "code",
-      "source_file": "src/app/workers/pattern-detector.spec.ts",
-      "source_location": "L5",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_workers_pattern_detector_spec_createmockfiles",
-      "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "createmockfiles()"
     },
     {
       "label": "app.ts",
@@ -1386,17 +1410,6 @@
       "community": 0,
       "community_name": "VisualizerStoreService",
       "norm_label": "header.component.spec.ts"
-    },
-    {
-      "label": "Component",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "src_app_components_header_header_component_ts_component",
-      "community": 0,
-      "community_name": "VisualizerStoreService",
-      "norm_label": "component"
     },
     {
       "label": "progress-modal.component.ts",
@@ -1485,6 +1498,17 @@
       "community": 0,
       "community_name": "VisualizerStoreService",
       "norm_label": "injectable"
+    },
+    {
+      "label": "visualizer-store.service.ts",
+      "file_type": "code",
+      "source_file": "src/app/services/visualizer-store.service.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_services_visualizer_store_service",
+      "community": 0,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "visualizer-store.service.ts"
     },
     {
       "label": "visualizer-store.service.spec.ts",
@@ -2180,26 +2204,147 @@
       "norm_label": "viewchild"
     },
     {
-      "label": "Component",
+      "label": "angular.json",
       "file_type": "code",
-      "source_file": "",
-      "source_location": "",
+      "source_file": "angular.json",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_ts_component",
+      "id": "angular",
       "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": "component"
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "angular.json"
     },
     {
-      "label": "ViewChild",
+      "label": "packageManager",
       "file_type": "code",
-      "source_file": "",
-      "source_location": "",
+      "source_file": "angular.json",
+      "source_location": "L5",
       "_origin": "ast",
-      "id": "src_app_components_treemap_view_treemap_view_component_ts_viewchild",
+      "id": "angular_cli_packagemanager",
       "community": 15,
-      "community_name": "TreemapViewComponent",
-      "norm_label": "viewchild"
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "packagemanager"
+    },
+    {
+      "label": "prefix",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_prefix",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "prefix"
+    },
+    {
+      "label": "projectType",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_projecttype",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "projecttype"
+    },
+    {
+      "label": "root",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_root",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "root"
+    },
+    {
+      "label": "schematics",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_schematics",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "schematics"
+    },
+    {
+      "label": "sourceRoot",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_sourceroot",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "sourceroot"
+    },
+    {
+      "label": "cli",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "angular_json_angular_cli",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "cli"
+    },
+    {
+      "label": "newProjectRoot",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "angular_newprojectroot",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "newprojectroot"
+    },
+    {
+      "label": "projects",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "angular_projects",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "projects"
+    },
+    {
+      "label": "helloworld-code-visualiser",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "angular_projects_helloworld_code_visualiser",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "helloworld-code-visualiser"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "angular_schema",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "$schema"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "angular_version",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "version"
     },
     {
       "label": "03-svg-diagram-export-and-advanced-graph-filtering.md",
@@ -3027,15 +3172,26 @@
       "norm_label": "16 \u2014 3d immersive architecture visualizer mode"
     },
     {
-      "label": "angular.json",
+      "label": "HostListener",
       "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L1",
+      "source_file": "",
+      "source_location": "",
       "_origin": "ast",
-      "id": "angular",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "angular.json"
+      "id": "hostlistener",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": "hostlistener"
+    },
+    {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_header_header_component_ts_component",
+      "community": 36,
+      "community_name": "HeaderComponent",
+      "norm_label": "component"
     },
     {
       "label": "build",
@@ -3045,7 +3201,7 @@
       "_origin": "ast",
       "id": "angular_architect_build",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "build"
     },
     {
@@ -3056,7 +3212,7 @@
       "_origin": "ast",
       "id": "angular_architect_serve",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "serve"
     },
     {
@@ -3067,7 +3223,7 @@
       "_origin": "ast",
       "id": "angular_architect_test",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "test"
     },
     {
@@ -3078,7 +3234,7 @@
       "_origin": "ast",
       "id": "angular_build_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
     },
     {
@@ -3089,7 +3245,7 @@
       "_origin": "ast",
       "id": "angular_build_configurations",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "configurations"
     },
     {
@@ -3100,7 +3256,7 @@
       "_origin": "ast",
       "id": "angular_build_defaultconfiguration",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "defaultconfiguration"
     },
     {
@@ -3111,19 +3267,8 @@
       "_origin": "ast",
       "id": "angular_build_options",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "options"
-    },
-    {
-      "label": "packageManager",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "angular_cli_packagemanager",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "packagemanager"
     },
     {
       "label": "development",
@@ -3133,7 +3278,7 @@
       "_origin": "ast",
       "id": "angular_configurations_development",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "development"
     },
     {
@@ -3144,7 +3289,7 @@
       "_origin": "ast",
       "id": "angular_configurations_production",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "production"
     },
     {
@@ -3155,7 +3300,7 @@
       "_origin": "ast",
       "id": "angular_development_buildtarget",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "buildtarget"
     },
     {
@@ -3166,7 +3311,7 @@
       "_origin": "ast",
       "id": "angular_development_extractlicenses",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "extractlicenses"
     },
     {
@@ -3177,7 +3322,7 @@
       "_origin": "ast",
       "id": "angular_development_optimization",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "optimization"
     },
     {
@@ -3188,7 +3333,7 @@
       "_origin": "ast",
       "id": "angular_development_sourcemap",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "sourcemap"
     },
     {
@@ -3199,85 +3344,8 @@
       "_origin": "ast",
       "id": "angular_helloworld_code_visualiser_architect",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "architect"
-    },
-    {
-      "label": "prefix",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_prefix",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "prefix"
-    },
-    {
-      "label": "projectType",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_projecttype",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "projecttype"
-    },
-    {
-      "label": "root",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_root",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "root"
-    },
-    {
-      "label": "schematics",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_schematics",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "schematics"
-    },
-    {
-      "label": "sourceRoot",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_sourceroot",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "sourceroot"
-    },
-    {
-      "label": "cli",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "angular_json_angular_cli",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "cli"
-    },
-    {
-      "label": "newProjectRoot",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "angular_newprojectroot",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "newprojectroot"
     },
     {
       "label": "assets",
@@ -3287,7 +3355,7 @@
       "_origin": "ast",
       "id": "angular_options_assets",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "assets"
     },
     {
@@ -3298,7 +3366,7 @@
       "_origin": "ast",
       "id": "angular_options_browser",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "browser"
     },
     {
@@ -3309,7 +3377,7 @@
       "_origin": "ast",
       "id": "angular_options_styles",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "styles"
     },
     {
@@ -3320,7 +3388,7 @@
       "_origin": "ast",
       "id": "angular_options_tsconfig",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "tsconfig"
     },
     {
@@ -3331,7 +3399,7 @@
       "_origin": "ast",
       "id": "angular_production_budgets",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "budgets"
     },
     {
@@ -3342,7 +3410,7 @@
       "_origin": "ast",
       "id": "angular_production_buildtarget",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "buildtarget"
     },
     {
@@ -3353,41 +3421,8 @@
       "_origin": "ast",
       "id": "angular_production_outputhashing",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "outputhashing"
-    },
-    {
-      "label": "projects",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "angular_projects",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "projects"
-    },
-    {
-      "label": "helloworld-code-visualiser",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "angular_projects_helloworld_code_visualiser",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "helloworld-code-visualiser"
-    },
-    {
-      "label": "$schema",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "angular_schema",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "$schema"
     },
     {
       "label": "builder",
@@ -3397,7 +3432,7 @@
       "_origin": "ast",
       "id": "angular_serve_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
     },
     {
@@ -3408,7 +3443,7 @@
       "_origin": "ast",
       "id": "angular_serve_configurations",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "configurations"
     },
     {
@@ -3419,7 +3454,7 @@
       "_origin": "ast",
       "id": "angular_serve_defaultconfiguration",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "defaultconfiguration"
     },
     {
@@ -3430,19 +3465,8 @@
       "_origin": "ast",
       "id": "angular_test_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
-    },
-    {
-      "label": "version",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "angular_version",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "version"
     },
     {
       "label": "src/styles.css",
@@ -3452,7 +3476,7 @@
       "_origin": "ast",
       "id": "ref_src_styles_css",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "src/styles.css"
     },
     {
@@ -3731,6 +3755,28 @@
       "norm_label": "graph-builder.spec.ts"
     },
     {
+      "label": "pattern-detector.ts",
+      "file_type": "code",
+      "source_file": "src/app/workers/pattern-detector.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_workers_pattern_detector",
+      "community": 6,
+      "community_name": "analysis.worker.ts",
+      "norm_label": "pattern-detector.ts"
+    },
+    {
+      "label": "pattern-detector.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/workers/pattern-detector.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_workers_pattern_detector_spec",
+      "community": 6,
+      "community_name": "analysis.worker.ts",
+      "norm_label": "pattern-detector.spec.ts"
+    },
+    {
       "label": "zip-extractor.ts",
       "file_type": "code",
       "source_file": "src/app/workers/zip-extractor.ts",
@@ -3771,7 +3817,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "architecture-view.component.ts"
     },
     {
@@ -3782,7 +3828,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_spec",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "architecture-view.component.spec.ts"
     },
     {
@@ -3793,7 +3839,7 @@
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_ts_component",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "component"
     },
     {
@@ -3804,7 +3850,7 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "inspector-sidebar.component.ts"
     },
     {
@@ -3815,7 +3861,7 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "inspector-sidebar.component.spec.ts"
     },
     {
@@ -3826,7 +3872,7 @@
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_ts_component",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "component"
     },
     {
@@ -3837,7 +3883,7 @@
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "treemap-view.component.ts"
     },
     {
@@ -3848,8 +3894,30 @@
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_spec",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "treemap-view.component.spec.ts"
+    },
+    {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_ts_component",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "component"
+    },
+    {
+      "label": "ViewChild",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_ts_viewchild",
+      "community": 7,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "viewchild"
     },
     {
       "label": "code-visualizer.models.ts",
@@ -3859,19 +3927,8 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "code-visualizer.models.ts"
-    },
-    {
-      "label": "visualizer-store.service.ts",
-      "file_type": "code",
-      "source_file": "src/app/services/visualizer-store.service.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_services_visualizer_store_service",
-      "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "visualizer-store.service.ts"
     },
     {
       "label": "formatters.ts",
@@ -3881,30 +3938,8 @@
       "_origin": "ast",
       "id": "src_app_utils_formatters",
       "community": 7,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "formatters.ts"
-    },
-    {
-      "label": "pattern-detector.ts",
-      "file_type": "code",
-      "source_file": "src/app/workers/pattern-detector.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_workers_pattern_detector",
-      "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "pattern-detector.ts"
-    },
-    {
-      "label": "pattern-detector.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/workers/pattern-detector.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_workers_pattern_detector_spec",
-      "community": 7,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "pattern-detector.spec.ts"
     },
     {
       "label": "01-worker-modularization-and-core-testing.md",
@@ -4024,6 +4059,30 @@
       "_origin": "ast",
       "source": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_ngafterviewinit",
       "target": "src_app_components_dependency_graph_view_dependency_graph_view_component_dependencygraphviewcomponent_setupresizeobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent_ondocumentclick",
+      "target": "src_app_components_header_header_component_headercomponent_closedemomenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent_onescapekey",
+      "target": "src_app_components_header_header_component_headercomponent_closedemomenu",
       "confidence_score": 1.0
     },
     {
@@ -4588,6 +4647,30 @@
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
       "target": "src_app_components_header_header_component_ts_component",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent_ondocumentclick",
+      "target": "hostlistener",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L40",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent_onescapekey",
+      "target": "hostlistener",
       "confidence_score": 1.0
     },
     {
@@ -9679,7 +9762,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
@@ -9690,7 +9773,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
@@ -9701,7 +9784,29 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L28",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent",
+      "target": "src_app_components_header_header_component_headercomponent_ondocumentclick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_header_header_component_headercomponent",
+      "target": "src_app_components_header_header_component_headercomponent_onescapekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/header/header.component.ts",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
@@ -9712,7 +9817,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L33",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
@@ -9723,7 +9828,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/header/header.component.ts",
-      "source_location": "L40",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_header_header_component_headercomponent",
@@ -10240,5 +10345,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f20acf25e81ff11be4b2a8af400916b6c18b7c22"
+  "built_at_commit": "2e8d8f71b5a0caffdef48bdc30a6147cf739e8cc"
 }
