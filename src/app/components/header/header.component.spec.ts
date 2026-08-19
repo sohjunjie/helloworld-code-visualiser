@@ -12,6 +12,11 @@ describe('HeaderComponent (TDD - Public Seam Verification)', () => {
   let component: HeaderComponent;
 
   beforeEach(() => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => [],
+    } as Response);
+
     store = new VisualizerStoreService();
     demoService = new ExportDemoService();
     
@@ -70,6 +75,50 @@ describe('HeaderComponent (TDD - Public Seam Verification)', () => {
 
     expect(downloadSpy).toHaveBeenCalledTimes(1);
     expect(downloadSpy).toHaveBeenCalledWith(mockResult);
+  });
+
+  it('should toggle and close demo menu state', () => {
+    expect(component.isDemoMenuOpen).toBe(false);
+    component.toggleDemoMenu();
+    expect(component.isDemoMenuOpen).toBe(true);
+    component.closeDemoMenu();
+    expect(component.isDemoMenuOpen).toBe(false);
+  });
+
+  it('should select demo project and close menu', () => {
+    const analyzeSpy = vi.spyOn(store, 'analyzeDemoProject').mockImplementation(async () => {});
+    const demo = { id: 'test', name: 'Test', description: '', filename: 'test.zip', fileCount: 2 };
+    
+    component.isDemoMenuOpen = true;
+    component.selectDemo(demo);
+
+    expect(analyzeSpy).toHaveBeenCalledWith(demo);
+    expect(component.isDemoMenuOpen).toBe(false);
+  });
+
+  it('should handle keyboard navigation across tabs', () => {
+    store.setActiveTab('treemap');
+    
+    component.onTabKeydown({ key: 'ArrowRight', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('graph');
+
+    component.onTabKeydown({ key: 'ArrowRight', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('architecture');
+
+    component.onTabKeydown({ key: 'ArrowRight', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('inspector');
+
+    component.onTabKeydown({ key: 'ArrowRight', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('treemap');
+
+    component.onTabKeydown({ key: 'ArrowLeft', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('inspector');
+
+    component.onTabKeydown({ key: 'Home', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('treemap');
+
+    component.onTabKeydown({ key: 'End', preventDefault: vi.fn() } as any);
+    expect(store.activeTab()).toBe('inspector');
   });
 });
 

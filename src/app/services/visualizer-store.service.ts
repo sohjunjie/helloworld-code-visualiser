@@ -18,7 +18,34 @@ export class VisualizerStoreService {
   private worker: Worker | null = null;
 
   constructor() {
+    this.initTheme();
     this.initWorker();
+  }
+
+  private initTheme() {
+    let darkMode = true;
+    if (typeof localStorage !== 'undefined') {
+      const savedTheme = localStorage.getItem('hwcv_theme');
+      if (savedTheme === 'dark') {
+        darkMode = true;
+      } else if (savedTheme === 'light') {
+        darkMode = false;
+      } else if (typeof window !== 'undefined' && window.matchMedia) {
+        darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+    }
+    this.isDarkMode.set(darkMode);
+    this.applyThemeToDOM(darkMode);
+  }
+
+  private applyThemeToDOM(isDark: boolean) {
+    if (typeof document !== 'undefined' && document.documentElement) {
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
   }
 
   private initWorker() {
@@ -121,7 +148,16 @@ export class VisualizerStoreService {
   }
 
   toggleDarkMode() {
-    this.isDarkMode.update((v) => !v);
+    const nextValue = !this.isDarkMode();
+    this.setDarkMode(nextValue);
+  }
+
+  setDarkMode(isDark: boolean) {
+    this.isDarkMode.set(isDark);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('hwcv_theme', isDark ? 'dark' : 'light');
+    }
+    this.applyThemeToDOM(isDark);
   }
 
   selectPattern(pattern: SoftwarePatternInfo | null) {

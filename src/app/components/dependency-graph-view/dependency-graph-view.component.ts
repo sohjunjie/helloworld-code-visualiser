@@ -33,6 +33,7 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       const res = this.store.analysisResult();
       const layout = this.store.selectedLayout();
       const query = this.store.searchQuery();
+      const isDark = this.store.isDarkMode();
       if (res && this.cyRef) {
         this.renderGraph();
       }
@@ -65,8 +66,9 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
 
   exportDiagram() {
     if (this.cyInstance) {
+      const isDark = this.store.isDarkMode();
       try {
-        const pngUri = this.cyInstance.png({ full: true, bg: '#020617', scale: 2 });
+        const pngUri = this.cyInstance.png({ full: true, bg: isDark ? '#020617' : '#ffffff', scale: 2 });
         const a = document.createElement('a');
         a.href = pngUri;
         a.download = 'dependency-graph.png';
@@ -141,6 +143,11 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
       }
 
       const layoutName = this.store.selectedLayout();
+      const isDark = this.store.isDarkMode();
+      const nodeColor = isDark ? '#f8fafc' : '#0f172a';
+      const nodeBg = isDark ? '#38bdf8' : '#0284c7';
+      const nodeBorder = isDark ? '#0284c7' : '#0369a1';
+      const edgeColor = isDark ? '#475569' : '#94a3b8';
 
       this.cyInstance = cytoscape({
         container: this.cyRef.nativeElement,
@@ -149,16 +156,16 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
           {
             selector: 'node',
             style: {
-              'background-color': '#38bdf8',
+              'background-color': nodeBg,
               label: 'data(label)',
-              color: '#f8fafc',
+              color: nodeColor,
               'font-size': '11px',
               'text-valign': 'bottom',
               'text-margin-y': 5,
               width: 24,
               height: 24,
               'border-width': 2,
-              'border-color': '#0284c7',
+              'border-color': nodeBorder,
             },
           },
           {
@@ -178,8 +185,8 @@ export class DependencyGraphViewComponent implements AfterViewInit, OnDestroy {
             selector: 'edge',
             style: {
               width: 1.5,
-              'line-color': '#475569',
-              'target-arrow-color': '#475569',
+              'line-color': edgeColor,
+              'target-arrow-color': edgeColor,
               'target-arrow-shape': 'triangle',
               'curve-style': 'bezier',
               opacity: 0.6,

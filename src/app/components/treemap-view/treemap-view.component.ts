@@ -30,8 +30,8 @@ export class TreemapViewComponent implements AfterViewInit {
   /** Breadcrumb trail signal for zoomed navigation */
   breadcrumbs = signal<d3.HierarchyRectangularNode<CodeFileNode>[]>([]);
 
-  /** Depth colors for folder nesting */
-  private readonly folderColors = [
+  /** Depth colors for folder nesting (dark mode) */
+  private readonly darkFolderColors = [
     'rgba(30, 41, 59, 0.9)',   // slate-800
     'rgba(51, 65, 85, 0.7)',   // slate-700
     'rgba(71, 85, 105, 0.5)',  // slate-600
@@ -39,11 +39,20 @@ export class TreemapViewComponent implements AfterViewInit {
     'rgba(148, 163, 184, 0.2)', // slate-400
   ];
 
+  /** Depth colors for folder nesting (light mode) */
+  private readonly lightFolderColors = [
+    'rgba(241, 245, 249, 0.95)', // slate-100
+    'rgba(226, 232, 240, 0.85)', // slate-200
+    'rgba(203, 213, 225, 0.7)',  // slate-300
+    'rgba(148, 163, 184, 0.45)', // slate-400
+    'rgba(203, 213, 225, 0.35)',
+  ];
+
   constructor() {
     effect(() => {
       const res = this.store.analysisResult();
+      const isDark = this.store.isDarkMode();
       if (res) {
-        this.zoomRoot = null;
         this.renderTreemap();
       }
     });
@@ -144,6 +153,12 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('class', 'folder')
       .attr('transform', (d) => `translate(${d.x0},${d.y0})`);
 
+    const isDark = this.store.isDarkMode();
+    const folderStroke = isDark ? 'rgba(148, 163, 184, 0.15)' : 'rgba(148, 163, 184, 0.35)';
+    const folderLabelFill = isDark ? 'rgba(148, 163, 184, 0.9)' : 'rgba(51, 65, 85, 0.95)';
+    const fileStroke = isDark ? '#0f172a' : '#cbd5e1';
+    const fileHoverStroke = isDark ? '#38bdf8' : '#0284c7';
+
     // Folder rectangle
     folderGroups
       .append('rect')
@@ -151,7 +166,7 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('height', (d) => Math.max(0, d.y1 - d.y0))
       .attr('rx', (d) => d.depth === 0 ? 0 : 6)
       .attr('fill', (d) => this.getFolderColor(d.depth))
-      .attr('stroke', (d) => d.depth === 0 ? 'none' : 'rgba(148, 163, 184, 0.15)')
+      .attr('stroke', (d) => d.depth === 0 ? 'none' : folderStroke)
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
@@ -196,7 +211,7 @@ export class TreemapViewComponent implements AfterViewInit {
       })
       .attr('font-size', '10px')
       .attr('font-weight', '700')
-      .attr('fill', 'rgba(148, 163, 184, 0.9)')
+      .attr('fill', folderLabelFill)
       .attr('letter-spacing', '0.02em')
       .style('pointer-events', 'none');
 
@@ -228,20 +243,20 @@ export class TreemapViewComponent implements AfterViewInit {
       .attr('rx', 4)
       .attr('fill', (d) => this.getNodeColor(d.data.extension))
       .attr('opacity', 0.85)
-      .attr('stroke', '#0f172a')
+      .attr('stroke', fileStroke)
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .on('mouseover', (event, d) => {
         this.hoveredNode.set(d as any);
         this.updateTooltipPosition(event, container);
-        d3.select(event.currentTarget as SVGElement).attr('opacity', 1).attr('stroke', '#38bdf8').attr('stroke-width', 1.5);
+        d3.select(event.currentTarget as SVGElement).attr('opacity', 1).attr('stroke', fileHoverStroke).attr('stroke-width', 1.5);
       })
       .on('mousemove', (event) => {
         this.updateTooltipPosition(event, container);
       })
       .on('mouseleave', (event) => {
         this.hoveredNode.set(null);
-        d3.select(event.currentTarget as SVGElement).attr('opacity', 0.85).attr('stroke', '#0f172a').attr('stroke-width', 1);
+        d3.select(event.currentTarget as SVGElement).attr('opacity', 0.85).attr('stroke', fileStroke).attr('stroke-width', 1);
       })
       .on('click', (event, d) => {
         event.stopPropagation();
@@ -316,7 +331,8 @@ export class TreemapViewComponent implements AfterViewInit {
 
   /** Get folder background color by depth */
   private getFolderColor(depth: number): string {
-    return this.folderColors[Math.min(depth, this.folderColors.length - 1)];
+    const colors = this.store.isDarkMode() ? this.darkFolderColors : this.lightFolderColors;
+    return colors[Math.min(depth, colors.length - 1)];
   }
 
   private getNodeColor(ext: string): string {

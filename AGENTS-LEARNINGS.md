@@ -18,6 +18,9 @@ Review of past execution bottlenecks highlights key operational failure modes to
 4. **PowerShell vs CMD Command Execution Drift**:
    - Invoking global binaries like `npm` or `npx` directly in PowerShell shell environment can trigger `PSSecurityException` due to `npm.ps1` execution policies.
    - Calling `npx graphify update .` may fail binary resolution on Windows where `graphify update .` is globally installed.
+5. **Web Worker postMessage in JSDOM / Test Environments**:
+   - Calling `postMessage` directly in code imported by Vitest/JSDOM can fail with `TypeError: 'postMessage' requires 2 arguments: 'message' and 'targetOrigin'` because JSDOM defines `window.postMessage`.
+   - Always guard worker global messaging with environment checks (`typeof window === 'undefined'`) or allow callback injection (`onProgress`).
 
 ---
 
@@ -31,3 +34,5 @@ Review of past execution bottlenecks highlights key operational failure modes to
 - **Anchor Self-Improvement to Build Verification**: Treat self-improvement as a mandatory sub-step of build verification, not a separate phase. Immediately after the build succeeds and graphify syncs, execute the reflection loop *before* composing the user-facing summary. Mental model: "Build passed → reflect → then report."
 - **CSS Flex Height Chain**: When debugging flex containers that don't fill available space, check the entire ancestor chain for: (a) `min-h-screen` vs `h-screen` on the root, (b) missing `min-h-0` on flex items, and (c) missing `overflow-hidden` on flex containers. All three must be correct at every level.
 - **Interface Extension Checklist**: When adding required fields to a TypeScript interface, immediately search for all construction sites (`grep` for the interface name and for `patterns.push` / object literals) and verify each one provides the new field. Also check test fixtures.
+- **Loop Progress Dispatch with Item Filtering**: When reporting incremental progress over filtered entries in a loop, avoid early `continue` that skips the end-of-loop progress check. Ensure progress callbacks are invoked even when the current entry is skipped.
+- **Web Worker Isomorphic Testability**: Design Web Worker functions as pure or parameter-driven async routines that accept optional progress callbacks so they can be tested directly in headless unit test runners without requiring mock Worker threads.
