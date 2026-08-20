@@ -178,7 +178,7 @@ export function estimateComplexityFromText(content: string): number {
   if (!content || content.trim().length === 0) return 1;
 
   let branches = 0;
-  const branchRegex = /\b(if|else|switch|case|for|while|catch)\b|&&|\|\||\?\?|\?/g;
+  const branchRegex = /\b(if|else|case|for|while|catch)\b|&&|\|\||\?\?|\?/g;
   const matches = content.match(branchRegex);
   if (matches) {
     branches = matches.length;
