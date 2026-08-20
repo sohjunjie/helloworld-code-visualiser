@@ -207,4 +207,43 @@ describe('VisualizerStoreService & ExportDemoService', () => {
     expect(createElementSpy).toHaveBeenCalledWith('a');
     expect(globalThis.URL.createObjectURL).toHaveBeenCalled();
   });
+
+  it('should manage graphAbstractionMode, drill-down paths and breadcrumbs', () => {
+    expect(store.graphAbstractionMode()).toBe('file');
+    expect(store.graphDrillDownPath()).toBeNull();
+    expect(store.drillDownBreadcrumbs()).toEqual([{ label: 'Root', path: null }]);
+
+    store.setGraphAbstractionMode('directory');
+    expect(store.graphAbstractionMode()).toBe('directory');
+
+    store.drillDown('src/components/login');
+    expect(store.graphDrillDownPath()).toBe('src/components/login');
+    expect(store.graphAbstractionMode()).toBe('directory');
+    expect(store.drillDownBreadcrumbs()).toEqual([
+      { label: 'Root', path: null },
+      { label: 'src', path: 'src' },
+      { label: 'components', path: 'src/components' },
+      { label: 'login', path: 'src/components/login' },
+    ]);
+
+    // Drill up one level to 'src/components'
+    store.drillUp();
+    expect(store.graphDrillDownPath()).toBe('src/components');
+
+    // Drill up again to 'src'
+    store.drillUp();
+    expect(store.graphDrillDownPath()).toBe('src');
+
+    // Drill up again to Root (null)
+    store.drillUp();
+    expect(store.graphDrillDownPath()).toBeNull();
+
+    // Direct jump via drillTo
+    store.drillTo('src/services');
+    expect(store.graphDrillDownPath()).toBe('src/services');
+
+    store.resetDrillDown();
+    expect(store.graphDrillDownPath()).toBeNull();
+  });
 });
+

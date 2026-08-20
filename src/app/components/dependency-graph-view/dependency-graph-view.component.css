@@ -33,8 +33,98 @@
   gap: 0.625rem;
 }
 
+/* Mode Switcher */
+.graph-view__mode-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(226, 232, 240, 0.8);
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+}
+
+:host-context(.dark) .graph-view__mode-group {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: #1e293b;
+}
+
+.graph-view__mode-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  color: #475569;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+:host-context(.dark) .graph-view__mode-btn { color: #94a3b8; }
+.graph-view__mode-btn:hover { color: #0f172a; background-color: rgba(203, 213, 225, 0.6); }
+:host-context(.dark) .graph-view__mode-btn:hover { color: #e2e8f0; background-color: rgba(30, 41, 59, 0.6); }
+.graph-view__mode-btn:active { transform: scale(0.95); }
+
+.graph-view__mode-btn--active {
+  color: #0369a1;
+  font-weight: 600;
+  background-color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+:host-context(.dark) .graph-view__mode-btn--active {
+  color: #7dd3fc;
+  background-color: rgba(14, 165, 233, 0.2);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+/* Breadcrumbs Navigation Bar */
+.graph-view__breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  background-color: rgba(240, 249, 255, 0.6);
+  border: 1px solid #bae6fd;
+  border-radius: 0.75rem;
+}
+
+:host-context(.dark) .graph-view__breadcrumbs {
+  background-color: rgba(8, 47, 73, 0.25);
+  border-color: rgba(12, 74, 110, 0.6);
+}
+
+.graph-view__breadcrumb-btn {
+  font-weight: 500;
+  color: #0369a1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.375rem;
+}
+
+:host-context(.dark) .graph-view__breadcrumb-btn {
+  color: #7dd3fc;
+}
+
+.graph-view__breadcrumb-btn--current {
+  padding: 0.125rem 0.25rem;
+}
+
+.graph-view__breadcrumb-separator {
+  font-size: 0.75rem;
+  user-select: none;
+}
+
 /* Search & Select Inputs */
 .graph-view__search-wrapper { position: relative; }
+
 
 .graph-view__input {
   width: 12rem;

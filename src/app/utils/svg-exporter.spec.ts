@@ -108,4 +108,69 @@ describe('svg-exporter (TDD - Public Seam Verification)', () => {
     expect(svg).toContain('<svg xmlns="http://www.w3.org/2000/svg"');
     expect(svg).toContain('</svg>');
   });
+
+  it('should render weighted edges with stroke width and label text, and dashed external boundary edges', () => {
+    const mockCy = {
+      elements: () => ({
+        boundingBox: () => ({ x1: 0, y1: 0, x2: 200, y2: 100, w: 200, h: 100 }),
+      }),
+      nodes: () => [
+        {
+          id: () => 'src/components',
+          position: () => ({ x: 50, y: 50 }),
+          data: (key?: string) => {
+            const data: Record<string, any> = {
+              id: 'src/components',
+              label: 'components',
+              type: 'directory',
+              fileCount: 4,
+            };
+            return key ? data[key] : data;
+          },
+          hasClass: (_cls: string) => false,
+        },
+        {
+          id: () => 'src/services',
+          position: () => ({ x: 150, y: 50 }),
+          data: (key?: string) => {
+            const data: Record<string, any> = {
+              id: 'src/services',
+              label: 'services',
+              type: 'directory',
+              fileCount: 3,
+            };
+            return key ? data[key] : data;
+          },
+          hasClass: (_cls: string) => false,
+        },
+      ],
+      edges: () => [
+        {
+          id: () => 'edge-weighted',
+          source: () => ({ id: () => 'src/components', position: () => ({ x: 50, y: 50 }) }),
+          target: () => ({ id: () => 'src/services', position: () => ({ x: 150, y: 50 }) }),
+          data: (key?: string) => {
+            const data: Record<string, any> = {
+              id: 'edge-weighted',
+              source: 'src/components',
+              target: 'src/services',
+              weight: 5,
+              label: '5 imports',
+              isExternal: true,
+            };
+            return key ? data[key] : data;
+          },
+          hasClass: (_cls: string) => false,
+        },
+      ],
+    } as any;
+
+    const svg = exportCytoscapeToSvg(mockCy, mockTheme);
+
+    expect(svg).toContain('stroke-dasharray="');
+    expect(svg).toContain('5 imports');
+    expect(svg).toContain('components');
+    expect(svg).toContain('services');
+  });
 });
+

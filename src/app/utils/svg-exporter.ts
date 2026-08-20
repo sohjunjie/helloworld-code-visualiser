@@ -85,9 +85,17 @@ export function exportCytoscapeToSvg(
 
     const isDimmed = edge.hasClass('dimmed');
     const isFocusedEdge = edge.hasClass('focused-edge');
-    const opacity = isDimmed ? 0.06 : isFocusedEdge ? 1.0 : 0.7;
+    const opacity = isDimmed ? 0.06 : isFocusedEdge ? 1.0 : 0.75;
     const strokeColor = isFocusedEdge ? themeConfig.focusedEdgeColor : themeConfig.edgeLineColor;
-    const strokeWidth = isFocusedEdge ? 2.5 : 1.5;
+    const weight = edge.data('weight') || 1;
+    const isExternal = edge.data('isExternal') === true;
+    const edgeLabel = edge.data('label') || '';
+
+    const strokeWidth = isFocusedEdge
+      ? 2.5
+      : weight > 1
+        ? Math.min(6, 1.5 + Math.log2(weight + 1) * 1.2)
+        : 1.5;
     const markerId = isFocusedEdge ? 'arrow-focused' : 'arrow';
     const sourceNode = edge.source();
     const targetNode = edge.target();
@@ -128,9 +136,23 @@ export function exportCytoscapeToSvg(
         endY = targetPos.y - uy * tgtOffset;
       }
 
+      const dashAttr = isExternal ? ' stroke-dasharray="5 3"' : '';
       svgParts.push(
-        `    <path d="M ${startX.toFixed(1)} ${startY.toFixed(1)} L ${endX.toFixed(1)} ${endY.toFixed(1)}" stroke="${strokeColor}" stroke-width="${strokeWidth}" stroke-opacity="${opacity}" marker-end="url(#${markerId})" />`
+        `    <path d="M ${startX.toFixed(1)} ${startY.toFixed(1)} L ${endX.toFixed(1)} ${endY.toFixed(1)}" stroke="${strokeColor}" stroke-width="${strokeWidth.toFixed(1)}" stroke-opacity="${opacity}"${dashAttr} marker-end="url(#${markerId})" />`
       );
+
+      // Render edge label badge when weight or custom label is present
+      if (edgeLabel && dist > 40) {
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+        const labelText = escapeXml(edgeLabel);
+        const badgeWidth = Math.max(labelText.length * 6 + 10, 20);
+        const badgeHeight = 16;
+        svgParts.push(`    <g class="edge-label" opacity="${opacity}">`);
+        svgParts.push(`      <rect x="${(midX - badgeWidth / 2).toFixed(1)}" y="${(midY - badgeHeight / 2).toFixed(1)}" width="${badgeWidth}" height="${badgeHeight}" rx="4" fill="${bg}" stroke="${strokeColor}" stroke-width="1" />`);
+        svgParts.push(`      <text x="${midX.toFixed(1)}" y="${midY.toFixed(1)}" font-family="ui-sans-serif, system-ui, sans-serif" font-size="9px" font-weight="600" fill="${themeConfig.nodeLabelColor}" text-anchor="middle" dominant-baseline="central">${labelText}</text>`);
+        svgParts.push('    </g>');
+      }
     }
   }
   svgParts.push('  </g>');
@@ -145,17 +167,19 @@ export function exportCytoscapeToSvg(
     const isFocused = node.hasClass('focused');
     const isFocusedNeighbor = node.hasClass('focused-neighbor');
     const isCycle = node.data('isCycle');
+    const isExternalBoundary = node.data('isExternalBoundary');
+    const isDirectory = node.data('type') === 'directory';
     const customColor = node.data('color');
     const customBorder = node.data('borderColor');
     const customTextColor = node.data('textColor');
     const pos = node.position();
     const label = node.data('label') || node.id();
 
-    const nodeWidth = (typeof node.width === 'function' ? node.width() : 0) || Math.max(label.length * 7.5 + 24, 60);
+    const nodeWidth = (typeof node.width === 'function' ? node.width() : 0) || Math.max(label.length * 7.5 + 28, 64);
     const nodeHeight = (typeof node.height === 'function' ? node.height() : 0) || (isFocused ? 36 : 32);
     const nodeX = pos.x - nodeWidth / 2;
     const nodeY = pos.y - nodeHeight / 2;
-    const rx = 8;
+    const rx = isDirectory ? 6 : 8;
 
     const nodeBg = isCycle
       ? themeConfig.cycleNodeBg
@@ -182,13 +206,14 @@ export function exportCytoscapeToSvg(
           : (customTextColor || themeConfig.nodeLabelColor);
 
     const borderWidth = isFocused ? 2.5 : isCycle ? 2.5 : isFocusedNeighbor ? 2 : 1.5;
-    const opacity = isDimmed ? 0.12 : 1.0;
+    const opacity = isDimmed ? 0.12 : isExternalBoundary ? 0.85 : 1.0;
+    const dashAttr = isExternalBoundary ? ' stroke-dasharray="4 2"' : '';
 
     svgParts.push(
       `    <g class="node" opacity="${opacity}">`
     );
     svgParts.push(
-      `      <rect x="${nodeX.toFixed(1)}" y="${nodeY.toFixed(1)}" width="${nodeWidth.toFixed(1)}" height="${nodeHeight.toFixed(1)}" rx="${rx}" fill="${nodeBg}" stroke="${nodeBorder}" stroke-width="${borderWidth}" />`
+      `      <rect x="${nodeX.toFixed(1)}" y="${nodeY.toFixed(1)}" width="${nodeWidth.toFixed(1)}" height="${nodeHeight.toFixed(1)}" rx="${rx}" fill="${nodeBg}" stroke="${nodeBorder}" stroke-width="${borderWidth}"${dashAttr} />`
     );
     svgParts.push(
       `      <text x="${pos.x.toFixed(1)}" y="${pos.y.toFixed(1)}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5px" font-weight="600" fill="${textColor}" text-anchor="middle" dominant-baseline="central">${escapeXml(label)}</text>`
@@ -196,6 +221,7 @@ export function exportCytoscapeToSvg(
     svgParts.push('    </g>');
   }
   svgParts.push('  </g>');
+
 
   svgParts.push('</svg>');
   return svgParts.join('\n');

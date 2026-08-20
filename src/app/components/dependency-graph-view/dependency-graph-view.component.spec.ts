@@ -162,7 +162,6 @@ describe('DependencyGraphViewComponent (TDD - Public Seam Verification)', () => 
 
     (component as any).cyInstance = mockCy;
 
-    // Filter by extension 'ts'
     store.setGraphExtensionFilter('ts');
     component.applyGraphFilters();
 
@@ -171,4 +170,28 @@ describe('DependencyGraphViewComponent (TDD - Public Seam Verification)', () => 
     expect(mockNode2.addClass).toHaveBeenCalledWith('filtered-out');
     expect(mockEdge.addClass).toHaveBeenCalledWith('filtered-out');
   });
+
+  it('should handle abstraction mode changes and drill down navigation', () => {
+    const setModeSpy = vi.spyOn(store, 'setGraphAbstractionMode');
+    const drillDownSpy = vi.spyOn(store, 'drillDown');
+    const drillUpSpy = vi.spyOn(store, 'drillUp');
+    const drillToSpy = vi.spyOn(store, 'drillTo');
+    const resetDrillSpy = vi.spyOn(store, 'resetDrillDown');
+
+    component.setAbstractionMode('directory');
+    expect(setModeSpy).toHaveBeenCalledWith('directory');
+
+    component.onDrillDown('src/app/components');
+    expect(drillDownSpy).toHaveBeenCalledWith('src/app/components');
+
+    component.onDrillUp();
+    expect(drillUpSpy).toHaveBeenCalled();
+
+    component.onDrillTo('src/app');
+    expect(drillToSpy).toHaveBeenCalledWith('src/app');
+
+    component.onResetDrillDown();
+    expect(resetDrillSpy).toHaveBeenCalled();
+  });
 });
+

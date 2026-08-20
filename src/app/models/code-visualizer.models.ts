@@ -122,3 +122,37 @@ export interface DemoProject {
   filename: string;
   fileCount: number;
 }
+
+export interface BreadcrumbItem {
+  label: string;
+  path: string | null;
+}
+
+export interface AggregatedGraphNode {
+  id: string;
+  name: string;
+  path: string;
+  type: 'directory' | 'file';
+  fileCount: number;
+  size: number;
+  extension: string;
+  isExternalBoundary?: boolean;
+  isCycle?: boolean;
+  childrenCount?: number;
+}
+
+export interface AggregatedGraphEdge {
+  id: string;
+  source: string;
+  target: string;
+  weight: number;
+  label?: string;
+  isExternal?: boolean;
+}
+
+export interface AggregatedGraphResult {
+  nodes: AggregatedGraphNode[];
+  edges: AggregatedGraphEdge[];
+  currentPath: string | null;
+}
+

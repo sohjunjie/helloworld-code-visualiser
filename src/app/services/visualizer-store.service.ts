@@ -1,6 +1,14 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { AnalysisResult, CodeFileNode, UploadProgress, DemoProject, SoftwarePatternInfo } from '../models/code-visualizer.models';
+import {
+  AnalysisResult,
+  CodeFileNode,
+  UploadProgress,
+  DemoProject,
+  SoftwarePatternInfo,
+  BreadcrumbItem,
+} from '../models/code-visualizer.models';
 import { ThemeService } from './theme.service';
+import { getBreadcrumbsForPath } from '../utils/graph-aggregator';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +26,15 @@ export class VisualizerStoreService {
   readonly graphDirectoryFilter = signal<string>('all');
   readonly graphExtensionFilter = signal<string>('all');
   readonly neighborhoodFocusNodeId = signal<string | null>(null);
+  readonly graphAbstractionMode = signal<'file' | 'directory'>('file');
+  readonly graphDrillDownPath = signal<string | null>(null);
   readonly isDarkMode: ThemeService['isDarkMode'];
   readonly selectedPattern = signal<SoftwarePatternInfo | null>(null);
+
+  readonly drillDownBreadcrumbs = computed<BreadcrumbItem[]>(() => {
+    return getBreadcrumbsForPath(this.graphDrillDownPath());
+  });
+
 
   readonly availableDirectories = computed<string[]>(() => {
     const result = this.analysisResult();
@@ -199,6 +214,44 @@ export class VisualizerStoreService {
     this.neighborhoodFocusNodeId.set(nodeId);
   }
 
+  setGraphAbstractionMode(mode: 'file' | 'directory') {
+    this.graphAbstractionMode.set(mode);
+  }
+
+  setGraphDrillDownPath(path: string | null) {
+    this.graphDrillDownPath.set(path);
+    if (path) {
+      this.graphAbstractionMode.set('directory');
+    }
+  }
+
+  drillDown(dirPath: string) {
+    this.graphDrillDownPath.set(dirPath);
+    this.graphAbstractionMode.set('directory');
+  }
+
+  drillUp() {
+    const current = this.graphDrillDownPath();
+    if (!current) return;
+    const parts = current.split('/');
+    if (parts.length <= 1) {
+      this.graphDrillDownPath.set(null);
+    } else {
+      this.graphDrillDownPath.set(parts.slice(0, parts.length - 1).join('/'));
+    }
+  }
+
+  drillTo(path: string | null) {
+    this.graphDrillDownPath.set(path);
+    if (path) {
+      this.graphAbstractionMode.set('directory');
+    }
+  }
+
+  resetDrillDown() {
+    this.graphDrillDownPath.set(null);
+  }
+
   clearGraphFilters() {
     this.searchQuery.set('');
     this.graphDirectoryFilter.set('all');
@@ -224,5 +277,8 @@ export class VisualizerStoreService {
     this.selectedPattern.set(null);
     this.progressStatus.set(null);
     this.clearGraphFilters();
+    this.resetDrillDown();
+    this.graphAbstractionMode.set('file');
   }
 }
+

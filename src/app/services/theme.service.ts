@@ -161,6 +161,36 @@ export class ThemeService {
   }
 
   /**
+   * Returns paired background, border, and text colors for directory graph nodes.
+   */
+  getDirectoryNodeColorConfig(isCycle = false, isExternal = false): NodeColorConfig {
+    const isDark = this.isDarkMode();
+    if (isCycle) {
+      return {
+        bg: isDark ? 'rgba(244, 63, 94, 0.22)' : '#fff1f2',
+        border: isDark ? '#f43f5e' : '#e11d48',
+        text: isDark ? '#ffe4e6' : '#9f1239',
+        accent: isDark ? '#f43f5e' : '#e11d48',
+      };
+    }
+    if (isExternal) {
+      return {
+        bg: isDark ? 'rgba(100, 116, 139, 0.15)' : '#f8fafc',
+        border: isDark ? '#64748b' : '#94a3b8',
+        text: isDark ? '#cbd5e1' : '#475569',
+        accent: isDark ? '#64748b' : '#94a3b8',
+      };
+    }
+    return {
+      bg: isDark ? 'rgba(59, 130, 246, 0.18)' : '#eff6ff',
+      border: isDark ? '#60a5fa' : '#2563eb',
+      text: isDark ? '#eff6ff' : '#1e40af',
+      accent: isDark ? '#3b82f6' : '#2563eb',
+    };
+  }
+
+
+  /**
    * Returns paired background, border, and text colors for graph nodes based on file extension and cycle state.
    */
   getNodeColorConfig(extension?: string, isCycle = false): NodeColorConfig {
