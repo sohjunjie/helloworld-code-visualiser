@@ -9,6 +9,7 @@ This document records agent self-reflections, post-mortem root causes from past 
 - **Empirical State Verification**: Never assume file writes or delegated actions succeeded based on textual tool feedback alone. Always inspect the filesystem (`list_dir`, `view_file`) to verify physical file existence, paths, and contents.
 - **Direct Execution Over Over-Indirection**: Avoid complex multi-agent orchestration for small, deterministic, bounded tasks where direct in-process file edits are faster, safer, and less error-prone.
 - **Windows CLI Execution & Quoting**: On Windows host environments, wrap build/tool commands in `cmd /c "<command>"` to avoid PowerShell script execution policy restrictions (`PSSecurityException`). Avoid nested double quotes or unsupported `&&` operators in chained commands.
+- **Autonomous Execution & Direct Progression**: Execute routine, reversible file operations, test suite runs, and builds directly without interrupting the workflow for confirmation. Only pause or request user input if encountering irrecoverable blockers or destructive system-level actions.
 
 ---
 
