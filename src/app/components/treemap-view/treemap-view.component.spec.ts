@@ -38,6 +38,22 @@ describe('TreemapViewComponent (TDD - Public Seam Verification)', () => {
     expect(component.tooltipX()).toBe(0);
     expect(component.tooltipY()).toBe(0);
     expect(component.breadcrumbs()).toEqual([]);
+    expect(component.sizeMetric()).toBe('bytes');
+    expect(component.colorMode()).toBe('extension');
+  });
+
+  it('should toggle size metric and color mode signals', () => {
+    component.setSizeMetric('loc');
+    expect(component.sizeMetric()).toBe('loc');
+
+    component.setColorMode('complexity');
+    expect(component.colorMode()).toBe('complexity');
+
+    component.setSizeMetric('bytes');
+    expect(component.sizeMetric()).toBe('bytes');
+
+    component.setColorMode('extension');
+    expect(component.colorMode()).toBe('extension');
   });
 
   it('should update zoom state when zoomTo is invoked', () => {

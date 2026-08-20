@@ -24,6 +24,11 @@ export class TreemapViewComponent implements AfterViewInit, OnDestroy {
   tooltipX = signal<number>(0);
   tooltipY = signal<number>(0);
 
+  /** Active sizing metric: bytes vs lines of code (LOC) */
+  sizeMetric = signal<'bytes' | 'loc'>('bytes');
+  /** Active coloring mode: file extension vs cyclomatic complexity gradient */
+  colorMode = signal<'extension' | 'complexity'>('extension');
+
   /** The node currently zoomed into (null = root) */
   private zoomRoot: d3.HierarchyRectangularNode<CodeFileNode> | null = null;
   /** Full hierarchy root, cached for zoom navigation */
@@ -38,6 +43,8 @@ export class TreemapViewComponent implements AfterViewInit, OnDestroy {
       effect(() => {
         const res = this.store.analysisResult();
         const isDark = this.themeService.isDarkMode();
+        const metric = this.sizeMetric();
+        const mode = this.colorMode();
         if (res) {
           this.renderTreemap();
         }
@@ -68,21 +75,41 @@ export class TreemapViewComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  setSizeMetric(metric: 'bytes' | 'loc') {
+    this.sizeMetric.set(metric);
+    this.renderTreemap();
+  }
+
+  setColorMode(mode: 'extension' | 'complexity') {
+    this.colorMode.set(mode);
+    this.renderTreemap();
+  }
+
   /** Navigate to a specific node in the breadcrumb */
   zoomTo(node: d3.HierarchyRectangularNode<CodeFileNode>) {
     this.zoomRoot = node === this.fullRoot ? null : node;
     this.renderTreemap();
   }
 
+  private getNodeValue(d: CodeFileNode): number {
+    if (d.type !== 'file') return 0;
+    if (this.sizeMetric() === 'loc') {
+      const loc = d.astSummary?.codeLines || d.astSummary?.totalLines || 1;
+      return Math.log2(Math.max(loc, 2) + 1) * 350;
+    }
+    return Math.log2(Math.max(d.size, 10) + 1) * 300;
+  }
+
   private renderTreemap() {
     const result = this.store.analysisResult();
     if (!result) return;
 
-    // Always compute full root hierarchy and breadcrumbs using logarithmic scale for file size distribution
-    // This prevents large files (e.g. 50KB) from squishing small utility/class files (e.g. 200B) into unreadable micro-rectangles.
+    const isComplexity = this.colorMode() === 'complexity';
+
+    // Always compute full root hierarchy and breadcrumbs using logarithmic scale for file size/loc distribution
     const root = d3
       .hierarchy(result.rootNode)
-      .sum((d) => (d.type === 'file' ? Math.log2(Math.max(d.size, 10) + 1) * 300 : 0))
+      .sum((d) => this.getNodeValue(d))
       .sort((a, b) => (b.value || 0) - (a.value || 0));
 
     this.fullRoot = root as d3.HierarchyRectangularNode<CodeFileNode>;
@@ -128,7 +155,7 @@ export class TreemapViewComponent implements AfterViewInit, OnDestroy {
       // Re-create a hierarchy from the zoomed node's data
       const subRoot = d3
         .hierarchy(this.zoomRoot.data)
-        .sum((d) => (d.type === 'file' ? Math.log2(Math.max(d.size, 10) + 1) * 300 : 0))
+        .sum((d) => this.getNodeValue(d))
         .sort((a, b) => (b.value || 0) - (a.value || 0));
 
       const subLayout = d3
@@ -248,7 +275,12 @@ export class TreemapViewComponent implements AfterViewInit, OnDestroy {
       .attr('width', (d) => Math.max(0, d.x1 - d.x0))
       .attr('height', (d) => Math.max(0, d.y1 - d.y0))
       .attr('rx', 4)
-      .attr('fill', (d) => this.themeService.getFileExtensionColor(d.data.extension))
+      .attr('fill', (d) => {
+        if (isComplexity) {
+          return this.themeService.getComplexityColor(d.data.astSummary?.cyclomaticComplexity ?? 1);
+        }
+        return this.themeService.getFileExtensionColor(d.data.extension);
+      })
       .attr('opacity', 0.85)
       .attr('stroke', fileStroke)
       .attr('stroke-width', 1)

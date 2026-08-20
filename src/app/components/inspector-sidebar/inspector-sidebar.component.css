@@ -116,6 +116,21 @@
 .inspector__stat-value--amber { color: #d97706; }
 :host-context(.dark) .inspector__stat-value--amber { color: #fbbf24; }
 
+.inspector__breakdown-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.625rem 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+}
+
+:host-context(.dark) .inspector__breakdown-card {
+  background-color: rgba(15, 23, 42, 0.6);
+  border-color: rgba(51, 65, 85, 0.6);
+}
+
 /* Body Grid */
 .inspector__body-grid {
   display: grid;

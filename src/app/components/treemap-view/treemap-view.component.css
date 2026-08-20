@@ -146,6 +146,66 @@
   border-color: rgba(56, 189, 248, 0.3);
 }
 
+.treemap-view__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.treemap-view__toggle-group {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(226, 232, 240, 0.8);
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 2px;
+  gap: 2px;
+}
+
+:host-context(.dark) .treemap-view__toggle-group {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.6);
+}
+
+.treemap-view__toggle-btn {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.treemap-view__toggle-btn:hover {
+  color: #0f172a;
+}
+
+:host-context(.dark) .treemap-view__toggle-btn {
+  color: #94a3b8;
+}
+
+:host-context(.dark) .treemap-view__toggle-btn:hover {
+  color: #f8fafc;
+}
+
+.treemap-view__toggle-btn--active {
+  color: #0284c7;
+  background-color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+:host-context(.dark) .treemap-view__toggle-btn--active {
+  color: #38bdf8;
+  background-color: #0f172a;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
 .treemap-view__legend {
   display: flex;
   align-items: center;

@@ -27,6 +27,133 @@
       </div>
     </div>
 
+    <!-- Code Health & Maintainability Dashboard -->
+    @if (result.stats.codeHealth; as health) {
+      <div class="arch-view__card glass-card" role="region" aria-label="Codebase health and maintainability metrics">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span class="text-base font-extrabold text-slate-900 dark:text-slate-100">Code Health & Maintainability Dashboard</span>
+          </div>
+
+          <span class="px-3 py-1 rounded-full text-xs font-bold border {{ health.overallHealthScore >= 80 ? 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30' : health.overallHealthScore >= 60 ? 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30' : 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/30' }}">
+            Health Score: {{ health.overallHealthScore }}/100
+          </span>
+        </div>
+
+        <!-- Health Metric Sub-Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+          <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800/80">
+            <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Avg Maintainability</div>
+            <div class="text-lg font-extrabold mt-0.5 {{ health.averageMaintainabilityIndex >= 80 ? 'text-emerald-600 dark:text-emerald-400' : health.averageMaintainabilityIndex >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-rose-600 dark:text-rose-400' }}">
+              {{ health.averageMaintainabilityIndex }}/100
+            </div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-500 mt-0.5">Coleman-Oman MI standard</div>
+          </div>
+
+          <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800/80">
+            <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Avg Complexity</div>
+            <div class="text-lg font-extrabold mt-0.5 {{ health.averageCyclomaticComplexity > 15 ? 'text-rose-600 dark:text-rose-400' : health.averageCyclomaticComplexity > 6 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400' }}">
+              {{ health.averageCyclomaticComplexity }}
+            </div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-500 mt-0.5">Decision branches/file</div>
+          </div>
+
+          <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800/80">
+            <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Total Code (LOC)</div>
+            <div class="text-lg font-extrabold text-sky-600 dark:text-sky-400 mt-0.5">
+              {{ health.totalCodeLines }}
+            </div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-500 mt-0.5">{{ health.totalCommentLines }} comments ({{ health.totalCodeLines > 0 ? Math.round((health.totalCommentLines / (health.totalCodeLines + health.totalCommentLines)) * 100) : 0 }}%)</div>
+          </div>
+
+          <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800/80">
+            <div class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Duplicate Code</div>
+            <div class="text-lg font-extrabold mt-0.5 {{ health.duplicateRatio > 10 ? 'text-rose-600 dark:text-rose-400' : health.duplicateRatio > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400' }}">
+              {{ health.duplicateRatio }}%
+            </div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-500 mt-0.5">{{ health.duplicateBlocksCount }} duplicated blocks</div>
+          </div>
+        </div>
+
+        <!-- 2-Column Health Breakdown: Highest Complexity & Structural Hotspots -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+          <!-- Highest Complexity Files -->
+          <div class="space-y-2">
+            <div class="flex items-center space-x-1.5 text-xs font-bold text-slate-800 dark:text-slate-200">
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Highest Complexity Files</span>
+            </div>
+
+            <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+              @for (file of health.highestComplexityFiles; track file.path) {
+                <button
+                  type="button"
+                  (click)="openFile(file.path)"
+                  [attr.aria-label]="'Inspect high complexity file ' + file.path + ', complexity ' + file.complexity"
+                  class="arch-view__hub-btn focus-visible:ring-2 focus-visible:ring-sky-500"
+                >
+                  <div class="truncate max-w-[200px] sm:max-w-xs font-mono text-slate-800 dark:text-slate-200 text-xs">
+                    {{ file.path }}
+                  </div>
+                  <div class="flex items-center space-x-2 shrink-0">
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono">{{ file.loc }} LOC</span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border {{ themeService.getComplexityBadgeClass(file.complexity) }}">
+                      CC: {{ file.complexity }}
+                    </span>
+                  </div>
+                </button>
+              }
+              @if (health.highestComplexityFiles.length === 0) {
+                <div class="text-xs text-slate-500 dark:text-slate-500 italic p-2">No files analyzed.</div>
+              }
+            </div>
+          </div>
+
+          <!-- Structural Hotspots -->
+          <div class="space-y-2">
+            <div class="flex items-center space-x-1.5 text-xs font-bold text-slate-800 dark:text-slate-200">
+              <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Structural Hotspots & Architectural Risks ({{ health.structuralHotspots.length }})</span>
+            </div>
+
+            <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+              @for (spot of health.structuralHotspots; track spot.path) {
+                <button
+                  type="button"
+                  (click)="openFile(spot.path)"
+                  [attr.aria-label]="'Inspect structural hotspot file ' + spot.path"
+                  class="w-full text-left p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 transition cursor-pointer focus-visible:ring-2 focus-visible:ring-rose-500"
+                >
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-mono text-xs font-bold text-slate-900 dark:text-slate-100 truncate">{{ spot.path }}</span>
+                    <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider shrink-0 {{ spot.severity === 'High' ? 'bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/30' : spot.severity === 'Medium' ? 'bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30' : 'bg-sky-100 text-sky-800 border border-sky-300 dark:bg-sky-500/20 dark:text-sky-300 dark:border-sky-500/30' }}">
+                      {{ spot.severity }} Risk
+                    </span>
+                  </div>
+                  <div class="text-[11px] text-slate-600 dark:text-slate-400 mt-1 leading-snug">
+                    {{ spot.reason }}
+                  </div>
+                </button>
+              }
+              @if (health.structuralHotspots.length === 0) {
+                <div class="p-3 bg-emerald-50 dark:bg-slate-900/50 rounded-xl text-xs text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>No severe structural risk hotspots identified in this project!</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
     <div class="arch-view__section-grid">
       <!-- Circular Dependency Cycles Section -->
       <div class="arch-view__card glass-card" role="region" aria-label="Circular import cycle analysis">

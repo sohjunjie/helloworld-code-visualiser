@@ -11,24 +11,42 @@
 
       <h3 class="inspector__filepath">{{ node.path }}</h3>
 
-      <!-- AST Metrics Summary -->
+      <!-- AST & Complexity Metrics Summary -->
       @if (node.astSummary; as ast) {
-        <div class="inspector__stat-grid" role="region" aria-label="File AST metrics">
+        <div class="inspector__stat-grid" role="region" aria-label="File AST and complexity metrics">
           <div class="inspector__stat-box">
-            <div class="inspector__stat-label">Lines</div>
-            <div class="inspector__stat-value inspector__stat-value--sky">{{ ast.totalLines }}</div>
+            <div class="inspector__stat-label">Lines (LOC)</div>
+            <div class="inspector__stat-value inspector__stat-value--sky">{{ ast.codeLines || ast.totalLines }}</div>
           </div>
           <div class="inspector__stat-box">
-            <div class="inspector__stat-label">Imports</div>
-            <div class="inspector__stat-value inspector__stat-value--indigo">{{ ast.importCount }}</div>
+            <div class="inspector__stat-label">Complexity</div>
+            <div class="inspector__stat-value {{ ast.cyclomaticComplexity > 15 ? 'text-rose-600 dark:text-rose-400' : ast.cyclomaticComplexity > 5 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400' }}">
+              {{ ast.cyclomaticComplexity }}
+            </div>
           </div>
           <div class="inspector__stat-box">
-            <div class="inspector__stat-label">Exports</div>
-            <div class="inspector__stat-value inspector__stat-value--emerald">{{ ast.exportCount }}</div>
+            <div class="inspector__stat-label">Health MI</div>
+            <div class="inspector__stat-value {{ ast.maintainabilityIndex >= 80 ? 'text-emerald-600 dark:text-emerald-400' : ast.maintainabilityIndex >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-rose-600 dark:text-rose-400' }}">
+              {{ ast.maintainabilityIndex }}
+            </div>
           </div>
           <div class="inspector__stat-box">
             <div class="inspector__stat-label">Functions</div>
             <div class="inspector__stat-value inspector__stat-value--amber">{{ ast.functionCount || 0 }}</div>
+          </div>
+        </div>
+
+        <!-- Detailed Code & Comments Ratio Breakdown -->
+        <div class="inspector__breakdown-card" role="region" aria-label="Line breakdown metrics">
+          <div class="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400">
+            <span>Total Lines: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ ast.totalLines }}</strong></span>
+            <span>Blank: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ ast.blankLines }}</strong></span>
+            <span>Comments: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ ast.commentLines }}</strong> ({{ Math.round((ast.commentRatio || 0) * 100) }}%)</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-800">
+            <span>Imports: <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">{{ ast.importCount }}</strong></span>
+            <span>Exports: <strong class="text-emerald-600 dark:text-emerald-400 font-semibold">{{ ast.exportCount }}</strong></span>
+            <span>Classes: <strong class="text-purple-600 dark:text-purple-400 font-semibold">{{ ast.classCount || 0 }}</strong></span>
           </div>
         </div>
       }

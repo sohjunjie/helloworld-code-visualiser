@@ -43,6 +43,10 @@ describe('analysis.worker integration pipeline', () => {
       expect.objectContaining({ source: 'src/app.service.ts', target: 'src/user.model.ts' })
     );
     expect(result.stats.circularDependencies).toEqual([]);
+    expect(result.stats.codeHealth).toBeDefined();
+    expect(result.stats.codeHealth?.averageMaintainabilityIndex).toBeGreaterThan(0);
+    expect(result.files['src/main.ts'].astSummary?.cyclomaticComplexity).toBeGreaterThanOrEqual(1);
+    expect(result.files['src/main.ts'].astSummary?.codeLines).toBeGreaterThan(0);
     expect(progressUpdates.length).toBeGreaterThan(0);
     expect(progressUpdates[progressUpdates.length - 1].stage).toBe('complete');
   });

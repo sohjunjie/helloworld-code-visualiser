@@ -1,5 +1,22 @@
 export type FileNodeType = 'file' | 'directory';
 
+export interface ComplexityMetrics {
+  cyclomaticComplexity: number;
+  maintainabilityIndex: number;
+  totalLines: number;
+  codeLines: number;
+  blankLines: number;
+  commentLines: number;
+  commentRatio: number;
+}
+
+export interface AstSummary extends ComplexityMetrics {
+  importCount: number;
+  exportCount: number;
+  functionCount?: number;
+  classCount?: number;
+}
+
 export interface CodeFileNode {
   id: string;
   path: string;
@@ -10,13 +27,7 @@ export interface CodeFileNode {
   content?: string;
   imports: string[];
   exports: string[];
-  astSummary?: {
-    totalLines: number;
-    importCount: number;
-    exportCount: number;
-    functionCount?: number;
-    classCount?: number;
-  };
+  astSummary?: AstSummary;
   children?: CodeFileNode[];
 }
 
@@ -49,6 +60,35 @@ export interface SoftwarePatternInfo {
   logicalGroupings: PatternGrouping[];
 }
 
+export interface HighComplexityFile {
+  path: string;
+  complexity: number;
+  maintainabilityIndex: number;
+  loc: number;
+}
+
+export interface StructuralHotspot {
+  path: string;
+  reason: string;
+  severity: 'High' | 'Medium' | 'Low';
+  score: number;
+  complexity: number;
+  incomingDeps: number;
+}
+
+export interface CodeHealthSummary {
+  averageMaintainabilityIndex: number;
+  overallHealthScore: number;
+  totalCodeLines: number;
+  totalCommentLines: number;
+  totalBlankLines: number;
+  averageCyclomaticComplexity: number;
+  highestComplexityFiles: HighComplexityFile[];
+  structuralHotspots: StructuralHotspot[];
+  duplicateBlocksCount: number;
+  duplicateRatio: number;
+}
+
 export interface AnalysisStats {
   totalFiles: number;
   totalDirectories: number;
@@ -57,6 +97,7 @@ export interface AnalysisStats {
   languageBreakdown: Record<string, number>;
   topImportedFiles: { path: string; count: number }[];
   detectedPatterns: SoftwarePatternInfo[];
+  codeHealth?: CodeHealthSummary;
 }
 
 export interface AnalysisResult {

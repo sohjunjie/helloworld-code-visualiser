@@ -3,6 +3,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createEnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { InspectorSidebarComponent } from './inspector-sidebar.component';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { ThemeService } from '../../services/theme.service';
 import { AnalysisResult, CodeFileNode } from '../../models/code-visualizer.models';
 import { formatBytes } from '../../utils/formatters';
 
@@ -13,8 +14,12 @@ describe('InspectorSidebarComponent (TDD - Public Seam & Behavior Verification)'
   beforeEach(() => {
     store = new VisualizerStoreService();
 
+    const themeService = new ThemeService();
     const injector = createEnvironmentInjector(
-      [{ provide: VisualizerStoreService, useValue: store }],
+      [
+        { provide: VisualizerStoreService, useValue: store },
+        { provide: ThemeService, useValue: themeService },
+      ],
       null as any
     );
 

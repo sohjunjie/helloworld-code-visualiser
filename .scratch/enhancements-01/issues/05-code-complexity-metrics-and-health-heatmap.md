@@ -4,10 +4,11 @@
 
 **Blocked by:** 01 — Worker Modularization & Core Algorithm Testing (Prefactoring)
 
-**Status:** ready-for-agent
+**Status:** completed
 
-- [ ] Worker AST traversal computes cyclomatic complexity per file by counting decision branches (`if`, `else`, `switch`, `case`, `for`, `while`, `catch`, `&&`, `||`, `??`).
-- [ ] Source analysis counts lines of code (LOC), blank lines, and comment lines per file.
-- [ ] D3 Treemap view provides a metric toggle allowing nodes to be sized by LOC and colored along a complexity gradient (green for low complexity to red for high complexity).
-- [ ] Architecture view includes a "Code Health" summary card presenting overall maintainability index, highest complexity files, and structural hotspots.
-- [ ] AST inspector sidebar displays detailed complexity metrics for the currently selected file.
+- [x] Worker AST traversal computes cyclomatic complexity per file by counting decision branches (`if`, `else`, `switch`, `case`, `for`, `while`, `catch`, `&&`, `||`, `??`).
+- [x] Source analysis counts lines of code (LOC), blank lines, and comment lines per file.
+- [x] D3 Treemap view provides a metric toggle allowing nodes to be sized by LOC and colored along a complexity gradient (green for low complexity to red for high complexity).
+- [x] Architecture view includes a "Code Health" summary card presenting overall maintainability index, highest complexity files, and structural hotspots.
+- [x] AST inspector sidebar displays detailed complexity metrics for the currently selected file.
+

@@ -1,7 +1,7 @@
 <div class="treemap-view animate-fade-in">
   <!-- Unified Compact Controls Toolbar & Breadcrumb Navigation -->
   <nav
-    aria-label="Treemap folder navigation and legend"
+    aria-label="Treemap folder navigation, metrics, and legend"
     class="treemap-view__nav glass-panel"
   >
     <!-- Left Section: Breadcrumb Trail -->
@@ -38,13 +38,77 @@
       }
     </div>
 
-    <!-- Right Section: Compact Extension Color Legend -->
-    <div class="treemap-view__legend" role="region" aria-label="File extension color legend">
-      <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-blue-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">TS/TSX</span></div>
-      <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-amber-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JS/JSX</span></div>
-      <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-purple-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">CSS/HTML</span></div>
-      <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-emerald-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JSON/MD</span></div>
+    <!-- Center Section: Metric & Heatmap Toggles -->
+    <div class="treemap-view__controls" role="group" aria-label="Treemap sizing and color display options">
+      <!-- Sizing Metric Toggle -->
+      <div class="treemap-view__toggle-group" role="radiogroup" aria-label="Node sizing metric">
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="sizeMetric() === 'bytes'"
+          [class.treemap-view__toggle-btn--active]="sizeMetric() === 'bytes'"
+          class="treemap-view__toggle-btn focus-visible:ring-2 focus-visible:ring-sky-500"
+          (click)="setSizeMetric('bytes')"
+          title="Size nodes by file size in bytes"
+        >
+          Bytes
+        </button>
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="sizeMetric() === 'loc'"
+          [class.treemap-view__toggle-btn--active]="sizeMetric() === 'loc'"
+          class="treemap-view__toggle-btn focus-visible:ring-2 focus-visible:ring-sky-500"
+          (click)="setSizeMetric('loc')"
+          title="Size nodes by lines of code (LOC)"
+        >
+          LOC
+        </button>
+      </div>
+
+      <!-- Color Mode Toggle -->
+      <div class="treemap-view__toggle-group" role="radiogroup" aria-label="Node color mode">
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="colorMode() === 'extension'"
+          [class.treemap-view__toggle-btn--active]="colorMode() === 'extension'"
+          class="treemap-view__toggle-btn focus-visible:ring-2 focus-visible:ring-sky-500"
+          (click)="setColorMode('extension')"
+          title="Color nodes by file extension"
+        >
+          File Type
+        </button>
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="colorMode() === 'complexity'"
+          [class.treemap-view__toggle-btn--active]="colorMode() === 'complexity'"
+          class="treemap-view__toggle-btn focus-visible:ring-2 focus-visible:ring-sky-500"
+          (click)="setColorMode('complexity')"
+          title="Color nodes along a complexity heatmap (green = simple, red = complex)"
+        >
+          Complexity Heatmap
+        </button>
+      </div>
     </div>
+
+    <!-- Right Section: Dynamic Color Legend -->
+    @if (colorMode() === 'extension') {
+      <div class="treemap-view__legend" role="region" aria-label="File extension color legend">
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-blue-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">TS/TSX</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-amber-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JS/JSX</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-purple-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">CSS/HTML</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-emerald-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">JSON/MD</span></div>
+      </div>
+    } @else {
+      <div class="treemap-view__legend" role="region" aria-label="Complexity heatmap color legend">
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-emerald-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">1–5 Low</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-amber-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">6–15 Mod</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-orange-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">16–30 High</span></div>
+        <div class="treemap-view__legend-item"><span class="treemap-view__legend-swatch bg-rose-500"></span><span class="text-slate-700 dark:text-slate-300 font-medium">31+ Crit</span></div>
+      </div>
+    }
   </nav>
 
   <!-- Treemap Canvas Container -->
@@ -70,7 +134,7 @@
         <span class="truncate">{{ node.data.name }}</span>
       </div>
 
-      <div class="space-y-1 text-slate-700 dark:text-slate-300">
+      <div class="space-y-1.5 text-slate-700 dark:text-slate-300">
         <div class="text-[11px] text-slate-600 dark:text-slate-400 font-mono break-all leading-tight">
           <span class="text-slate-500 dark:text-slate-500 font-semibold">Path: </span>
           <span>{{ node.data.path || node.data.name }}</span>
@@ -79,12 +143,31 @@
         <div class="treemap-view__tooltip-stats text-slate-700 dark:text-slate-300">
           <span>Size: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ formatBytes(node.data.size) }}</strong></span>
           @if (node.data.type === 'file') {
-            <span>Lines: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ node.data.astSummary?.totalLines || 0 }}</strong></span>
+            <span>LOC: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ node.data.astSummary?.codeLines || node.data.astSummary?.totalLines || 0 }}</strong></span>
+            <span>Total Lines: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ node.data.astSummary?.totalLines || 0 }}</strong></span>
           } @else {
             <span>Files: <strong class="text-slate-900 dark:text-slate-100 font-semibold">{{ node.leaves().length }}</strong></span>
           }
         </div>
+
+        @if (node.data.type === 'file' && node.data.astSummary; as ast) {
+          <div class="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-800 text-[11px]">
+            <span class="text-slate-600 dark:text-slate-400">
+              Complexity:
+              <strong class="font-bold {{ ast.cyclomaticComplexity > 15 ? 'text-rose-600 dark:text-rose-400' : ast.cyclomaticComplexity > 5 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400' }}">
+                {{ ast.cyclomaticComplexity }}
+              </strong>
+            </span>
+            <span class="text-slate-600 dark:text-slate-400">
+              Health MI:
+              <strong class="font-bold {{ ast.maintainabilityIndex >= 80 ? 'text-emerald-600 dark:text-emerald-400' : ast.maintainabilityIndex >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-rose-600 dark:text-rose-400' }}">
+                {{ ast.maintainabilityIndex }}/100
+              </strong>
+            </span>
+          </div>
+        }
       </div>
     </div>
   }
 </div>
+

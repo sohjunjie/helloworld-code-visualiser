@@ -13,34 +13,21 @@
       "_origin": "ast",
       "id": "src_app_components_theme_toggle_theme_toggle_component_themetogglecomponent",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "themetogglecomponent"
     },
     {
       "label": "AnalysisResult",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L62",
+      "source_location": "L103",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_analysisresult",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "analysisresult"
-    },
-    {
-      "label": "DemoProject",
-      "file_type": "code",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L77",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_models_code_visualizer_models_demoproject",
-      "community": 0,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "demoproject"
     },
     {
       "label": "ExportDemoService",
@@ -52,7 +39,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "exportdemoservice"
     },
     {
@@ -65,7 +52,7 @@
       "_origin": "ast",
       "id": "src_app_services_theme_service_graphthemeconfig",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "graphthemeconfig"
     },
     {
@@ -78,7 +65,7 @@
       "_origin": "ast",
       "id": "src_app_services_theme_service_nodecolorconfig",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "nodecolorconfig"
     },
     {
@@ -91,7 +78,7 @@
       "_origin": "ast",
       "id": "src_app_utils_svg_exporter_svgexportoptions",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "svgexportoptions"
     },
     {
@@ -111,7 +98,7 @@
       "label": "CodeFileNode",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L3",
+      "source_location": "L20",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -132,45 +119,6 @@
       "community": 14,
       "community_name": "DependencyGraphViewComponent",
       "norm_label": "dependencygraphviewcomponent"
-    },
-    {
-      "label": "App",
-      "file_type": "code",
-      "source_file": "src/app/app.ts",
-      "source_location": "L28",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_app_app",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "app"
-    },
-    {
-      "label": "ProgressModalComponent",
-      "file_type": "code",
-      "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
-      "source_location": "L12",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_components_progress_modal_progress_modal_component_progressmodalcomponent",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "progressmodalcomponent"
-    },
-    {
-      "label": "UploadDropzoneComponent",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L12",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "uploaddropzonecomponent"
     },
     {
       "label": "ThemeService",
@@ -199,17 +147,69 @@
       "norm_label": "headercomponent"
     },
     {
+      "label": "AstSummary",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L13",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_astsummary",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "astsummary"
+    },
+    {
+      "label": "ComplexityMetrics",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L3",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_complexitymetrics",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "complexitymetrics"
+    },
+    {
+      "label": "ParsedAstResult",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L4",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_parsedastresult",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "parsedastresult"
+    },
+    {
       "label": "AnalysisStats",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L52",
+      "source_location": "L92",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_analysisstats",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "analysisstats"
+    },
+    {
+      "label": "CodeHealthSummary",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L79",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_codehealthsummary",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "codehealthsummary"
     },
     {
       "label": "FileNodeType",
@@ -221,66 +221,92 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_filenodetype",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "filenodetype"
     },
     {
       "label": "GraphEdge",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L23",
+      "source_location": "L34",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_graphedge",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "graphedge"
+    },
+    {
+      "label": "HighComplexityFile",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L63",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_highcomplexityfile",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "highcomplexityfile"
     },
     {
       "label": "PatternGrouping",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L31",
+      "source_location": "L42",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models_patterngrouping",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "patterngrouping"
     },
     {
-      "label": "UploadProgress",
+      "label": "StructuralHotspot",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
       "source_location": "L70",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "id": "src_app_models_code_visualizer_models_uploadprogress",
+      "id": "src_app_models_code_visualizer_models_structuralhotspot",
       "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "uploadprogress"
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "structuralhotspot"
     },
     {
-      "label": "ParsedAstResult",
+      "label": "UploadProgress",
       "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L3",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L111",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "id": "src_app_workers_ast_parser_parsedastresult",
+      "id": "src_app_models_code_visualizer_models_uploadprogress",
       "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "parsedastresult"
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "uploadprogress"
+    },
+    {
+      "label": "App",
+      "file_type": "code",
+      "source_file": "src/app/app.ts",
+      "source_location": "L28",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_app_app",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "app"
     },
     {
       "label": "ArchitectureViewComponent",
       "file_type": "code",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L14",
+      "source_location": "L15",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -293,7 +319,7 @@
       "label": "InspectorSidebarComponent",
       "file_type": "code",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -303,10 +329,49 @@
       "norm_label": "inspectorsidebarcomponent"
     },
     {
+      "label": "ProgressModalComponent",
+      "file_type": "code",
+      "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
+      "source_location": "L12",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_components_progress_modal_progress_modal_component_progressmodalcomponent",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "progressmodalcomponent"
+    },
+    {
+      "label": "UploadDropzoneComponent",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L12",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "uploaddropzonecomponent"
+    },
+    {
+      "label": "DemoProject",
+      "file_type": "code",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L118",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "src_app_models_code_visualizer_models_demoproject",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "demoproject"
+    },
+    {
       "label": "SoftwarePatternInfo",
       "file_type": "code",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L38",
+      "source_location": "L49",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -337,7 +402,7 @@
       "_origin": "ast",
       "id": "src_app_components_theme_toggle_theme_toggle_component_themetogglecomponent_toggletheme",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".toggletheme()"
     },
     {
@@ -349,7 +414,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice_constructor",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -361,7 +426,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice_downloadcanvaspng",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".downloadcanvaspng()"
     },
     {
@@ -373,7 +438,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice_downloadjson",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".downloadjson()"
     },
     {
@@ -385,20 +450,8 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice_downloadsvg",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".downloadsvg()"
-    },
-    {
-      "label": ".getDemoProjects()",
-      "file_type": "code",
-      "source_file": "src/app/services/export-demo.service.ts",
-      "source_location": "L30",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_services_export_demo_service_exportdemoservice_getdemoprojects",
-      "community": 0,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": ".getdemoprojects()"
     },
     {
       "label": ".loadDemoProjects()",
@@ -409,20 +462,8 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_exportdemoservice_loaddemoprojects",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": ".loaddemoprojects()"
-    },
-    {
-      "label": ".analyzeDemoProject()",
-      "file_type": "code",
-      "source_file": "src/app/services/visualizer-store.service.ts",
-      "source_location": "L133",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_analyzedemoproject",
-      "community": 0,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": ".analyzedemoproject()"
     },
     {
       "label": "escapeXml()",
@@ -433,7 +474,7 @@
       "_origin": "ast",
       "id": "src_app_utils_svg_exporter_escapexml",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "escapexml()"
     },
     {
@@ -445,14 +486,14 @@
       "_origin": "ast",
       "id": "src_app_utils_svg_exporter_exportcytoscapetosvg",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "exportcytoscapetosvg()"
     },
     {
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L36",
+      "source_location": "L41",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_constructor",
@@ -464,7 +505,7 @@
       "label": ".findNodeInFullTree()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L333",
+      "source_location": "L365",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
@@ -473,10 +514,22 @@
       "norm_label": ".findnodeinfulltree()"
     },
     {
+      "label": ".getNodeValue()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L94",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_getnodevalue",
+      "community": 10,
+      "community_name": "CodeFileNode",
+      "norm_label": ".getnodevalue()"
+    },
+    {
       "label": ".ngAfterViewInit()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L50",
+      "source_location": "L57",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngafterviewinit",
@@ -488,7 +541,7 @@
       "label": ".ngOnDestroy()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L55",
+      "source_location": "L62",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngondestroy",
@@ -500,7 +553,7 @@
       "label": ".renderTreemap()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L77",
+      "source_location": "L103",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
@@ -509,10 +562,34 @@
       "norm_label": ".rendertreemap()"
     },
     {
+      "label": ".setColorMode()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L83",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setcolormode",
+      "community": 10,
+      "community_name": "CodeFileNode",
+      "norm_label": ".setcolormode()"
+    },
+    {
+      "label": ".setSizeMetric()",
+      "file_type": "code",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L78",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setsizemetric",
+      "community": 10,
+      "community_name": "CodeFileNode",
+      "norm_label": ".setsizemetric()"
+    },
+    {
       "label": ".setupResizeObserver()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L62",
+      "source_location": "L69",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setupresizeobserver",
@@ -524,7 +601,7 @@
       "label": ".updateBreadcrumbs()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L313",
+      "source_location": "L345",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatebreadcrumbs",
@@ -536,7 +613,7 @@
       "label": ".updateTooltipPosition()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L292",
+      "source_location": "L324",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatetooltipposition",
@@ -548,7 +625,7 @@
       "label": ".zoomTo()",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L72",
+      "source_location": "L89",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_zoomto",
@@ -749,54 +826,6 @@
       "norm_label": ".toggleneighborhoodfocus()"
     },
     {
-      "label": ".onDragLeave()",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L23",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondragleave",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": ".ondragleave()"
-    },
-    {
-      "label": ".onDragOver()",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L17",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondragover",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": ".ondragover()"
-    },
-    {
-      "label": ".onDrop()",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L29",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondrop",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": ".ondrop()"
-    },
-    {
-      "label": ".onFileSelected()",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L42",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_onfileselected",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": ".onfileselected()"
-    },
-    {
       "label": ".applyThemeToDOM()",
       "file_type": "code",
       "source_file": "src/app/services/theme.service.ts",
@@ -819,6 +848,30 @@
       "community": 3,
       "community_name": "ThemeService",
       "norm_label": ".constructor()"
+    },
+    {
+      "label": ".getComplexityBadgeClass()",
+      "file_type": "code",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L282",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_theme_service_themeservice_getcomplexitybadgeclass",
+      "community": 3,
+      "community_name": "ThemeService",
+      "norm_label": ".getcomplexitybadgeclass()"
+    },
+    {
+      "label": ".getComplexityColor()",
+      "file_type": "code",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L259",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_theme_service_themeservice_getcomplexitycolor",
+      "community": 3,
+      "community_name": "ThemeService",
+      "norm_label": ".getcomplexitycolor()"
     },
     {
       "label": ".getFileExtensionColor()",
@@ -867,6 +920,18 @@
       "community": 3,
       "community_name": "ThemeService",
       "norm_label": ".getgraphthemeconfig()"
+    },
+    {
+      "label": ".getMaintainabilityBadgeClass()",
+      "file_type": "code",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L269",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_theme_service_themeservice_getmaintainabilitybadgeclass",
+      "community": 3,
+      "community_name": "ThemeService",
+      "norm_label": ".getmaintainabilitybadgeclass()"
     },
     {
       "label": ".getNodeColorConfig()",
@@ -1037,6 +1102,78 @@
       "norm_label": ".toggledemomenu()"
     },
     {
+      "label": "calculateMaintainabilityIndex()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L96",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_calculatemaintainabilityindex",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "calculatemaintainabilityindex()"
+    },
+    {
+      "label": "countLineMetrics()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_countlinemetrics",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "countlinemetrics()"
+    },
+    {
+      "label": "estimateComplexityFromText()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L177",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_estimatecomplexityfromtext",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "estimatecomplexityfromtext()"
+    },
+    {
+      "label": "parseFileContents()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L225",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_parsefilecontents",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "parsefilecontents()"
+    },
+    {
+      "label": "parseWithRegex()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L190",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_parsewithregex",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "parsewithregex()"
+    },
+    {
+      "label": "traverseAstForComplexity()",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L117",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_traverseastforcomplexity",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "traverseastforcomplexity()"
+    },
+    {
       "label": "buildAndParseGraph()",
       "file_type": "code",
       "source_file": "src/app/workers/analysis.worker.ts",
@@ -1045,7 +1182,7 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker_buildandparsegraph",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "buildandparsegraph()"
     },
     {
@@ -1057,7 +1194,7 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker_isworkercontext",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "isworkercontext()"
     },
     {
@@ -1069,7 +1206,7 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker_processdemofiles",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "processdemofiles()"
     },
     {
@@ -1081,7 +1218,7 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker_processzipfile",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "processzipfile()"
     },
     {
@@ -1093,32 +1230,8 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker_reportprogress",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "reportprogress()"
-    },
-    {
-      "label": "parseFileContents()",
-      "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L52",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_workers_ast_parser_parsefilecontents",
-      "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "parsefilecontents()"
-    },
-    {
-      "label": "parseWithRegex()",
-      "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L17",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "src_app_workers_ast_parser_parsewithregex",
-      "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "parsewithregex()"
     },
     {
       "label": "findCircularDependencies()",
@@ -1129,7 +1242,7 @@
       "_origin": "ast",
       "id": "src_app_workers_cycle_detector_findcirculardependencies",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "findcirculardependencies()"
     },
     {
@@ -1141,92 +1254,116 @@
       "_origin": "ast",
       "id": "src_app_workers_cycle_detector_findcirculardependencies_dfs",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "dfs()"
     },
     {
       "label": "buildDependencyEdges()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L58",
+      "source_location": "L59",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_builddependencyedges",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "builddependencyedges()"
     },
     {
       "label": "buildDirectoryTree()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L94",
+      "source_location": "L95",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_builddirectorytree",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "builddirectorytree()"
     },
     {
       "label": "computeSizes()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L144",
+      "source_location": "L145",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_builddirectorytree_computesizes",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "computesizes()"
     },
     {
       "label": "calculateStats()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L171",
+      "source_location": "L172",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_calculatestats",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "calculatestats()"
     },
     {
       "label": "countDirectories()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L160",
+      "source_location": "L161",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_countdirectories",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "countdirectories()"
     },
     {
       "label": "normalizePathSegments()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_normalizepathsegments",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "normalizepathsegments()"
     },
     {
       "label": "resolveImportPath()",
       "file_type": "code",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_resolveimportpath",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "resolveimportpath()"
+    },
+    {
+      "label": "analyzeCodeHealth()",
+      "file_type": "code",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L85",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_health_analyzer_analyzecodehealth",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "analyzecodehealth()"
+    },
+    {
+      "label": "detectDuplicateCode()",
+      "file_type": "code",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_workers_health_analyzer_detectduplicatecode",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "detectduplicatecode()"
     },
     {
       "label": "detectSoftwarePatterns()",
@@ -1237,7 +1374,7 @@
       "_origin": "ast",
       "id": "src_app_workers_pattern_detector_detectsoftwarepatterns",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "detectsoftwarepatterns()"
     },
     {
@@ -1249,7 +1386,7 @@
       "_origin": "ast",
       "id": "src_app_workers_pattern_detector_spec_createmockfiles",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "createmockfiles()"
     },
     {
@@ -1261,7 +1398,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_extractzipentries",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "extractzipentries()"
     },
     {
@@ -1273,7 +1410,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_getbasename",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "getbasename()"
     },
     {
@@ -1285,7 +1422,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_getdirname",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "getdirname()"
     },
     {
@@ -1297,7 +1434,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_getfileextension",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "getfileextension()"
     },
     {
@@ -1309,7 +1446,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_isbinaryfile",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "isbinaryfile()"
     },
     {
@@ -1321,14 +1458,14 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_shouldignorefile",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "shouldignorefile()"
     },
     {
       "label": ".closePatternDetail()",
       "file_type": "code",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L31",
+      "source_location": "L34",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_closepatterndetail",
@@ -1340,7 +1477,7 @@
       "label": ".openFile()",
       "file_type": "code",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L19",
+      "source_location": "L22",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_openfile",
@@ -1352,7 +1489,7 @@
       "label": ".viewPatternDetail()",
       "file_type": "code",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L27",
+      "source_location": "L30",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_viewpatterndetail",
@@ -1364,7 +1501,7 @@
       "label": ".getImporters()",
       "file_type": "code",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L17",
+      "source_location": "L20",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_getimporters",
@@ -1376,13 +1513,85 @@
       "label": ".openFile()",
       "file_type": "code",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L23",
+      "source_location": "L26",
       "_callable": true,
       "_origin": "ast",
       "id": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent_openfile",
       "community": 7,
       "community_name": "VisualizerStoreService",
       "norm_label": ".openfile()"
+    },
+    {
+      "label": ".onDragLeave()",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L23",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondragleave",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".ondragleave()"
+    },
+    {
+      "label": ".onDragOver()",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L17",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondragover",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".ondragover()"
+    },
+    {
+      "label": ".onDrop()",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L29",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_ondrop",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".ondrop()"
+    },
+    {
+      "label": ".onFileSelected()",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L42",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_uploaddropzonecomponent_onfileselected",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".onfileselected()"
+    },
+    {
+      "label": ".getDemoProjects()",
+      "file_type": "code",
+      "source_file": "src/app/services/export-demo.service.ts",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_export_demo_service_exportdemoservice_getdemoprojects",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".getdemoprojects()"
+    },
+    {
+      "label": ".analyzeDemoProject()",
+      "file_type": "code",
+      "source_file": "src/app/services/visualizer-store.service.ts",
+      "source_location": "L133",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "src_app_services_visualizer_store_service_visualizerstoreservice_analyzedemoproject",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": ".analyzedemoproject()"
     },
     {
       "label": ".analyzeZipFile()",
@@ -1572,7 +1781,7 @@
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "dependency-graph-view.component.ts"
     },
     {
@@ -1583,7 +1792,7 @@
       "_origin": "ast",
       "id": "src_app_components_dependency_graph_view_dependency_graph_view_component_spec",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "dependency-graph-view.component.spec.ts"
     },
     {
@@ -1594,7 +1803,7 @@
       "_origin": "ast",
       "id": "src_app_components_header_header_component",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "header.component.ts"
     },
     {
@@ -1605,7 +1814,7 @@
       "_origin": "ast",
       "id": "src_app_components_header_header_component_spec",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "header.component.spec.ts"
     },
     {
@@ -1616,7 +1825,7 @@
       "_origin": "ast",
       "id": "src_app_components_theme_toggle_theme_toggle_component",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "theme-toggle.component.ts"
     },
     {
@@ -1627,7 +1836,7 @@
       "_origin": "ast",
       "id": "src_app_components_theme_toggle_theme_toggle_component_spec",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "theme-toggle.component.spec.ts"
     },
     {
@@ -1638,7 +1847,7 @@
       "_origin": "ast",
       "id": "src_app_components_theme_toggle_theme_toggle_component_ts_component",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "component"
     },
     {
@@ -1649,7 +1858,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "export-demo.service.ts"
     },
     {
@@ -1660,7 +1869,7 @@
       "_origin": "ast",
       "id": "src_app_services_export_demo_service_ts_injectable",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "injectable"
     },
     {
@@ -1671,30 +1880,8 @@
       "_origin": "ast",
       "id": "src_app_services_theme_service",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "theme.service.ts"
-    },
-    {
-      "label": "theme.service.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/services/theme.service.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_services_theme_service_spec",
-      "community": 0,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "theme.service.spec.ts"
-    },
-    {
-      "label": "visualizer-store.service.ts",
-      "file_type": "code",
-      "source_file": "src/app/services/visualizer-store.service.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_services_visualizer_store_service",
-      "community": 0,
-      "community_name": "visualizer-store.service.ts",
-      "norm_label": "visualizer-store.service.ts"
     },
     {
       "label": "visualizer-store.service.spec.ts",
@@ -1704,7 +1891,7 @@
       "_origin": "ast",
       "id": "src_app_services_visualizer_store_service_spec",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "visualizer-store.service.spec.ts"
     },
     {
@@ -1715,7 +1902,7 @@
       "_origin": "ast",
       "id": "src_app_utils_svg_exporter",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "svg-exporter.ts"
     },
     {
@@ -1726,7 +1913,7 @@
       "_origin": "ast",
       "id": "src_app_utils_svg_exporter_spec",
       "community": 0,
-      "community_name": "visualizer-store.service.ts",
+      "community_name": "theme.service.ts",
       "norm_label": "svg-exporter.spec.ts"
     },
     {
@@ -2390,6 +2577,149 @@
       "norm_label": "viewchild"
     },
     {
+      "label": "angular.json",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "angular",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "angular.json"
+    },
+    {
+      "label": "packageManager",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "angular_cli_packagemanager",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "packagemanager"
+    },
+    {
+      "label": "prefix",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_prefix",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "prefix"
+    },
+    {
+      "label": "projectType",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_projecttype",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "projecttype"
+    },
+    {
+      "label": "root",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_root",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "root"
+    },
+    {
+      "label": "schematics",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_schematics",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "schematics"
+    },
+    {
+      "label": "sourceRoot",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "angular_helloworld_code_visualiser_sourceroot",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "sourceroot"
+    },
+    {
+      "label": "cli",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "angular_json_angular_cli",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "cli"
+    },
+    {
+      "label": "newProjectRoot",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "angular_newprojectroot",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "newprojectroot"
+    },
+    {
+      "label": "projects",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "angular_projects",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "projects"
+    },
+    {
+      "label": "helloworld-code-visualiser",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "angular_projects_helloworld_code_visualiser",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "helloworld-code-visualiser"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "angular_schema",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "$schema"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "angular.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "angular_version",
+      "community": 15,
+      "community_name": "helloworld-code-visualiser",
+      "norm_label": "version"
+    },
+    {
       "label": "03-svg-diagram-export-and-advanced-graph-filtering.md",
       "file_type": "document",
       "source_file": ".scratch/enhancements-01/issues/03-svg-diagram-export-and-advanced-graph-filtering.md",
@@ -2434,17 +2764,6 @@
       "norm_label": "04 \u2014 polyglot multi-language import extraction"
     },
     {
-      "label": "app.ts",
-      "file_type": "code",
-      "source_file": "src/app/app.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_app",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "app.ts"
-    },
-    {
       "label": "app.config.ts",
       "file_type": "code",
       "source_file": "src/app/app.config.ts",
@@ -2452,7 +2771,7 @@
       "_origin": "ast",
       "id": "src_app_app_config",
       "community": 18,
-      "community_name": "app.ts",
+      "community_name": "app.config.ts",
       "norm_label": "app.config.ts"
     },
     {
@@ -2463,7 +2782,7 @@
       "_origin": "ast",
       "id": "src_app_app_config_appconfig",
       "community": 18,
-      "community_name": "app.ts",
+      "community_name": "app.config.ts",
       "norm_label": "appconfig"
     },
     {
@@ -2474,7 +2793,7 @@
       "_origin": "ast",
       "id": "src_app_app_routes",
       "community": 18,
-      "community_name": "app.ts",
+      "community_name": "app.config.ts",
       "norm_label": "app.routes.ts"
     },
     {
@@ -2485,96 +2804,8 @@
       "_origin": "ast",
       "id": "src_app_app_routes_routes",
       "community": 18,
-      "community_name": "app.ts",
+      "community_name": "app.config.ts",
       "norm_label": "routes"
-    },
-    {
-      "label": "app.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/app.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_app_spec",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "app.spec.ts"
-    },
-    {
-      "label": "Component",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "src_app_app_ts_component",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "component"
-    },
-    {
-      "label": "progress-modal.component.ts",
-      "file_type": "code",
-      "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_components_progress_modal_progress_modal_component",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "progress-modal.component.ts"
-    },
-    {
-      "label": "progress-modal.component.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/components/progress-modal/progress-modal.component.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_components_progress_modal_progress_modal_component_spec",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "progress-modal.component.spec.ts"
-    },
-    {
-      "label": "Component",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "src_app_components_progress_modal_progress_modal_component_ts_component",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "component"
-    },
-    {
-      "label": "upload-dropzone.component.ts",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "upload-dropzone.component.ts"
-    },
-    {
-      "label": "upload-dropzone.component.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_spec",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "upload-dropzone.component.spec.ts"
-    },
-    {
-      "label": "Component",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "src_app_components_upload_dropzone_upload_dropzone_component_ts_component",
-      "community": 18,
-      "community_name": "app.ts",
-      "norm_label": "component"
     },
     {
       "label": "main.ts",
@@ -2584,7 +2815,7 @@
       "_origin": "ast",
       "id": "src_main",
       "community": 18,
-      "community_name": "app.ts",
+      "community_name": "app.config.ts",
       "norm_label": "main.ts"
     },
     {
@@ -3116,6 +3347,17 @@
       "norm_label": "10 \u2014 visual codebase diff (two-version architecture comparison)"
     },
     {
+      "label": "theme.service.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/services/theme.service.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_services_theme_service_spec",
+      "community": 3,
+      "community_name": "ThemeService",
+      "norm_label": "theme.service.spec.ts"
+    },
+    {
       "label": "Injectable",
       "file_type": "code",
       "source_file": "",
@@ -3281,15 +3523,37 @@
       "norm_label": "component"
     },
     {
-      "label": "angular.json",
+      "label": "ast-parser.ts",
       "file_type": "code",
-      "source_file": "angular.json",
+      "source_file": "src/app/workers/ast-parser.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "angular",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "angular.json"
+      "id": "src_app_workers_ast_parser",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "ast-parser.ts"
+    },
+    {
+      "label": "JS_TS_EXTENSIONS",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_js_ts_extensions",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "js_ts_extensions"
+    },
+    {
+      "label": "ast-parser.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/workers/ast-parser.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_workers_ast_parser_spec",
+      "community": 37,
+      "community_name": "ast-parser.ts",
+      "norm_label": "ast-parser.spec.ts"
     },
     {
       "label": "build",
@@ -3299,7 +3563,7 @@
       "_origin": "ast",
       "id": "angular_architect_build",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "build"
     },
     {
@@ -3310,7 +3574,7 @@
       "_origin": "ast",
       "id": "angular_architect_serve",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "serve"
     },
     {
@@ -3321,7 +3585,7 @@
       "_origin": "ast",
       "id": "angular_architect_test",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "test"
     },
     {
@@ -3332,7 +3596,7 @@
       "_origin": "ast",
       "id": "angular_build_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
     },
     {
@@ -3343,7 +3607,7 @@
       "_origin": "ast",
       "id": "angular_build_configurations",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "configurations"
     },
     {
@@ -3354,7 +3618,7 @@
       "_origin": "ast",
       "id": "angular_build_defaultconfiguration",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "defaultconfiguration"
     },
     {
@@ -3365,19 +3629,8 @@
       "_origin": "ast",
       "id": "angular_build_options",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "options"
-    },
-    {
-      "label": "packageManager",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "angular_cli_packagemanager",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "packagemanager"
     },
     {
       "label": "development",
@@ -3387,7 +3640,7 @@
       "_origin": "ast",
       "id": "angular_configurations_development",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "development"
     },
     {
@@ -3398,7 +3651,7 @@
       "_origin": "ast",
       "id": "angular_configurations_production",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "production"
     },
     {
@@ -3409,7 +3662,7 @@
       "_origin": "ast",
       "id": "angular_development_buildtarget",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "buildtarget"
     },
     {
@@ -3420,7 +3673,7 @@
       "_origin": "ast",
       "id": "angular_development_extractlicenses",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "extractlicenses"
     },
     {
@@ -3431,7 +3684,7 @@
       "_origin": "ast",
       "id": "angular_development_optimization",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "optimization"
     },
     {
@@ -3442,7 +3695,7 @@
       "_origin": "ast",
       "id": "angular_development_sourcemap",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "sourcemap"
     },
     {
@@ -3453,85 +3706,8 @@
       "_origin": "ast",
       "id": "angular_helloworld_code_visualiser_architect",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "architect"
-    },
-    {
-      "label": "prefix",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_prefix",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "prefix"
-    },
-    {
-      "label": "projectType",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_projecttype",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "projecttype"
-    },
-    {
-      "label": "root",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_root",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "root"
-    },
-    {
-      "label": "schematics",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_schematics",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "schematics"
-    },
-    {
-      "label": "sourceRoot",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "angular_helloworld_code_visualiser_sourceroot",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "sourceroot"
-    },
-    {
-      "label": "cli",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "angular_json_angular_cli",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "cli"
-    },
-    {
-      "label": "newProjectRoot",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "angular_newprojectroot",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "newprojectroot"
     },
     {
       "label": "assets",
@@ -3541,7 +3717,7 @@
       "_origin": "ast",
       "id": "angular_options_assets",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "assets"
     },
     {
@@ -3552,7 +3728,7 @@
       "_origin": "ast",
       "id": "angular_options_browser",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "browser"
     },
     {
@@ -3563,7 +3739,7 @@
       "_origin": "ast",
       "id": "angular_options_styles",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "styles"
     },
     {
@@ -3574,7 +3750,7 @@
       "_origin": "ast",
       "id": "angular_options_tsconfig",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "tsconfig"
     },
     {
@@ -3585,7 +3761,7 @@
       "_origin": "ast",
       "id": "angular_production_budgets",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "budgets"
     },
     {
@@ -3596,7 +3772,7 @@
       "_origin": "ast",
       "id": "angular_production_buildtarget",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "buildtarget"
     },
     {
@@ -3607,41 +3783,8 @@
       "_origin": "ast",
       "id": "angular_production_outputhashing",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "outputhashing"
-    },
-    {
-      "label": "projects",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "angular_projects",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "projects"
-    },
-    {
-      "label": "helloworld-code-visualiser",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "angular_projects_helloworld_code_visualiser",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "helloworld-code-visualiser"
-    },
-    {
-      "label": "$schema",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "angular_schema",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "$schema"
     },
     {
       "label": "builder",
@@ -3651,7 +3794,7 @@
       "_origin": "ast",
       "id": "angular_serve_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
     },
     {
@@ -3662,7 +3805,7 @@
       "_origin": "ast",
       "id": "angular_serve_configurations",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "configurations"
     },
     {
@@ -3673,7 +3816,7 @@
       "_origin": "ast",
       "id": "angular_serve_defaultconfiguration",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "defaultconfiguration"
     },
     {
@@ -3684,19 +3827,8 @@
       "_origin": "ast",
       "id": "angular_test_builder",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "builder"
-    },
-    {
-      "label": "version",
-      "file_type": "code",
-      "source_file": "angular.json",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "angular_version",
-      "community": 4,
-      "community_name": "helloworld-code-visualiser",
-      "norm_label": "version"
     },
     {
       "label": "src/styles.css",
@@ -3706,7 +3838,7 @@
       "_origin": "ast",
       "id": "ref_src_styles_css",
       "community": 4,
-      "community_name": "helloworld-code-visualiser",
+      "community_name": "development",
       "norm_label": "src/styles.css"
     },
     {
@@ -3926,7 +4058,7 @@
       "_origin": "ast",
       "id": "src_app_models_code_visualizer_models",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "code-visualizer.models.ts"
     },
     {
@@ -3937,7 +4069,7 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_spec",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "analysis.spec.ts"
     },
     {
@@ -3948,41 +4080,8 @@
       "_origin": "ast",
       "id": "src_app_workers_analysis_worker",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "analysis.worker.ts"
-    },
-    {
-      "label": "ast-parser.ts",
-      "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_workers_ast_parser",
-      "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "ast-parser.ts"
-    },
-    {
-      "label": "JS_TS_EXTENSIONS",
-      "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "src_app_workers_ast_parser_js_ts_extensions",
-      "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "js_ts_extensions"
-    },
-    {
-      "label": "ast-parser.spec.ts",
-      "file_type": "code",
-      "source_file": "src/app/workers/ast-parser.spec.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_app_workers_ast_parser_spec",
-      "community": 6,
-      "community_name": "analysis.worker.ts",
-      "norm_label": "ast-parser.spec.ts"
     },
     {
       "label": "cycle-detector.ts",
@@ -3992,7 +4091,7 @@
       "_origin": "ast",
       "id": "src_app_workers_cycle_detector",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "cycle-detector.ts"
     },
     {
@@ -4003,7 +4102,7 @@
       "_origin": "ast",
       "id": "src_app_workers_cycle_detector_spec",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "cycle-detector.spec.ts"
     },
     {
@@ -4014,7 +4113,7 @@
       "_origin": "ast",
       "id": "src_app_workers_graph_builder",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "graph-builder.ts"
     },
     {
@@ -4025,8 +4124,30 @@
       "_origin": "ast",
       "id": "src_app_workers_graph_builder_spec",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "graph-builder.spec.ts"
+    },
+    {
+      "label": "health-analyzer.ts",
+      "file_type": "code",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_workers_health_analyzer",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "health-analyzer.ts"
+    },
+    {
+      "label": "health-analyzer.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_workers_health_analyzer_spec",
+      "community": 6,
+      "community_name": "code-visualizer.models.ts",
+      "norm_label": "health-analyzer.spec.ts"
     },
     {
       "label": "pattern-detector.ts",
@@ -4036,7 +4157,7 @@
       "_origin": "ast",
       "id": "src_app_workers_pattern_detector",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "pattern-detector.ts"
     },
     {
@@ -4047,7 +4168,7 @@
       "_origin": "ast",
       "id": "src_app_workers_pattern_detector_spec",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "pattern-detector.spec.ts"
     },
     {
@@ -4058,7 +4179,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "zip-extractor.ts"
     },
     {
@@ -4069,7 +4190,7 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_binary_extensions",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "binary_extensions"
     },
     {
@@ -4080,8 +4201,41 @@
       "_origin": "ast",
       "id": "src_app_workers_zip_extractor_spec",
       "community": 6,
-      "community_name": "analysis.worker.ts",
+      "community_name": "code-visualizer.models.ts",
       "norm_label": "zip-extractor.spec.ts"
+    },
+    {
+      "label": "app.ts",
+      "file_type": "code",
+      "source_file": "src/app/app.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_app",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "app.ts"
+    },
+    {
+      "label": "app.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/app.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_app_spec",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "app.spec.ts"
+    },
+    {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_app_ts_component",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "component"
     },
     {
       "label": "architecture-view.component.ts",
@@ -4150,6 +4304,39 @@
       "norm_label": "component"
     },
     {
+      "label": "progress-modal.component.ts",
+      "file_type": "code",
+      "source_file": "src/app/components/progress-modal/progress-modal.component.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_components_progress_modal_progress_modal_component",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "progress-modal.component.ts"
+    },
+    {
+      "label": "progress-modal.component.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/components/progress-modal/progress-modal.component.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_components_progress_modal_progress_modal_component_spec",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "progress-modal.component.spec.ts"
+    },
+    {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_progress_modal_progress_modal_component_ts_component",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "component"
+    },
+    {
       "label": "treemap-view.component.ts",
       "file_type": "code",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
@@ -4170,6 +4357,50 @@
       "community": 7,
       "community_name": "VisualizerStoreService",
       "norm_label": "treemap-view.component.spec.ts"
+    },
+    {
+      "label": "upload-dropzone.component.ts",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "upload-dropzone.component.ts"
+    },
+    {
+      "label": "upload-dropzone.component.spec.ts",
+      "file_type": "code",
+      "source_file": "src/app/components/upload-dropzone/upload-dropzone.component.spec.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_spec",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "upload-dropzone.component.spec.ts"
+    },
+    {
+      "label": "Component",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_app_components_upload_dropzone_upload_dropzone_component_ts_component",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "component"
+    },
+    {
+      "label": "visualizer-store.service.ts",
+      "file_type": "code",
+      "source_file": "src/app/services/visualizer-store.service.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_services_visualizer_store_service",
+      "community": 7,
+      "community_name": "VisualizerStoreService",
+      "norm_label": "visualizer-store.service.ts"
     },
     {
       "label": "Injectable",
@@ -4378,7 +4609,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L42",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_constructor",
@@ -4390,7 +4621,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L51",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngafterviewinit",
@@ -4402,7 +4633,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L52",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_ngafterviewinit",
@@ -4414,11 +4645,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L181",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
-      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatetooltipposition",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_getnodevalue",
       "confidence_score": 1.0
     },
     {
@@ -4426,19 +4657,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L193",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
-      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L91",
+      "source_location": "L118",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
@@ -4450,7 +4669,55 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L65",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatetooltipposition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L220",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setcolormode",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setsizemetric",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setupresizeobserver",
@@ -4462,7 +4729,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L320",
+      "source_location": "L352",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatebreadcrumbs",
@@ -4474,7 +4741,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L74",
+      "source_location": "L91",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_zoomto",
@@ -4822,7 +5089,31 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L110",
+      "source_location": "L237",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_parsefilecontents",
+      "target": "src_app_workers_ast_parser_countlinemetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L286",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_parsefilecontents",
+      "target": "src_app_workers_ast_parser_traverseastforcomplexity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L291",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_ast_parser_parsefilecontents",
@@ -4833,8 +5124,32 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L299",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_parsefilecontents",
+      "target": "src_app_workers_ast_parser_estimatecomplexityfromtext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L310",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_parsefilecontents",
+      "target": "src_app_workers_ast_parser_calculatemaintainabilityindex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L73",
+      "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_builddependencyedges",
@@ -4845,8 +5160,20 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L205",
+      "source_location": "L204",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder_calculatestats",
+      "target": "src_app_workers_health_analyzer_analyzecodehealth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L208",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_calculatestats",
@@ -4859,7 +5186,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_resolveimportpath",
@@ -4870,11 +5197,23 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_resolveimportpath",
       "target": "src_app_workers_graph_builder_normalizepathsegments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L184",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_analyzecodehealth",
+      "target": "src_app_workers_health_analyzer_detectduplicatecode",
       "confidence_score": 1.0
     },
     {
@@ -4930,7 +5269,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L144",
+      "source_location": "L145",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_builddirectorytree",
@@ -4953,7 +5292,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast",
@@ -5025,7 +5364,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast",
@@ -5143,10 +5482,22 @@
     },
     {
       "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_parsedastresult",
+      "target": "src_app_models_code_visualizer_models_astsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L28",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -5158,7 +5509,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L333",
+      "source_location": "L365",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_findnodeinfulltree",
@@ -5170,7 +5521,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L313",
+      "source_location": "L345",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_updatebreadcrumbs",
@@ -5182,7 +5533,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L72",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_zoomto",
@@ -5786,7 +6137,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
-      "target": "src_app_models_code_visualizer_models_softwarepatterninfo",
+      "target": "src_app_services_theme_service_themeservice",
       "confidence_score": 1.0
     },
     {
@@ -5798,6 +6149,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
+      "target": "src_app_models_code_visualizer_models_softwarepatterninfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_architecture_view_architecture_view_component",
       "target": "src_app_utils_formatters_formatbytes",
       "confidence_score": 1.0
     },
@@ -5806,7 +6169,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
@@ -5846,6 +6209,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
+      "target": "src_app_services_theme_service_themeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_architecture_view_architecture_view_component_spec",
       "target": "src_app_models_code_visualizer_models_analysisresult",
       "confidence_score": 1.0
     },
@@ -5854,7 +6229,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
@@ -5866,7 +6241,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
@@ -5878,7 +6253,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
@@ -6086,6 +6461,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component",
+      "target": "src_app_services_theme_service_themeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_inspector_sidebar_inspector_sidebar_component",
       "target": "src_app_utils_formatters_formatbytes",
       "confidence_score": 1.0
     },
@@ -6122,6 +6509,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
+      "target": "src_app_services_theme_service_themeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.spec.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
       "target": "src_app_models_code_visualizer_models_analysisresult",
       "confidence_score": 1.0
     },
@@ -6130,7 +6529,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.spec.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
@@ -6142,7 +6541,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.spec.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
@@ -6741,6 +7140,54 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_models_code_visualizer_models_astsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_models_code_visualizer_models_complexitymetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_spec",
+      "target": "src_app_workers_ast_parser_calculatemaintainabilityindex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser_spec",
+      "target": "src_app_workers_ast_parser_countlinemetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.spec.ts",
       "source_location": "L2",
       "weight": 1.0,
@@ -6837,6 +7284,18 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_health_analyzer_analyzecodehealth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.spec.ts",
       "source_location": "L10",
       "weight": 1.0,
@@ -6915,6 +7374,114 @@
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_spec",
       "target": "src_app_workers_graph_builder_resolveimportpath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models_codefilenode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models_codehealthsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models_graphedge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models_highcomplexityfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models_structuralhotspot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_workers_health_analyzer_analyzecodehealth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_workers_health_analyzer_detectduplicatecode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_models_code_visualizer_models_codefilenode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_models_code_visualizer_models_graphedge",
       "confidence_score": 1.0
     },
     {
@@ -7238,7 +7805,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
-      "target": "src_app_models_code_visualizer_models",
+      "target": "src_app_services_theme_service",
       "confidence_score": 1.0
     },
     {
@@ -7247,6 +7814,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
       "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_architecture_view_architecture_view_component",
+      "target": "src_app_models_code_visualizer_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
@@ -7286,7 +7865,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
-      "target": "src_app_models_code_visualizer_models",
+      "target": "src_app_services_theme_service",
       "confidence_score": 1.0
     },
     {
@@ -7295,6 +7874,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
       "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_architecture_view_architecture_view_component_spec",
+      "target": "src_app_models_code_visualizer_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/architecture-view/architecture-view.component.spec.ts",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_spec",
@@ -7502,6 +8093,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component",
+      "target": "src_app_services_theme_service",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_inspector_sidebar_inspector_sidebar_component",
       "target": "src_app_utils_formatters",
       "confidence_score": 1.0
     },
@@ -7538,7 +8141,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
-      "target": "src_app_models_code_visualizer_models",
+      "target": "src_app_services_theme_service",
       "confidence_score": 1.0
     },
     {
@@ -7547,6 +8150,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.spec.ts",
       "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
+      "target": "src_app_models_code_visualizer_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.spec.ts",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_spec",
@@ -7977,6 +8592,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_models_code_visualizer_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.spec.ts",
       "source_location": "L2",
       "weight": 1.0,
@@ -8025,6 +8652,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_health_analyzer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.spec.ts",
       "source_location": "L10",
       "weight": 1.0,
@@ -8043,6 +8682,42 @@
       "_origin": "ast",
       "source": "src_app_workers_graph_builder_spec",
       "target": "src_app_workers_graph_builder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_models_code_visualizer_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_workers_health_analyzer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer_spec",
+      "target": "src_app_models_code_visualizer_models",
       "confidence_score": 1.0
     },
     {
@@ -8122,11 +8797,23 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L27",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent_viewpatterndetail",
       "target": "src_app_models_code_visualizer_models_softwarepatterninfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_getnodevalue",
+      "target": "src_app_models_code_visualizer_models_codefilenode",
       "confidence_score": 1.0
     },
     {
@@ -8199,6 +8886,18 @@
       "_origin": "ast",
       "source": "src_app_services_export_demo_service_exportdemoservice_getdemoprojects",
       "target": "src_app_models_code_visualizer_models_demoproject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models_astsummary",
+      "target": "src_app_models_code_visualizer_models_complexitymetrics",
       "confidence_score": 1.0
     },
     {
@@ -9272,7 +9971,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component",
@@ -9305,7 +10004,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component",
@@ -9371,62 +10070,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L23",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_models_code_visualizer_models",
-      "target": "src_app_models_code_visualizer_models_graphedge",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_models_code_visualizer_models",
-      "target": "src_app_models_code_visualizer_models_codefilenode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L31",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_models_code_visualizer_models",
-      "target": "src_app_models_code_visualizer_models_patterngrouping",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L38",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_models_code_visualizer_models",
-      "target": "src_app_models_code_visualizer_models_softwarepatterninfo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L52",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_models_code_visualizer_models",
-      "target": "src_app_models_code_visualizer_models_analysisstats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L62",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_models_code_visualizer_models",
@@ -9437,7 +10081,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L70",
+      "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_models_code_visualizer_models",
@@ -9448,11 +10092,121 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/models/code-visualizer.models.ts",
-      "source_location": "L77",
+      "source_location": "L118",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_models_code_visualizer_models",
       "target": "src_app_models_code_visualizer_models_demoproject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_astsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_codefilenode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_complexitymetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_graphedge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_patterngrouping",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_softwarepatterninfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_highcomplexityfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L70",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_structuralhotspot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_codehealthsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/models/code-visualizer.models.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_models_code_visualizer_models",
+      "target": "src_app_models_code_visualizer_models_analysisstats",
       "confidence_score": 1.0
     },
     {
@@ -9624,7 +10378,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L15",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_ast_parser",
@@ -9635,7 +10389,40 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L17",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_workers_ast_parser_traverseastforcomplexity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_workers_ast_parser_countlinemetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L177",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_workers_ast_parser_estimatecomplexityfromtext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L190",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_ast_parser",
@@ -9646,7 +10433,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L3",
+      "source_location": "L225",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_ast_parser",
+      "target": "src_app_workers_ast_parser_parsefilecontents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/ast-parser.ts",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_ast_parser",
@@ -9657,11 +10455,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/ast-parser.ts",
-      "source_location": "L52",
+      "source_location": "L96",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_ast_parser",
-      "target": "src_app_workers_ast_parser_parsefilecontents",
+      "target": "src_app_workers_ast_parser_calculatemaintainabilityindex",
       "confidence_score": 1.0
     },
     {
@@ -9679,51 +10477,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L160",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_workers_graph_builder",
-      "target": "src_app_workers_graph_builder_countdirectories",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L171",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_workers_graph_builder",
-      "target": "src_app_workers_graph_builder_calculatestats",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_workers_graph_builder",
-      "target": "src_app_workers_graph_builder_resolveimportpath",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L58",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_app_workers_graph_builder",
-      "target": "src_app_workers_graph_builder_builddependencyedges",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder",
@@ -9734,11 +10488,77 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/workers/graph-builder.ts",
-      "source_location": "L94",
+      "source_location": "L161",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_graph_builder_countdirectories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L172",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_graph_builder_calculatestats",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_graph_builder_resolveimportpath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_graph_builder",
+      "target": "src_app_workers_graph_builder_builddependencyedges",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/graph-builder.ts",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_workers_graph_builder",
       "target": "src_app_workers_graph_builder_builddirectorytree",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_workers_health_analyzer_detectduplicatecode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/workers/health-analyzer.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_workers_health_analyzer",
+      "target": "src_app_workers_health_analyzer_analyzecodehealth",
       "confidence_score": 1.0
     },
     {
@@ -10141,7 +10961,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent",
@@ -10152,7 +10972,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L27",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent",
@@ -10163,7 +10983,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/architecture-view/architecture-view.component.ts",
-      "source_location": "L31",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_architecture_view_architecture_view_component_architectureviewcomponent",
@@ -10416,7 +11236,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent",
@@ -10427,7 +11247,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/inspector-sidebar/inspector-sidebar.component.ts",
-      "source_location": "L23",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_inspector_sidebar_inspector_sidebar_component_inspectorsidebarcomponent",
@@ -10449,7 +11269,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L292",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L324",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10460,7 +11291,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L313",
+      "source_location": "L345",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10471,7 +11302,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L333",
+      "source_location": "L365",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10482,7 +11313,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L36",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10493,7 +11324,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L50",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10504,7 +11335,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L55",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10515,7 +11346,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L62",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10526,7 +11357,29 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L72",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setsizemetric",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L83",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_setcolormode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
@@ -10537,11 +11390,11 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/components/treemap-view/treemap-view.component.ts",
-      "source_location": "L77",
+      "source_location": "L94",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent",
-      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_rendertreemap",
+      "target": "src_app_components_treemap_view_treemap_view_component_treemapviewcomponent_getnodevalue",
       "confidence_score": 1.0
     },
     {
@@ -10718,6 +11571,39 @@
       "_origin": "ast",
       "source": "src_app_services_theme_service_themeservice",
       "target": "src_app_services_theme_service_themeservice_getfileextensioncolor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L259",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_services_theme_service_themeservice",
+      "target": "src_app_services_theme_service_themeservice_getcomplexitycolor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L269",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_services_theme_service_themeservice",
+      "target": "src_app_services_theme_service_themeservice_getmaintainabilitybadgeclass",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/services/theme.service.ts",
+      "source_location": "L282",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_services_theme_service_themeservice",
+      "target": "src_app_services_theme_service_themeservice_getcomplexitybadgeclass",
       "confidence_score": 1.0
     },
     {
@@ -11010,5 +11896,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "254bc477ae64cfd9c17cfb007688dfc8068cf5ca"
+  "built_at_commit": "2599ba4bae5a22ac5c04fe783df6d14f2bd2f9e4"
 }

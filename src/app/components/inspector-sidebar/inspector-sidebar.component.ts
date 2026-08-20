@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisualizerStoreService } from '../../services/visualizer-store.service';
+import { ThemeService } from '../../services/theme.service';
 import { formatBytes } from '../../utils/formatters';
 
 @Component({
@@ -12,7 +13,9 @@ import { formatBytes } from '../../utils/formatters';
 })
 export class InspectorSidebarComponent {
   readonly store = inject(VisualizerStoreService);
+  readonly themeService = inject(ThemeService);
   readonly formatBytes = formatBytes;
+  readonly Math = Math;
 
   getImporters(targetPath: string): string[] {
     const result = this.store.analysisResult();

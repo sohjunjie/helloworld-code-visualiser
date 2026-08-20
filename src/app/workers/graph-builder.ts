@@ -5,6 +5,7 @@ import {
   SoftwarePatternInfo,
 } from '../models/code-visualizer.models';
 import { getDirname } from './zip-extractor';
+import { analyzeCodeHealth } from './health-analyzer';
 
 export function normalizePathSegments(path: string): string {
   const parts = path.split('/');
@@ -200,6 +201,8 @@ export function calculateStats(
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
+  const codeHealth = analyzeCodeHealth(filePaths, fileNodes, edges);
+
   return {
     totalFiles,
     totalDirectories: countDirectories(rootNode),
@@ -208,5 +211,6 @@ export function calculateStats(
     languageBreakdown,
     topImportedFiles,
     detectedPatterns,
+    codeHealth,
   };
 }

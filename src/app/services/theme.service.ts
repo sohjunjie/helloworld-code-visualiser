@@ -252,4 +252,44 @@ export class ThemeService {
   getFileExtensionColor(ext: string): string {
     return this.getNodeColorConfig(ext).accent || this.getNodeColorConfig(ext).border;
   }
+
+  /**
+   * Returns color along a complexity gradient (green for low complexity to red for high complexity).
+   */
+  getComplexityColor(complexity: number): string {
+    if (complexity <= 5) return '#10b981'; // Low (Emerald)
+    if (complexity <= 15) return '#f59e0b'; // Moderate (Amber)
+    if (complexity <= 30) return '#f97316'; // High (Orange)
+    return '#ef4444'; // Critical (Red)
+  }
+
+  /**
+   * Returns badge style class for maintainability index (0-100).
+   */
+  getMaintainabilityBadgeClass(score: number): string {
+    if (score >= 80) {
+      return 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30';
+    }
+    if (score >= 60) {
+      return 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30';
+    }
+    return 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/30';
+  }
+
+  /**
+   * Returns badge style class for cyclomatic complexity.
+   */
+  getComplexityBadgeClass(complexity: number): string {
+    if (complexity <= 5) {
+      return 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30';
+    }
+    if (complexity <= 15) {
+      return 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/30';
+    }
+    if (complexity <= 30) {
+      return 'bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/30';
+    }
+    return 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/30';
+  }
 }
+

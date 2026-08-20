@@ -199,6 +199,8 @@ describe('graph-builder', () => {
       expect(stats.languageBreakdown['ts']).toBe(2);
       expect(stats.languageBreakdown['js']).toBe(1);
       expect(stats.topImportedFiles[0]).toEqual({ path: 'src/c.js', count: 2 });
+      expect(stats.codeHealth).toBeDefined();
+      expect(stats.codeHealth?.averageMaintainabilityIndex).toBeGreaterThanOrEqual(0);
     });
   });
 });
