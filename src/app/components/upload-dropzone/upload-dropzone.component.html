@@ -1,14 +1,14 @@
-<div class="max-w-4xl mx-auto px-4 py-10 animate-fade-in">
+<div class="upload-zone animate-fade-in">
   <!-- Hero Header -->
-  <div class="text-center mb-8">
-    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-300 dark:bg-sky-500/10 dark:border-sky-500/20 dark:text-sky-400 text-xs font-semibold mb-3 shadow-xs">
-      <span class="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 animate-ping"></span>
+  <div class="upload-zone__hero">
+    <div class="upload-zone__badge">
+      <span class="upload-zone__badge-ping animate-ping"></span>
       <span>100% In-Browser Private AST Code Visualizer</span>
     </div>
-    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight sm:text-4xl">
+    <h2 class="upload-zone__title">
       Explore Code Architecture & Dependencies
     </h2>
-    <p class="mt-3 text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
+    <p class="upload-zone__description">
       Upload any JavaScript or TypeScript project ZIP archive to generate interactive dependency graphs, file hierarchy treemaps, circular import loop alerts, and AST metrics.
     </p>
   </div>
@@ -18,45 +18,43 @@
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     (drop)="onDrop($event)"
-    [class]="isDragging ? 'border-sky-500 bg-sky-500/10 scale-[1.01] shadow-sky-500/20' : 'border-slate-300 dark:border-slate-700/80 bg-white/80 dark:bg-slate-900/60 hover:border-sky-500/50 hover:bg-slate-50 dark:hover:bg-slate-900/80 hover:shadow-2xl hover:shadow-sky-500/10'"
-    class="relative border-2 border-dashed rounded-3xl p-8 text-center transition-all duration-300 shadow-xl glass-card cursor-pointer group"
+    [class.dropzone-card--dragging]="isDragging"
+    class="dropzone-card glass-card group"
   >
     <input
       type="file"
       accept=".zip"
       aria-label="Upload project ZIP file"
       (change)="onFileSelected($event)"
-      class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10 focus-visible:ring-2 focus-visible:ring-sky-500"
+      class="dropzone-card__input focus-visible:ring-2 focus-visible:ring-sky-500"
     />
 
-    <div class="flex flex-col items-center justify-center space-y-3">
-      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center group-hover:scale-110 group-active:scale-95 transition-transform duration-300 shadow-inner flex-shrink-0">
+    <div class="dropzone-card__content">
+      <div class="dropzone-card__icon-box">
         <svg class="w-8 h-8 text-sky-600 dark:text-sky-400 group-hover:text-sky-500 dark:group-hover:text-sky-300 transition-colors flex-shrink-0" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
         </svg>
       </div>
 
       <div>
-        <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+        <h3 class="dropzone-card__title">
           Drop your project <span class="text-sky-600 dark:text-sky-400 font-mono">.ZIP</span> archive here
         </h3>
         <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">
-          or <span class="text-sky-600 dark:text-sky-400 font-semibold underline underline-offset-4 hover:text-sky-700 dark:hover:text-sky-300">click to browse</span> from your system
+          or <span class="dropzone-card__browse-link">click to browse</span> from your system
         </p>
       </div>
 
-      <div class="flex items-center space-x-4 text-xs text-slate-600 dark:text-slate-400 pt-1">
-        <span class="flex items-center space-x-1.5 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700/60">
+      <div class="dropzone-card__features">
+        <span class="dropzone-card__feature-badge">
           <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           <span>JS / TS / React / Vue / Angular</span>
         </span>
-        <span class="flex items-center space-x-1.5 bg-slate-100 dark:bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700/60">
+        <span class="dropzone-card__feature-badge">
           <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           <span>Zero server upload</span>
         </span>
       </div>
     </div>
   </div>
-
-
 </div>

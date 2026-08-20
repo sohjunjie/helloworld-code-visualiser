@@ -1,0 +1,59 @@
+/* app.css — Application Root Layout Styles (BEM) */
+
+.app-shell {
+  /* Positioning & Box Model */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+
+  /* Typography & Theme Colors */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+
+  /* Visual & Transitions */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:host-context(.dark) .app-shell {
+  background-color: #020617;
+  color: #f8fafc;
+}
+
+.app-shell ::selection {
+  background-color: #0ea5e9;
+  color: #ffffff;
+}
+
+.app-shell__main {
+  /* Positioning & Box Model */
+  position: relative;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell__landing {
+  /* Display & Box Model */
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-shell__viewport {
+  /* Positioning & Box Model */
+  position: relative;
+  flex: 1 1 0%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell__panel {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

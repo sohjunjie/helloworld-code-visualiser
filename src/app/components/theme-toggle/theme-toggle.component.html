@@ -3,18 +3,13 @@
   (click)="toggleTheme()"
   [attr.aria-label]="theme.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
   [title]="theme.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-  class="relative p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/90 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700/60 transition-all duration-200 cursor-pointer active:scale-95 shadow-2xs hover:shadow-xs focus-visible:ring-2 focus-visible:ring-sky-500 flex items-center justify-center w-9 h-9"
+  class="theme-toggle focus-visible:ring-2 focus-visible:ring-sky-500"
 >
   <!-- Sun Icon (Visible in Dark Mode to switch to Light) -->
   <svg
-    class="w-4 h-4 text-amber-500 transition-all duration-300 transform"
-    [class.rotate-0]="theme.isDarkMode()"
-    [class.scale-100]="theme.isDarkMode()"
-    [class.opacity-100]="theme.isDarkMode()"
-    [class.-rotate-90]="!theme.isDarkMode()"
-    [class.scale-0]="!theme.isDarkMode()"
-    [class.opacity-0]="!theme.isDarkMode()"
-    [class.absolute]="!theme.isDarkMode()"
+    class="theme-toggle__icon theme-toggle__icon--sun"
+    [class.theme-toggle__icon--active]="theme.isDarkMode()"
+    [class.theme-toggle__icon--hidden]="!theme.isDarkMode()"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -30,14 +25,9 @@
 
   <!-- Moon Icon (Visible in Light Mode to switch to Dark) -->
   <svg
-    class="w-4 h-4 text-indigo-600 dark:text-indigo-400 transition-all duration-300 transform"
-    [class.rotate-0]="!theme.isDarkMode()"
-    [class.scale-100]="!theme.isDarkMode()"
-    [class.opacity-100]="!theme.isDarkMode()"
-    [class.rotate-90]="theme.isDarkMode()"
-    [class.scale-0]="theme.isDarkMode()"
-    [class.opacity-0]="theme.isDarkMode()"
-    [class.absolute]="theme.isDarkMode()"
+    class="theme-toggle__icon theme-toggle__icon--moon"
+    [class.theme-toggle__icon--active]="!theme.isDarkMode()"
+    [class.theme-toggle__icon--hidden]="theme.isDarkMode()"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -51,3 +41,4 @@
     />
   </svg>
 </button>
+

@@ -1,15 +1,15 @@
 @if (store.progressStatus()) {
-  <div class="fixed inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fade-in">
+  <div class="progress-modal animate-fade-in">
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="progress-modal-title"
       aria-describedby="progress-modal-desc"
-      class="glass-panel w-full max-w-md p-6 rounded-3xl border border-slate-200 dark:border-slate-700/80 shadow-2xl space-y-5"
+      class="progress-modal__dialog glass-panel"
     >
       <!-- Stage Icon & Title -->
-      <div class="flex items-center space-x-3">
-        <div class="w-12 h-12 rounded-2xl bg-sky-100 dark:bg-sky-500/20 border border-sky-300 dark:border-sky-500/30 flex items-center justify-center text-sky-600 dark:text-sky-400">
+      <div class="progress-modal__header">
+        <div class="progress-modal__icon-box">
           @if (store.progressStatus()?.stage === 'error') {
             <svg class="w-6 h-6 text-red-500 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -23,34 +23,34 @@
         </div>
 
         <div>
-          <h3 id="progress-modal-title" class="text-lg font-bold text-slate-900 dark:text-slate-100">
+          <h3 id="progress-modal-title" class="progress-modal__title">
             @if (store.progressStatus()?.stage === 'error') {
               Analysis Error
             } @else {
               Processing Codebase
             }
           </h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+          <p class="progress-modal__stage">
             {{ store.progressStatus()?.stage | uppercase }}
           </p>
         </div>
       </div>
 
       <!-- Message (Live region for screen readers) -->
-      <p id="progress-modal-desc" aria-live="polite" class="text-sm text-slate-800 dark:text-slate-300 bg-slate-100 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs">
+      <p id="progress-modal-desc" aria-live="polite" class="progress-modal__message">
         {{ store.progressStatus()?.message }}
       </p>
 
       <!-- Progress Bar -->
       @if (store.progressStatus()?.stage !== 'error') {
-        <div class="space-y-1.5" role="progressbar" [attr.aria-valuenow]="store.progressStatus()?.percentage" aria-valuemin="0" aria-valuemax="100">
-          <div class="flex justify-between text-xs text-slate-600 dark:text-slate-400">
+        <div role="progressbar" [attr.aria-valuenow]="store.progressStatus()?.percentage" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-modal__progress-info">
             <span>Progress</span>
             <span class="font-bold text-sky-600 dark:text-sky-400">{{ store.progressStatus()?.percentage }}%</span>
           </div>
-          <div class="w-full h-3 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden border border-slate-300 dark:border-slate-800 p-0.5">
+          <div class="progress-modal__track">
             <div
-              class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full transition-all duration-300"
+              class="progress-modal__fill"
               [style.width.%]="store.progressStatus()?.percentage"
             ></div>
           </div>
@@ -60,7 +60,7 @@
           type="button"
           (click)="store.clearResult()"
           aria-label="Close error dialog and try again"
-          class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-200 font-medium text-xs rounded-xl transition border border-slate-300 dark:border-slate-700 focus-visible:ring-2 focus-visible:ring-sky-500"
+          class="progress-modal__btn-close focus-visible:ring-2 focus-visible:ring-sky-500"
         >
           Close & Try Again
         </button>
