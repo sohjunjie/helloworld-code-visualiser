@@ -186,9 +186,31 @@ export function computeAggregatedGraph(
   const edgeMap = new Map<string, EdgeAccumulator>();
   const externalNodeMap = new Map<string, AggregatedGraphNode>();
 
+  function getOrCreateExternalNode(nodeId: string): AggregatedGraphNode {
+    let existing = externalNodeMap.get(nodeId);
+    if (!existing) {
+      const extFile = files[nodeId];
+      const extParts = nodeId.split('/');
+      existing = {
+        id: nodeId,
+        name: extFile?.name || extParts[extParts.length - 1] || nodeId,
+        path: nodeId,
+        type: extFile?.type || 'file',
+        fileCount: 1,
+        size: extFile?.size || 0,
+        extension: extFile?.extension || '',
+        isExternalBoundary: true,
+        isCycle: cycleSet.has(nodeId),
+      };
+      externalNodeMap.set(nodeId, existing);
+    }
+    return existing;
+  }
+
   for (const edge of edges) {
     const srcChild = getDirectChildKey(edge.source, currentPath);
     const tgtChild = getDirectChildKey(edge.target, currentPath);
+
 
     if (srcChild && tgtChild) {
       // Both source and target are inside current directory
@@ -211,24 +233,8 @@ export function computeAggregatedGraph(
       // External boundary connection (only when drilled into a subdirectory)
       if (srcChild && !tgtChild) {
         // Outgoing dependency from inside current directory to external file/node
-        const externalTargetId = edge.target;
-        if (!externalNodeMap.has(externalTargetId)) {
-          const extFile = files[externalTargetId];
-          const extParts = externalTargetId.split('/');
-          externalNodeMap.set(externalTargetId, {
-            id: externalTargetId,
-            name: extFile?.name || extParts[extParts.length - 1] || externalTargetId,
-            path: externalTargetId,
-            type: extFile?.type || 'file',
-            fileCount: 1,
-            size: extFile?.size || 0,
-            extension: extFile?.extension || '',
-            isExternalBoundary: true,
-            isCycle: cycleSet.has(externalTargetId),
-          });
-        }
-
-        const edgeId = `${srcChild}->${externalTargetId}`;
+        getOrCreateExternalNode(edge.target);
+        const edgeId = `${srcChild}->${edge.target}`;
         const existing = edgeMap.get(edgeId);
         if (existing) {
           existing.weight += 1;
@@ -236,38 +242,22 @@ export function computeAggregatedGraph(
           edgeMap.set(edgeId, {
             id: edgeId,
             source: srcChild,
-            target: externalTargetId,
+            target: edge.target,
             weight: 1,
             isExternal: true,
           });
         }
       } else if (!srcChild && tgtChild) {
         // Incoming dependency from external file/node to inside current directory
-        const externalSourceId = edge.source;
-        if (!externalNodeMap.has(externalSourceId)) {
-          const extFile = files[externalSourceId];
-          const extParts = externalSourceId.split('/');
-          externalNodeMap.set(externalSourceId, {
-            id: externalSourceId,
-            name: extFile?.name || extParts[extParts.length - 1] || externalSourceId,
-            path: externalSourceId,
-            type: extFile?.type || 'file',
-            fileCount: 1,
-            size: extFile?.size || 0,
-            extension: extFile?.extension || '',
-            isExternalBoundary: true,
-            isCycle: cycleSet.has(externalSourceId),
-          });
-        }
-
-        const edgeId = `${externalSourceId}->${tgtChild}`;
+        getOrCreateExternalNode(edge.source);
+        const edgeId = `${edge.source}->${tgtChild}`;
         const existing = edgeMap.get(edgeId);
         if (existing) {
           existing.weight += 1;
         } else {
           edgeMap.set(edgeId, {
             id: edgeId,
-            source: externalSourceId,
+            source: edge.source,
             target: tgtChild,
             weight: 1,
             isExternal: true,
